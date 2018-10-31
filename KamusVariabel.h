@@ -31,7 +31,7 @@ typedef struct {
     int nomormeja;
     int kesabaran;
     char makanan[30];
-} ARRAY
+} TabInt
 /*Definisi pemanggilan Point */
 #define Nomormeja(A) (A).nomormeja
 #define Kesabaran(A) (A).kesabaran
