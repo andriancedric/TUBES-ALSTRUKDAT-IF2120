@@ -9,7 +9,16 @@
 
 /* Definisi variabel untuk Engi's Kitchen Expansion*/
 
-/* Untuk ADT JAM */
+/*Bentukan si player*/
+typedef struct{
+	int life;
+	int money;
+} PLAYER
+
+#define Life(P) (P).Life
+#define Money(P) (P).Money
+
+/* Untuk ADT JAM -> Waktu game  */
 typedef struct {
     int SS; /* buat simpan waktu permainan kalau jadi di save */
 } JAM
@@ -21,10 +30,13 @@ typedef struct {
 typedef struct {
 	float X; /* absis */
 	float Y; /* ordinat*/
+	int ID /*penunjuk lokasi di mana player berada, misal Room 1, Room 2, Dapur*/
 } POINT;
 /*Definisi pemanggilan Point */
 #define Absis(P) (P).X
 #define Ordinat(P) (P).Y
+#define Lokasi(P) (P).lokasi
+
 
 /*Untuk ADT ARRAY -> <makanan,nomormeja,kesabaran>*/ 
 typedef struct {
@@ -51,7 +63,8 @@ typedef struct {
 
 /*Untuk ADT Queue*/
 typedef struct {
-                 int wktantri;  /* waktu antrean si pelanggan */
+                 int wktantri;/* waktu antrean si pelanggan */
+				 int jumlahorang; /*antrian per grup, kan antriannya ga harus sendiri (per kelomppok)*/
                } infotype;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
@@ -66,6 +79,7 @@ typedef struct { infotype T [30];  /*panjang antrian maksimal*/
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotype dan Q adalah Queue, maka akses elemen : */
 #define WktAntri(e)     (e).wktantri
+#define Jumlahorang(e) (e).jumlahorang              
 #define Head(Q)     (Q).HEAD
 #define Tail(Q)     (Q).TAIL
 #define InfoHead(Q) (Q).T[(Q).HEAD]
@@ -75,41 +89,27 @@ typedef struct { infotype T [30];  /*panjang antrian maksimal*/
 /*Untuk ADT Stack*/
 typedef int infotype;
 typedef int address;   /* indeks tabel */
-
-/* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
-/* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
-	infotype T[MaxEl+1]; /* tabel penyimpan elemen */
+	infotype T[5]; /* tabel penyimpan elemen pada tray*/
 	address TOP;  /* alamat TOP: elemen puncak */
 } StackTray;
-/* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[1]..T[MaxEl] */
-/* Jika S adalah Stack maka akses elemen : */
-   /* S.T[(S.TOP)] untuk mengakses elemen TOP */
-   /* S.TOP adalah alamat elemen TOP */
 
 /* Definisi akses dengan Selektor : Set dan Get */
-#define TopTray(S) (S).TOP
-#define InfoTopTray(S) (S).T[(S).TOP]
+#define TopTray(ST) (ST).TOP
+#define InfoTopTray(ST) (ST).T[(ST).TOP]
 
 /*Untuk ADT Stack*/
 typedef int infotype;
 typedef int address;   /* indeks tabel */
 
-/* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
-/* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
 	infotype T[MaxEl+1]; /* tabel penyimpan elemen */
 	address TOP;  /* alamat TOP: elemen puncak */
 } StackHand;
-/* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[1]..T[MaxEl] */
-/* Jika S adalah Stack maka akses elemen : */
-   /* S.T[(S.TOP)] untuk mengakses elemen TOP */
-   /* S.TOP adalah alamat elemen TOP */
 
 /* Definisi akses dengan Selektor : Set dan Get */
-#define TopHand(S) (S).TOP
-#define InfoTopHand(S) (S).T[(S).TOP]
+#define TopHand(SH) (SH).TOP
+#define InfoTopHand(SH) (SH).T[(SH).TOP]
 
 
+#endif
