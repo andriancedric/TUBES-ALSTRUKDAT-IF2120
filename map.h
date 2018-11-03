@@ -51,8 +51,6 @@ typedef struct {
 #define N(R) (R).N
 #define List(G) (G).L
 #define First(G) (G).First
-#define Tipe(S) (S).tipe
-#define Isi(S) (S).isi
 
 
 #endif

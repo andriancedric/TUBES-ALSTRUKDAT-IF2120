@@ -48,13 +48,22 @@ void Draw(Room R){//Prosedur Menggambar peta
     }
 }
 
-//void  AddSquare(Room *R, Square S, int X, int Y);
-//Menambah square di room R
+//void  EditSquare(Room *R, Square S, int X, int Y);
+//Mengedit square di room R di koordinat X,Y menjadi S
 
 //void MakeSquare(Square *S, char tipe, int ID)
 //Membuat Square
 
+//void MakeDoor(Square *S, Room *R, Graph *G, int X, int Y);
+//Prosedur khusus untuk membuat pintu
 
+char Tipe(Room R, int X, int Y){//Getter Tipe u/ Room
+    return R.S[X][Y].tipe;
+}
+
+int Isi(Room R, int X, int Y){//Getter isi u/ Room
+    return  R.S[X][Y].isi;
+}
 
 int main(){
     int ext_status;
