@@ -1,5 +1,5 @@
 #ifndef modstack_H
-#define modstackt_H
+#define modstack_H
 
 #include "boolean.h"
 
