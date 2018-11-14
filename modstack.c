@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include "stacktray.h"
+#include "modstack.h"
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
