@@ -2,6 +2,7 @@
 //
 
 #include "map.h"
+#include "KamusVariabel.h"
 
 char TipeR(Room R, int X, int Y){//Getter Tipe u/ Room
     return R.S[X][Y].tipe;
@@ -93,7 +94,7 @@ void UpdatePosition(char *input, Room *R){
 //void MakeDoor(Square *S, Room *R, Graph *G, int X, int Y);
 //Prosedur khusus untuk membuat pintu
 
-int main(){
+/* int main(){
     int ext_status;
     Room R;
     MakeRoom(&R,1);
@@ -114,4 +115,4 @@ int main(){
       scanf("%s",input);
     }
     return 0;
-}
+} */

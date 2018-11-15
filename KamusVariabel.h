@@ -6,31 +6,32 @@
 #include "boolean.h"
 #include <string.h>
 #include <stdlib.h>
-
 /* Definisi variabel untuk Engi's Kitchen Expansion*/
 
 /*Bentukan si player*/
 typedef struct{
 	int life;
 	int money;
-} PLAYER
+    char name[20];
+} PLAYER;
 
-#define Life(P) (P).Life
-#define Money(P) (P).Money
+#define Life(P) (P).life
+#define Money(P) (P).money
+#define Nama(P) (P).name
 
 /* Untuk ADT JAM -> Waktu game  */
 typedef struct {
     int SS; /* buat simpan waktu permainan kalau jadi di save */
-} JAM
+} JAM;
 /*Definisi pemanggilan Time */
 #define Time(J) (J).SS
 
 
 /*Untuk ADT POINT */
 typedef struct {
-	float X; /* absis */
-	float Y; /* ordinat*/
-	int ID /*penunjuk lokasi di mana player berada, misal Room 1, Room 2, Dapur*/
+	int X; /* absis */
+	int Y; /* ordinat*/
+	int ID; /*penunjuk lokasi di mana player berada, misal Room 1, Room 2, Dapur*/
 } POINT;
 /*Definisi pemanggilan Point */
 #define Absis(P) (P).X
@@ -44,12 +45,12 @@ typedef struct{
   int nomormeja;
   int kesabaran;
   char makanan;
-} infotypeArr
+} infotypeArr;
 
 typedef struct {
     infotypeArr TI[30];
     int Neff;
-} TabInt
+} TabInt;
 /*Definisi pemanggilan Point */
 #define Nomormeja(T,i) (T).TI[(i)].nomormeja
 #define Kesabaran(T,i) (T).TI[(i)].kesabaran
@@ -59,7 +60,7 @@ typedef struct {
 typedef int indeks; /* indeks baris, kolom */
 typedef int ElType;
 typedef struct {
-	ElType Mem[BrsMax+1][KolMax+1];
+	ElType Mem[20+1][20+1];
   int NBrsEff; /* banyaknya/ukuran baris yg terdefinisi */
 	int NKolEff; /* banyaknya/ukuran kolom yg terdefinisi */
 } MATRIKS;
@@ -112,7 +113,7 @@ typedef int infotype;
 typedef int address;   /* indeks tabel */
 
 typedef struct {
-	infotype T[MaxEl+1]; /* tabel penyimpan elemen */
+	infotype T[20+1]; /* tabel penyimpan elemen */
 	address TOP;  /* alamat TOP: elemen puncak */
 } StackHand;
 

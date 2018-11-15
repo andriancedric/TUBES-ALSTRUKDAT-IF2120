@@ -4,6 +4,7 @@
 #define FP_H
 
 #include "boolean.h"
+#include "KamusVariabel.h"
 // ADT JAM
     void TulisJAM (JAM J);
     /* I.S. : J sembarang */
@@ -50,7 +51,7 @@
     int NbElmtArr (TabInt T);
       /* Mengirimkan banyaknya elemen efektif tabel */
       /* Mengirimkan nol jika tabel kosong */
-    int MaxNbElArr (TabInt T)
+    int MaxNbElArr (TabInt T);
       /* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
     IdxType GetFirstIdxArr (TabInt T);
     /* Prekondisi : Tabel T tidak kosong */
