@@ -58,7 +58,7 @@ void Draw(Room R){//Prosedur Menggambar peta
 }
 
 void  EditSquare(Room *R, Square S, int X, int Y){
-  Square(*R)[X][Y]=S;
+  (*R).S[X][Y]=S;
 }
 //Mengedit Square di room
 
@@ -69,50 +69,46 @@ void MakeSquare(Square *S, char tipe, int ID){
 //Membuat Square
 
 void UpdatePosition(char *input, Room *R){
-  if (strcmp(input,"GU")){
-    Absis(PosisiP)++;
-    Absis(PosisiP)=(Absis(PosisiP) % M(*R));
-  }
-  else if (strcmp(input,"GU")){
-    Ordinat(PosisiP)--;
-    Ordinat(PosisiP)=(Ordinat(PosisiP) % N(*R));
-  }
-  else if (strcmp(input,"GU")){
-    Ordinat(PosisiP)++;
-    Ordinat(PosisiP)=(Ordinat(PosisiP) % N(*R));
-  }
-  else if (strcmp(input,"GU")){
+  Square Sq;
+  MakeSquare(&Sq,'.',0);
+  EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
+  if (strcmp(input,"GU")==0){
     Absis(PosisiP)--;
     Absis(PosisiP)=(Absis(PosisiP) % M(*R));
   }
-  Square Sq;
+  else if (strcmp(input,"GL")==0){
+    Ordinat(PosisiP)--;
+    Ordinat(PosisiP)=(Ordinat(PosisiP) % N(*R));
+  }
+  else if (strcmp(input,"GR")==0){
+    Ordinat(PosisiP)++;
+    Ordinat(PosisiP)=(Ordinat(PosisiP) % N(*R));
+  }
+  else if (strcmp(input,"GD")==0){
+    Absis(PosisiP)++;
+    Absis(PosisiP)=(Absis(PosisiP) % M(*R));
+  }
   MakeSquare(&Sq,'P',0);
   EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
+  Draw(*R);
 }
 //Prosedur untuk update display dan posisi player
 
 //void MakeDoor(Square *S, Room *R, Graph *G, int X, int Y);
 //Prosedur khusus untuk membuat pintu
 
-/* int main(){
+int main(){
     int ext_status;
     Room R;
     MakeRoom(&R,1);
     Absis(PosisiP)=0;
     Ordinat(PosisiP)=0;
-    char *input;
-    //UpdatePosition(input,&R);
-    Draw(R);
-    scanf("%s",input);
-    char IP[2];
-    strcpy(IP,input);
-    if (strcmp(IP,"GU")){
-      printf("haiiiii");
-    }
-    while (input!="X"){
+    char input[10];
+    UpdatePosition(input,&R);
+    scanf("%s",&input);
+    while (strcmp(input,"X")!=0){
       UpdatePosition(input,&R);
-      Draw(R);
       scanf("%s",input);
     }
     return 0;
-} */
+}
