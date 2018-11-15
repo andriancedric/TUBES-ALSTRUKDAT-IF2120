@@ -5,6 +5,7 @@
 
 #include "boolean.h"
 #include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 /* Definisi variabel untuk Engi's Kitchen Expansion*/
@@ -13,15 +14,17 @@
 typedef struct{
 	int life;
 	int money;
-} PLAYER
+	POINT position;
+} PLAYER;
 
 #define Life(P) (P).Life
 #define Money(P) (P).Money
+#define Position(P) (P).position
 
 /* Untuk ADT JAM -> Waktu game  */
 typedef struct {
     int SS; /* buat simpan waktu permainan kalau jadi di save */
-} JAM
+} JAM;
 /*Definisi pemanggilan Time */
 #define Time(J) (J).SS
 
@@ -38,7 +41,7 @@ typedef struct {
 #define Lokasi(P) (P).lokasi
 
 
-/*Untuk ADT ARRAY -> <makanan,nomormeja,kesabaran>*/ 
+/*Untuk ADT ARRAY -> <makanan,nomormeja,kesabaran>*/
 typedef struct {
     int nomormeja;
     int kesabaran;
@@ -79,7 +82,7 @@ typedef struct { infotype T [30];  /*panjang antrian maksimal*/
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotype dan Q adalah Queue, maka akses elemen : */
 #define WktAntri(e)     (e).wktantri
-#define Jumlahorang(e) (e).jumlahorang              
+#define Jumlahorang(e) (e).jumlahorang
 #define Head(Q)     (Q).HEAD
 #define Tail(Q)     (Q).TAIL
 #define InfoHead(Q) (Q).T[(Q).HEAD]

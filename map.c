@@ -3,6 +3,14 @@
 
 #include "map.h"
 
+char TipeR(Room R, int X, int Y){//Getter Tipe u/ Room
+    return R.S[X][Y].tipe;
+}
+
+int IsiR(Room R, int X, int Y){//Getter isi u/ Room
+    return  R.S[X][Y].isi;
+}
+
 void MakeRoom (Room *R,int ID){//Prosedur membuat room
     int M,N;
     int ext_status;
@@ -48,27 +56,62 @@ void Draw(Room R){//Prosedur Menggambar peta
     }
 }
 
-//void  EditSquare(Room *R, Square S, int X, int Y);
-//Mengedit square di room R di koordinat X,Y menjadi S
+void  EditSquare(Room *R, Square S, int X, int Y){
+  Square(*R)[X][Y]=S;
+}
+//Mengedit Square di room
 
-//void MakeSquare(Square *S, char tipe, int ID)
+void MakeSquare(Square *S, char tipe, int ID){
+  Tipe(*S)=tipe;
+  Isi(*S)=ID;
+}
 //Membuat Square
+
+void UpdatePosition(char *input, Room *R){
+  if (strcmp(input,"GU")){
+    Absis(PosisiP)++;
+    Absis(PosisiP)=(Absis(PosisiP) % M(*R));
+  }
+  else if (strcmp(input,"GU")){
+    Ordinat(PosisiP)--;
+    Ordinat(PosisiP)=(Ordinat(PosisiP) % N(*R));
+  }
+  else if (strcmp(input,"GU")){
+    Ordinat(PosisiP)++;
+    Ordinat(PosisiP)=(Ordinat(PosisiP) % N(*R));
+  }
+  else if (strcmp(input,"GU")){
+    Absis(PosisiP)--;
+    Absis(PosisiP)=(Absis(PosisiP) % M(*R));
+  }
+  Square Sq;
+  MakeSquare(&Sq,'P',0);
+  EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
+}
+//Prosedur untuk update display dan posisi player
 
 //void MakeDoor(Square *S, Room *R, Graph *G, int X, int Y);
 //Prosedur khusus untuk membuat pintu
-
-char Tipe(Room R, int X, int Y){//Getter Tipe u/ Room
-    return R.S[X][Y].tipe;
-}
-
-int Isi(Room R, int X, int Y){//Getter isi u/ Room
-    return  R.S[X][Y].isi;
-}
 
 int main(){
     int ext_status;
     Room R;
     MakeRoom(&R,1);
+    Absis(PosisiP)=0;
+    Ordinat(PosisiP)=0;
+    char *input;
+    //UpdatePosition(input,&R);
     Draw(R);
+    scanf("%s",input);
+    char IP[2];
+    strcpy(IP,input);
+    if (strcmp(IP,"GU")){
+      printf("haiiiii");
+    }
+    while (input!="X"){
+      UpdatePosition(input,&R);
+      Draw(R);
+      scanf("%s",input);
+    }
     return 0;
 }
