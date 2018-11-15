@@ -32,7 +32,7 @@ boolean IsFull (Stack S)
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void Push (Stack *S, infotype X)
+void Push (Stack *S, int ID)
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
@@ -40,18 +40,18 @@ void Push (Stack *S, infotype X)
   //KAMUS
   //ALGORITMA
     Top(*S)++;
-    InfoTop(*S) = X;
+    InfoTop(*S) = ID;
 }
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void Pop (Stack *S, infotype *X)
+void Pop (Stack *S, int *ID)
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 {
   //KAMUS
   //ALGORITMA
-  *X = InfoTop(*S);
+  *ID = InfoTop(*S);
   Top(*S)--;
 }
 
@@ -60,30 +60,41 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
 	/*F.S. : Makanan yang terbentuk dipindah ke tray*/
 
 	//KAMUS
-	infotype MakananTemp;
+	int IDTemp;
 
 	//ALGORITMA
-	if (IsFull(ST)){ /*tray penuh*/
+	if (IsFull(*ST)){ /*tray penuh*/
 		printf("Tray sudah penuh");
 	} 
 	else {
-		Pop(SH,&MakananTemp);
-		Push(ST, MakananTemp);
+		Pop(SH,&IDTemp);
+		Push(ST, IDTemp);
 	}
 }
 
-void Take (infotype ID, Stack *SH) { 
-    /*I.S. : Ada bahan di sebelah pemain, kondisi tangan tidak penuh*/
+void Take (int ID, Stack *SH) { 
+  /*I.S. : Ada bahan di sebelah pemain, kondisi tangan tidak penuh*/
 	/*F.S. : Bahan berpindah ke tangan*/
 
     //KAMUS
-    infotype IDBahan;
-
     //ALGORITMA
-    if(!IsEmpty(SH)){
-        Push(SH, IdBahan);
+    if(!IsEmpty(*SH)){
+        Push(SH, ID);
     }
     else{
-        print('Tangan kamu penuh. Kosongi dahulu');
+        printf("Tangan kamu penuh. Kosongi dahulu");
     }
 }
+
+void Give (Stack *ST, int *ID) {
+  /*I.S : Ada tumpukkan di tray*/
+  /*F.S : Makanan pada top of tray akan diberikan kepada pelanggan*/
+
+  //KAMUS
+  int IDTemp;
+
+  //ALGORITMA
+  Pop(ST, &IDTemp);
+  *ID = IDTemp;
+}
+     
