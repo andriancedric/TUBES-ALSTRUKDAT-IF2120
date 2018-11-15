@@ -5,7 +5,6 @@
 
 #include "boolean.h"
 #include <string.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 /* Definisi variabel untuk Engi's Kitchen Expansion*/
@@ -14,17 +13,15 @@
 typedef struct{
 	int life;
 	int money;
-	POINT position;
-} PLAYER;
+} PLAYER
 
 #define Life(P) (P).Life
 #define Money(P) (P).Money
-#define Position(P) (P).position
 
 /* Untuk ADT JAM -> Waktu game  */
 typedef struct {
     int SS; /* buat simpan waktu permainan kalau jadi di save */
-} JAM;
+} JAM
 /*Definisi pemanggilan Time */
 #define Time(J) (J).SS
 
@@ -42,22 +39,28 @@ typedef struct {
 
 
 /*Untuk ADT ARRAY -> <makanan,nomormeja,kesabaran>*/
+typedef int IdxType;  /* type indeks */
+typedef struct{
+  int nomormeja;
+  int kesabaran;
+  char makanan;
+} infotypeArr
+
 typedef struct {
-    int nomormeja;
-    int kesabaran;
-    char makanan[30];
+    infotypeArr TI[30];
+    int Neff;
 } TabInt
 /*Definisi pemanggilan Point */
-#define Nomormeja(A) (A).nomormeja
-#define Kesabaran(A) (A).kesabaran
-#define Makanan(A) (A).makanan  /*coba deh bisa di string atau engga */
+#define Nomormeja(T,i) (T).TI[(i)].nomormeja
+#define Kesabaran(T,i) (T).TI[(i)].kesabaran
+#define Makanan(T,i) (T).TI[(i)].makanan  /*coba deh bisa di string atau engga */
 
 /*Untuk ADT Matriks*/
 typedef int indeks; /* indeks baris, kolom */
 typedef int ElType;
 typedef struct {
 	ElType Mem[BrsMax+1][KolMax+1];
-    int NBrsEff; /* banyaknya/ukuran baris yg terdefinisi */
+  int NBrsEff; /* banyaknya/ukuran baris yg terdefinisi */
 	int NKolEff; /* banyaknya/ukuran kolom yg terdefinisi */
 } MATRIKS;
 
@@ -65,14 +68,16 @@ typedef struct {
 /* Definisi elemen dan address */
 
 /*Untuk ADT Queue*/
+#define MaxElQ 30
+
 typedef struct {
-                 int wktantri;/* waktu antrean si pelanggan */
-				 int jumlahorang; /*antrian per grup, kan antriannya ga harus sendiri (per kelomppok)*/
-               } infotype;
+        int wktantri;/* waktu antrean si pelanggan */
+				int jumlahorang; /*antrian per grup, kan antriannya ga harus sendiri (per kelomppok)*/
+                } infotypeQ;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
-typedef struct { infotype T [30];  /*panjang antrian maksimal*/
+typedef struct { infotypeQ T [MaxElQ];  /*panjang antrian maksimal*/
                  address HEAD;  /* alamat penghapusan */
                  address TAIL;  /* alamat penambahan */
                } Queue;
@@ -81,28 +86,39 @@ typedef struct { infotype T [30];  /*panjang antrian maksimal*/
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotype dan Q adalah Queue, maka akses elemen : */
-#define WktAntri(e)     (e).wktantri
-#define Jumlahorang(e) (e).jumlahorang
+#define WktAntriHead(Q)     (Q).T[(Q).HEAD].wktantri
+#define JumlahOrangHead(e) (Q).T[(Q).HEAD].jumlahorang
+#define WktAntriTail(Q)     (Q).T[(Q).TAIL].wktantri
+#define JumlahOrangTail(e) (Q).T[(Q).TAIL].jumlahorang
 #define Head(Q)     (Q).HEAD
 #define Tail(Q)     (Q).TAIL
-#define InfoHead(Q) (Q).T[(Q).HEAD]
-#define InfoTail(Q) (Q).T[(Q).TAIL]
 
 
-/*Definisi ADT Modstack*/
+
+/*Untuk ADT Stack*/
+typedef int infotype;
 typedef int address;   /* indeks tabel */
-
-/* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
-/* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
-	infotype T[5]; /* tabel penyimpan elemen */
+	infotype T[5]; /* tabel penyimpan elemen pada tray*/
 	address TOP;  /* alamat TOP: elemen puncak */
-} Stack;
+} StackTray;
 
 /* Definisi akses dengan Selektor : Set dan Get */
-#define Top(S) (S).TOP
-#define InfoTop(S) (S).T[(S).TOP]
+#define TopTray(ST) (ST).TOP
+#define InfoTopTray(ST) (ST).T[(ST).TOP]
 
+/*Untuk ADT Stack*/
+typedef int infotype;
+typedef int address;   /* indeks tabel */
+
+typedef struct {
+	infotype T[MaxEl+1]; /* tabel penyimpan elemen */
+	address TOP;  /* alamat TOP: elemen puncak */
+} StackHand;
+
+/* Definisi akses dengan Selektor : Set dan Get */
+#define TopHand(SH) (SH).TOP
+#define InfoTopHand(SH) (SH).T[(SH).TOP]
 
 
 #endif
