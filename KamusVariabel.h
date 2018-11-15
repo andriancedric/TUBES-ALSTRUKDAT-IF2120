@@ -89,30 +89,20 @@ typedef struct { infotype T [30];  /*panjang antrian maksimal*/
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 
 
-/*Untuk ADT Stack*/
-typedef int infotype;
-typedef int address;   /* indeks tabel */
-typedef struct {
-	infotype T[5]; /* tabel penyimpan elemen pada tray*/
-	address TOP;  /* alamat TOP: elemen puncak */
-} StackTray;
-
-/* Definisi akses dengan Selektor : Set dan Get */
-#define TopTray(ST) (ST).TOP
-#define InfoTopTray(ST) (ST).T[(ST).TOP]
-
-/*Untuk ADT Stack*/
-typedef int infotype;
+/*Definisi ADT Modstack*/
 typedef int address;   /* indeks tabel */
 
+/* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
+/* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
-	infotype T[MaxEl+1]; /* tabel penyimpan elemen */
+	infotype T[5]; /* tabel penyimpan elemen */
 	address TOP;  /* alamat TOP: elemen puncak */
-} StackHand;
+} Stack;
 
 /* Definisi akses dengan Selektor : Set dan Get */
-#define TopHand(SH) (SH).TOP
-#define InfoTopHand(SH) (SH).T[(SH).TOP]
+#define Top(S) (S).TOP
+#define InfoTop(S) (S).T[(S).TOP]
+
 
 
 #endif
