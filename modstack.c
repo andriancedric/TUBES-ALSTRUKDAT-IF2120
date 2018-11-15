@@ -4,7 +4,7 @@
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT untuk tray*/
+void CreateEmptySt (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT untuk tray*/
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
@@ -16,14 +16,14 @@ void CreateEmpty (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT unt
 }
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsEmpty (Stack S)
+boolean IsEmptySt (Stack S)
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
 {
   //KAMUS
   //ALGORITMA
   return (Top(S) == Nil);
 }
-boolean IsFull (Stack S)
+boolean IsFullSt (Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 {
   //KAMUS

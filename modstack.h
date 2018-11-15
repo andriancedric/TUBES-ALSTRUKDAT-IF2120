@@ -29,16 +29,16 @@ typedef struct {
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty (Stack *S);
+void CreateEmptySt (Stack *S);
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
 /* Ciri stack kosong : TOP bernilai Nil */
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsEmpty (Stack S);
+boolean IsEmptySt (Stack S);
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
-boolean IsFull (Stack S);
+boolean IsFullSt (Stack S);
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
