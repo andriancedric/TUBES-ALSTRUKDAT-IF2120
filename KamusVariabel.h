@@ -69,7 +69,6 @@ typedef struct {
 /* Definisi elemen dan address */
 
 /*Untuk ADT Queue*/
-#define MaxElQ 30
 
 typedef struct {
         int wktantri;/* waktu antrean si pelanggan */
@@ -81,19 +80,19 @@ typedef int address;   /* indeks tabel */
 typedef struct { infotypeQ T [MaxElQ];  /*panjang antrian maksimal*/
                  address HEAD;  /* alamat penghapusan */
                  address TAIL;  /* alamat penambahan */
+								 int MaxEl /* Max elemen queue */
                } Queue;
 /* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotype dan Q adalah Queue, maka akses elemen : */
-#define WktAntriHead(Q)     (Q).T[(Q).HEAD].wktantri
-#define JumlahOrangHead(e) (Q).T[(Q).HEAD].jumlahorang
-#define WktAntriTail(Q)     (Q).T[(Q).TAIL].wktantri
-#define JumlahOrangTail(e) (Q).T[(Q).TAIL].jumlahorang
-#define Head(Q)     (Q).HEAD
-#define Tail(Q)     (Q).TAIL
-
-typedef int address;   /* indeks tabel */
+#define WktAntriHead(Q) (Q).T[(Q).HEAD].wktantri
+#define JumlahOrangHead(Q) (Q).T[(Q).HEAD].jumlahorang
+#define WktAntriTail(Q) (Q).T[(Q).TAIL].wktantri
+#define JumlahOrangTail(Q) (Q).T[(Q).TAIL].jumlahorang
+#define Head(Q) (Q).HEAD
+#define Tail(Q) (Q).TAIL
+#define MaxEl(Q) (Q).MaxEl
 
 #endif

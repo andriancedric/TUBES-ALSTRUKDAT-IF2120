@@ -10,13 +10,13 @@ boolean IsEmptyQ (Queue Q){
   return (Head(Q) == 0 && Tail(Q) == 0);
 }
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFull (Queue Q){
+boolean IsFullQ (Queue Q){
   /* Mengirim true jika tabel penampung elemen Q sudah penuh */
   /* yaitu mengandung elemen sebanyak MaxEl */
   return (MaxEl(Q) == NBElmt(Q));
 }
 
-int NBElmt (Queue Q){
+int NBElmtQ (Queue Q){
   /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
   //KAMUS
   address i;
@@ -46,7 +46,7 @@ int NBElmt (Queue Q){
 }
 
 /* *** Kreator *** */
-void CreateEmpty (Queue * Q, int Max){
+void CreateEmptyQ (Queue * Q, int Max){
   /* I.S. sembarang */
   /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
   /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
@@ -62,7 +62,7 @@ void CreateEmpty (Queue * Q, int Max){
   }
 }
 
-void DeAlokasi(Queue * Q){
+void DeAlokasiQ(Queue * Q){
   /* Proses: Mengembalikan memori Q */
   /* I.S. Q pernah dialokasi */
   /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */

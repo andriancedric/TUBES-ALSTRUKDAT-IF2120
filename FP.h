@@ -174,11 +174,11 @@
     /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
     /* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
     /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
-    void DeAlokasi(Queue * Q){
+    void DeAlokasiQ(Queue * Q){
       /* Proses: Mengembalikan memori Q */
       /* I.S. Q pernah dialokasi */
       /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
-      
+
     /* *** Primitif Add/Delete *** */
     void AddQ (Queue * Q, infotype X);
     /* Proses: Menambahkan X pada Q dengan aturan FIFO */
