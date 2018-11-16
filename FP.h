@@ -4,7 +4,6 @@
 #define FP_H
 
 #include "boolean.h"
-#include "KamusVariabel.h"
 // ADT JAM
     void TulisJAM (JAM J);
     /* I.S. : J sembarang */
@@ -51,7 +50,7 @@
     int NbElmtArr (TabInt T);
       /* Mengirimkan banyaknya elemen efektif tabel */
       /* Mengirimkan nol jika tabel kosong */
-    int MaxNbElArr (TabInt T);
+    int MaxNbElArr (TabInt T)
       /* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
     IdxType GetFirstIdxArr (TabInt T);
     /* Prekondisi : Tabel T tidak kosong */
@@ -168,7 +167,6 @@
     /* yaitu mengandung elemen sebanyak MaxEl */
     int NBElmtQ (Queue Q);
     /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
-
     /* *** Kreator *** */
     void CreateEmptyQ (Queue * Q, int Max);
     /* I.S. sembarang */
@@ -176,7 +174,11 @@
     /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
     /* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
     /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
-
+    void DeAlokasi(Queue * Q){
+      /* Proses: Mengembalikan memori Q */
+      /* I.S. Q pernah dialokasi */
+      /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
+      
     /* *** Primitif Add/Delete *** */
     void AddQ (Queue * Q, infotype X);
     /* Proses: Menambahkan X pada Q dengan aturan FIFO */

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "KamusVariabel.h"
 #include "FP.h"
 
 
@@ -9,15 +10,13 @@ boolean IsEmptyQ (Queue Q){
   return (Head(Q) == 0 && Tail(Q) == 0);
 }
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFullQ (Queue Q){
+boolean IsFull (Queue Q){
   /* Mengirim true jika tabel penampung elemen Q sudah penuh */
   /* yaitu mengandung elemen sebanyak MaxEl */
-  //KAMUS
-  //ALGORITMA
-  return (NBElmtQ(Q) == MaxElQ);
+  return (MaxEl(Q) == NBElmt(Q));
 }
 
-int NBElmtQ (Queue Q){
+int NBElmt (Queue Q){
   /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
   //KAMUS
   address i;
@@ -28,26 +27,48 @@ int NBElmtQ (Queue Q){
   }
   else {
     count = 0;
-    for( i = Head(Q); i<=Tail(Q); i++){
-      count++;
+    if (Head(Q)<=Tail(Q)){
+      for( i = Head(Q); i<=Tail(Q); i++){
+        count++;
+      }
+      return count;
     }
-    return count;
+    else {
+      for (i = Head(Q); i<= MaxEl(Q); i++){
+        count ++;
+      }
+      for (i = 1; i<= Tail(Q);i++){
+        count ++;
+      }
+      return count;
+    }
   }
 }
 
 /* *** Kreator *** */
-void CreateEmptyQ (Queue * Q){
+void CreateEmpty (Queue * Q, int Max){
   /* I.S. sembarang */
   /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
   /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
   /* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
   /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
-  //Kamus
-  //ALGORITMA
-  Head(*Q) = 0;
-  Tail(*Q) = 0;
+  (*Q).T = (infotype *) malloc ((Max+1) * sizeof(infotype));
+  if ((*Q).T != NULL) {
+       MaxEl(*Q) = Max;
+       Head(*Q) = Nil;
+       Tail(*Q) = Nil;
+  } else /* alokasi gagal */ {
+       MaxEl(*Q) = 0;
+  }
 }
 
+void DeAlokasi(Queue * Q){
+  /* Proses: Mengembalikan memori Q */
+  /* I.S. Q pernah dialokasi */
+  /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
+  MaxEl(*Q) = 0;
+  free((*Q).T);
+}
 
 /* *** Primitif Add/Delete *** */
 void AddQ (Queue * Q, int jumlahorang, int wktantri);
@@ -69,9 +90,15 @@ void AddQ (Queue * Q, int jumlahorang, int wktantri);
     printf("Queue Penuh!");
   }
   else {
-    Tail(*Q)++;
-    WktAntriTail(*Q) = wktantri;
-    JumlahOrangTail(*Q) = jumlahorang;
+    if (Tail(*Q) == MaxEl(*Q)){
+      Tail(*Q) = 1;
+      InfoTail(*Q) = X;
+    }
+    else {
+      Tail(*Q)++;
+      WktAntriTail(*Q) = wktantri;
+      JumlahOrangTail(*Q) = jumlahorang;
+    }
   }
 }
 
@@ -89,6 +116,11 @@ void DelQ (Queue * Q, int * jumlahorang, int * wktantri){
     Tail(*Q) = 0;
   }
   else {
-    Head(*Q)++;
+    if(Head(*Q) == MaxEl(*Q)) {
+      Head(*Q) = 1;
+    }
+    else {
+      Head(*Q)++;
+    }
   }
 }
