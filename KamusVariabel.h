@@ -12,12 +12,9 @@
 typedef struct{
 	int life;
 	int money;
-  char name[20];
-	POINT posisi;
+    char name[20];
 } PLAYER;
 
-#define AbsisP(P) (P).posisi.X
-#define Ordinat(P) (P).posisi.Y
 #define Life(P) (P).life
 #define Money(P) (P).money
 #define Nama(P) (P).name
@@ -91,7 +88,7 @@ typedef struct { infotypeQ T [MaxElQ];  /*panjang antrian maksimal*/
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotype dan Q adalah Queue, maka akses elemen : */
 #define WktAntriHead(Q)     (Q).T[(Q).HEAD].wktantri
-#define JumlahOrangHead(Q) (Q).T[(Q).HEAD].jumlahorang
+#define JumlahOrangHead(e) (Q).T[(Q).HEAD].jumlahorang
 #define WktAntriTail(Q)     (Q).T[(Q).TAIL].wktantri
 #define JumlahOrangTail(e) (Q).T[(Q).TAIL].jumlahorang
 #define Head(Q)     (Q).HEAD
@@ -103,7 +100,7 @@ typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
-	infotype T[5]; /* tabel penyimpan elemen */
+	int T[6]; /* tabel penyimpan elemen */
 	address TOP;  /* alamat TOP: elemen puncak */
 } Stack;
 /* Definisi stack S kosong : S.TOP = Nil */

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "KamusVariabel.h"
-#include "modstack.h"
 #include "boolean.h"
 #include "map.c"
 #include "credit.c"
@@ -8,7 +7,7 @@
 PLAYER play;
 JAM time;
 Room R;
-StackTray ST;
+Stack ST, SH;
 
 void utama(){
     char inp[6];
@@ -18,7 +17,7 @@ void utama(){
     printf("Waiting Cust   ");
     Draw(R);
     printf("Food Stack\n");
-    printf("%15s        %d\n",TopTray(ST));
+    printf("%15s        %d\n",Top(ST));
     printf("--------------------------------------------------------------\n");
     printf("Order          ");
     printf("Hand\n");
