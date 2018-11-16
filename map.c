@@ -9,21 +9,26 @@ char TipeR(Room R, int X, int Y){//Getter Tipe u/ Room
 }
 
 int IsiR(Room R, int X, int Y){//Getter isi u/ Room
-    return  R.S[X][Y].isi;
+    return R.S[X][Y].isi;
+}
+
+boolean IsOcc(Room R, int X, int Y){//khusus meja, ngecek apakah sudah terisi
+    return R.S[X][Y].occupied;
+}
+
+int CapMeja(Room R, int X, int Y){
+    return R.S[X][Y].capacity;
 }
 
 void MakeRoom (Room *R,int ID){//Prosedur membuat room
-    int M,N;
+    int M = 8;
+    int N = 8;
     int ext_status;
     Room Rt;
     Square **S;
     Rt.ID=ID;//ID
-    printf("Masukkan M\n");
-    scanf("%d",&M);
-    Rt.M=M;//M
-    printf("Masukkan N\n");
-    scanf("%d",&N);
-    Rt.N=N;//N
+    Rt.M=8;
+    Rt.N=8;
     S = (Square **) malloc (M*sizeof(Square));
     for (int k = 0; k < M; k++) {
         S[k]=(Square *)malloc(N*sizeof(Square));//Alokasi
@@ -57,7 +62,7 @@ void Draw(Room R){//Prosedur Menggambar peta
     }
 }
 
-void  EditSquare(Room *R, Square S, int X, int Y){
+void EditSquare(Room *R, Square S, int X, int Y){
   (*R).S[X][Y]=S;
 }
 //Mengedit Square di room

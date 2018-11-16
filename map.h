@@ -15,6 +15,8 @@ typedef struct {
 	char tipe;
 	int isi;/*Nomor meja jika tipe meja, ID Bahan Makanan jika tipe M, Nomor pintu
               bertipe pintu, 0 jika tidak ada apa2*/
+	boolean occupied;
+	int capacity;
 }Square;
 
 typedef struct {
