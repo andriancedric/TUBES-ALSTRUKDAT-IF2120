@@ -12,9 +12,12 @@
 typedef struct{
 	int life;
 	int money;
-    char name[20];
+  char name[20];
+	POINT posisi;
 } PLAYER;
 
+#define AbsisP(P) (P).posisi.X
+#define Ordinat(P) (P).posisi.Y
 #define Life(P) (P).life
 #define Money(P) (P).money
 #define Nama(P) (P).name
@@ -88,7 +91,7 @@ typedef struct { infotypeQ T [MaxElQ];  /*panjang antrian maksimal*/
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotype dan Q adalah Queue, maka akses elemen : */
 #define WktAntriHead(Q)     (Q).T[(Q).HEAD].wktantri
-#define JumlahOrangHead(e) (Q).T[(Q).HEAD].jumlahorang
+#define JumlahOrangHead(Q) (Q).T[(Q).HEAD].jumlahorang
 #define WktAntriTail(Q)     (Q).T[(Q).TAIL].wktantri
 #define JumlahOrangTail(e) (Q).T[(Q).TAIL].jumlahorang
 #define Head(Q)     (Q).HEAD
