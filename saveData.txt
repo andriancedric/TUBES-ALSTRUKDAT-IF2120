@@ -1,0 +1,37 @@
+//Identity
+
+PlayerName      :       Ibu C.I.A.;
+Money           :       500;
+Life            :       2;
+Time            :       5;
+CurrentRoom     :       1;
+X               :       9;
+Y               :       8;
+
+//Map
+
+M..P....;
+M.......;
+M.....T.;
+M.......;
+M.......;
+M.......;
+M.......;
+M.......;
+
+//Details
+
+Waiting Cust
+    2;
+
+Order
+    Burger,2;
+    Batagor of shit,3;
+
+Food Stack
+    Shitty Siomay;
+
+Hand
+    Piring,Piece of shit;
+
+ENDOFFILE#
