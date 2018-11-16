@@ -5,14 +5,15 @@
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
 void CreateEmptySt (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT untuk tray*/
-/* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
-/* Ciri stack kosong : TOP bernilai Nil */
 {
   //KAMUS
   //ALGORITMA
+  if (IsEmpty (*S)){
+    printf("Tumpukan kosong, tidak bisa melakukan CH atau CT");
+  }
+  else { /*Jika tumpukan ada isinya dan melakukan CH atau CT*/
   Top(*S) = Nil;
+  }
 }
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
