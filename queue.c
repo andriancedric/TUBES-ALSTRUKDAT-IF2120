@@ -52,11 +52,11 @@ void CreateEmptyQ (Queue * Q, int Max){
   /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
   /* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
   /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
-  (*Q).T = (infotype *) malloc ((Max+1) * sizeof(infotype));
+  (*Q).T = (infotypeQ *) malloc ((Max+1) * sizeof(infotypeQ));
   if ((*Q).T != NULL) {
        MaxEl(*Q) = Max;
-       Head(*Q) = Nil;
-       Tail(*Q) = Nil;
+       Head(*Q) = 0;
+       Tail(*Q) = 0;
   } else /* alokasi gagal */ {
        MaxEl(*Q) = 0;
   }
@@ -71,7 +71,7 @@ void DeAlokasiQ(Queue * Q){
 }
 
 /* *** Primitif Add/Delete *** */
-void AddQ (Queue * Q, int jumlahorang, int wktantri);
+void AddQ (Queue * Q, int jumlahorang, int wktantri)
 {
   /* Proses: Menambahkan X pada Q dengan aturan FIFO */
   /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
@@ -86,13 +86,14 @@ void AddQ (Queue * Q, int jumlahorang, int wktantri);
     WktAntriTail(*Q) = wktantri;
     JumlahOrangTail(*Q) = jumlahorang;
   }
-  else if(IsFullQ(Q)){
+  else if(IsFullQ(*Q)){
     printf("Queue Penuh!");
   }
   else {
     if (Tail(*Q) == MaxEl(*Q)){
       Tail(*Q) = 1;
-      InfoTail(*Q) = X;
+      WktAntriTail(*Q) = wktantri;
+      JumlahOrangTail(*Q) = jumlahorang;
     }
     else {
       Tail(*Q)++;

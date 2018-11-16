@@ -77,7 +77,7 @@ typedef struct {
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
-typedef struct { infotypeQ T [MaxElQ];  /*panjang antrian maksimal*/
+typedef struct { infotypeQ *T;  /*panjang antrian maksimal*/
                  address HEAD;  /* alamat penghapusan */
                  address TAIL;  /* alamat penambahan */
 								 int MaxEl /* Max elemen queue */
