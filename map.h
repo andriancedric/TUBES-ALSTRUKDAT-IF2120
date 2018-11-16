@@ -18,7 +18,7 @@ typedef struct {
 	boolean occupied;
 	int capacity;
 }Square;
-
+#define IsOcc
 typedef struct {
 	int ID;
 	int M;/*Baris*/
@@ -59,6 +59,7 @@ typedef struct {
 #define First(G) (G).First
 #define Tipe(S) (S).tipe
 #define Isi(S) (S).isi
-
+#define IsOcc(S) (S).occupied
+#define CapMeja(S) (S).capacity
 
 #endif
