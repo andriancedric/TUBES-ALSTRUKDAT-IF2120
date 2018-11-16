@@ -12,13 +12,6 @@ int IsiR(Room R, int X, int Y){//Getter isi u/ Room
     return R.S[X][Y].isi;
 }
 
-boolean IsOcc(Room R, int X, int Y){//khusus meja, ngecek apakah sudah terisi
-    return R.S[X][Y].occupied;
-}
-
-int CapMeja(Room R, int X, int Y){
-    return R.S[X][Y].capacity;
-}
 
 void MakeRoom (Room *R,int ID){//Prosedur membuat room
     int M = 8;
@@ -62,6 +55,24 @@ void Draw(Room R){//Prosedur Menggambar peta
     }
 }
 
+void Sit (char tipe, int isi, int Jmlorg ){
+  //KAMUS
+  int i,j,count;
+  //ALGORITMA
+  count = JmlOrg;
+  for (i=0; i<=7;i++){
+    for (j=0; j<=7;j++){
+      if((Tipe(R,i,j) == tipe) && (Isi(R,i,j) == isi)){
+        IsOcc(R,i,j) = true;
+        if(count > 0) {
+          TipeR(R,i,j) = 'C';
+          count--;
+        }
+      }
+    }
+  }
+}
+
 void EditSquare(Room *R, Square S, int X, int Y){
   (*R).S[X][Y]=S;
 }
@@ -70,6 +81,8 @@ void EditSquare(Room *R, Square S, int X, int Y){
 void MakeSquare(Square *S, char tipe, int ID){
   Tipe(*S)=tipe;
   Isi(*S)=ID;
+  IsOcc(*S) = false;
+  CapMeja(*S) = 0;
 }
 //Membuat Square
 
@@ -101,7 +114,7 @@ void UpdatePosition(char *input, Room *R){
 
 //void MakeDoor(Square *S, Room *R, Graph *G, int X, int Y);
 //Prosedur khusus untuk membuat pintu
-/* 
+/*
 int main(){
     int ext_status;
     Room R;
