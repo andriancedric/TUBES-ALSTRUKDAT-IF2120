@@ -15,6 +15,8 @@ StackHand hstack;*/
 
 //ReadSaveFile("saveData.txt",player,time,location,map,queue,list,fstack,hstack);
 int main(){
+
 	ReadSaveFile("saveData.txt");
+	WriteSaveFile("writefile2.txt");
 	return 0;
 	}

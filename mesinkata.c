@@ -3,7 +3,7 @@
 #include "mesinkata.h"
 #include <stdio.h>
 #include <string.h>
-
+#include <stdlib.h>
 /* State Mesin Kata */
 boolean EndKata;
 Kata CKata;
@@ -47,22 +47,6 @@ void ADVKATA(){
           CC adalah karakter pertama dari kata berikutnya, mungkin MARK
           Jika CC = MARK, EndKata = true.
    Proses : Akuisisi kata menggunakan procedure SalinKata */
-
-boolean compareKata(Kata kata1, char* teks){
-	for(int i = 0; i<=kata1.Length ; i++){
-		if (kata1.TabKata[i] != teks[i])
-			return false;
-	}
-	return true;
-}
-
-void printKata(Kata kata1){
-	for(int i = 0; i<=kata1.Length ; i++){
-		printf("%c", kata1.TabKata[i]);
-	}
-	printf("\n");
-}
-
 void SalinKata(){
     int i;
     //printf("SalinKata entered! \n");
@@ -89,6 +73,81 @@ void SalinKata(){
         ADV();
         i++;
     }*/
+}
+
+boolean compareKata(Kata kata1, char* teks){
+	for(int i = 0; i<=kata1.Length ; i++){
+		if (kata1.TabKata[i] != teks[i])
+			return false;
+	}
+	return true;
+}
+
+void printKata(Kata kata1){
+	for(int i = 0; i<=kata1.Length ; i++){
+		printf("%c", kata1.TabKata[i]);
+	}
+	printf("\n");
+}
+
+void writefromMatriks(FILE* f, char strmatriks[8][8]){
+	for(int i=0; i<8; i++) {
+		for(int j=0; j<8; j++)
+		    fprintf(f,"%c", strmatriks[i][j]);
+		fprintf(f,";\n");
+		}
+}
+
+void writefromArray(FILE* f, char strArr[20][100], int neff){
+	for(int i = 0; i<neff ; i++){
+		fprintf(f,"%s", strArr[i]);
+		if(i < neff-1)
+			fprintf(f,",");
+	}
+	fprintf(f,";");
+}
+
+void WriteSaveFile(char* filename){
+	FILE *f = fopen(filename, "w");
+	if (f == NULL)
+	{
+	    printf("Creating New File!\n");
+	    FILE *fp = fopen("filname", "ab+");
+	    //exit(1);
+	}
+	//EXAMPLE
+	char* simplestr = "Ibu C.I.A.";
+	char strmatriks[8][8] = {{'M','.','.','P','.','.','.','.'},
+							{'M','.','.','.','.','.','.','.'},
+							{'M','.','.','.','.','.','T','.'},
+							{'M','.','.','.','.','.','.','.'},
+							{'M','.','.','.','.','.','.','.'},
+							{'M','.','.','.','.','.','.','.'},
+							{'M','.','.','.','.','.','.','.'},
+							{'M','.','.','.','.','.','.','.'}};
+	char strArr[20][100] = {"Pizza of Obesity", "Mayonaise of promiscuity", "billy jelly"};
+    
+	fprintf(f,"//Identity\n");
+	fprintf(f,"\n");
+	fprintf(f,"PlayerName      :       %s;\n",simplestr);
+	fprintf(f,"Money           :       %s;\n",simplestr);
+	fprintf(f,"Life            :       %s;\n",simplestr);
+	fprintf(f,"Time            :       %s;\n",simplestr);
+	fprintf(f,"CurrentRoom     :       %s;\n",simplestr);
+	fprintf(f,"X               :       %s;\n",simplestr);
+	fprintf(f,"Y               :       %s;\n",simplestr);
+	fprintf(f,"\n");
+	fprintf(f,"//Map\n");
+	fprintf(f,"\n");
+	writefromMatriks(f, strmatriks);
+	fprintf(f,"\n");
+	fprintf(f,"//Details\n");
+	fprintf(f,"\n");
+	fprintf(f,"Waiting Cust\n");
+	fprintf(f,"    ");writefromArray(f,strArr,3);fprintf(f,"\n");
+
+	fprintf(f,"ENDOFFILE#");
+	fclose(f);
 }
 
 void ReadSaveFile(char* filename /*,PLAYER player, JAM time, POINT location, MATRIKS map, Queue queue, TabInt list, StackTray fstack, StackHand hstack*/ ){
