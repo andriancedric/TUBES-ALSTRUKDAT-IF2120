@@ -96,7 +96,7 @@ void UpdatePosition(char *input, Room *R){
 
 //void MakeDoor(Square *S, Room *R, Graph *G, int X, int Y);
 //Prosedur khusus untuk membuat pintu
-
+/* 
 int main(){
     int ext_status;
     Room R;
@@ -112,3 +112,4 @@ int main(){
     }
     return 0;
 }
+ */
