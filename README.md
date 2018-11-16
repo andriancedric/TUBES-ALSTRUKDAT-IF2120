@@ -7,11 +7,3 @@ Team Member :
 3. Oksi the Ox.
 4. Angelo the Angel.
 5. Abel the Stanley.
-
-TOGETHER WE ARE THE :
-
-B -> BILLY
-A -> ANGELO
-C -> CEDRIC
-O -> OKSI
-T -> STANLEY
