@@ -9,12 +9,9 @@ Team Member :
 5. Abel the Stanley.
 
 TOGETHER WE ARE THE :
-                s
------------------
-B   A   C   O   T
------------------
-i   n   e   k   a
-l   g   d   s   n
-l   e   r   i   l
-y   l   i       e
-    o   c       y
+
+B -> BILLY
+A -> ANGELO
+C -> CEDRIC
+O -> OKSI
+T -> STANLEY
