@@ -24,6 +24,11 @@ void utama(){
     printf("Hand\n");
     printf("Command: ");
     scanf("%s",inp);
+
+    while (inp[0]!='E'){
+        utama();
+        scanf("%s",inp);
+    }
 }
 
 int main(){
@@ -40,11 +45,11 @@ int main(){
 
     //PILIHAN MENU
     printf("--------- Silakan pilih menu permainan di bawah ini :  ----------\n");
-    printf(">>> 1. New Game\n");
-    printf(">>> 2. Start Game\n");
-    printf(">>> 3. Load Game\n");
-    printf(">>> 4. Exit\n\n");
-    printf(">>> Input: ");
+    printf(">> 1. New Game\n");
+    printf(">> 2. Start Game\n");
+    printf(">> 3. Load Game\n");
+    printf(">> 4. Exit\n\n");
+    printf(">> Input: ");
     scanf("%d", &input);
 
     MakeRoom(&R,1);
@@ -55,11 +60,12 @@ int main(){
 
     while (input!=4){
         if (input==1){
-            printf("Nama: ");
+            printf(">>> Nama: ");
             scanf("%s",Nama(play));
         }
         else if (input==2){
             utama();
+            break;
         }
         else if (input==3){
             
@@ -67,6 +73,8 @@ int main(){
         else{
             printf("Input salah");
         }
+        printf(">>> Input: ");
+        scanf("%d", &input);
     }
     Credit();
 
