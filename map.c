@@ -12,7 +12,6 @@ int IsiR(Room R, int X, int Y){//Getter isi u/ Room
     return R.S[X][Y].isi;
 }
 
-
 void MakeRoom (Room *R,int ID){//Prosedur membuat room
     int M = 8;
     int N = 8;
