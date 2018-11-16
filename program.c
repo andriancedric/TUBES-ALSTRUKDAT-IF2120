@@ -3,6 +3,9 @@
 #include "boolean.h"
 #include "map.c"
 #include "credit.c"
+#include "modstack.h"
+#include "mesinkata.c"
+#include "mesinkar.c"
 
 PLAYER play;
 JAM time;
@@ -10,23 +13,24 @@ Room R;
 Stack ST, SH;
 
 void utama(){
-    char inp[6];
+    Kata inp;
 
-    printf("--------------------------------------------------------------\n");
-    printf("%15s Money: %6d Life: %d Time: %4d\n",Nama(play),Money(play),Life(play),Time(time));
-    printf("Waiting Cust   ");
-    Draw(R);
-    printf("Food Stack\n");
-    printf("%15s        %d\n",Top(ST));
-    printf("--------------------------------------------------------------\n");
-    printf("Order          ");
-    printf("Hand\n");
-    printf("Command: ");
-    scanf("%s",inp);
-
-    while (inp[0]!='E'){
-        utama();
-        scanf("%s",inp);
+    inp.TabKata[0] = '%';
+    Length(&inp);
+    while (!compareKata(inp,"EXIT")){
+        printf("\n  --------------------------------------------------------\n");
+        printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(time));
+        printf("    Waiting Cust  ");
+        Draw(R);  
+        printf("  Food Stack\n");
+        printf("  %-16s        %d\n",Top(ST));
+        printf("       Order      ");
+        printf("  Hand\n");
+        printf("  %-16s        %d\n",Top(SH));
+        printf("  --------------------------------------------------------\n");
+        printf("  Command: ");
+        scanf("%s",inp.TabKata);
+        Length(&inp);
     }
 }
 
@@ -56,6 +60,7 @@ int main(){
     MakeRoom(&R,3);
     MakeRoom(&R,4);
     Money(play) = 0;
+    Nama(play)[0] = ' ';
 
     while (input!=4){
         if (input==1){
@@ -63,8 +68,12 @@ int main(){
             scanf("%s",Nama(play));
         }
         else if (input==2){
-            utama();
-            break;
+            if (Nama(play)[0]==' ') printf("Pilih new game atau load game dahulu\n");
+            else{
+                utama();
+                Credit();
+                exit(1);
+            }
         }
         else if (input==3){
             
@@ -72,7 +81,7 @@ int main(){
         else{
             printf("Input salah");
         }
-        printf(">>> Input: ");
+        printf("\n>> Input: ");
         scanf("%d", &input);
     }
     Credit();

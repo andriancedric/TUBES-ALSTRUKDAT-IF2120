@@ -83,6 +83,12 @@ boolean compareKata(Kata kata1, char* teks){
 	return true;
 }
 
+void Length(Kata* kata){
+	int i;
+	for(i = 0; kata->TabKata[i] != '\0'; i++);
+	kata->Length = i;
+}
+
 void printKata(Kata kata1){
 	for(int i = 0; i<=kata1.Length ; i++){
 		printf("%c", kata1.TabKata[i]);

@@ -46,6 +46,7 @@ void SalinKata();
           CC adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 boolean compareKata(Kata kata1, char* teks);
+void Length(Kata* kata);
 void printKata(Kata kata1);
 
 void writefromMatriks(FILE* f, char strmatriks[8][8]);
