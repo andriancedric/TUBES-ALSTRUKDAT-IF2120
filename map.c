@@ -55,20 +55,24 @@ void Draw(Room R){//Prosedur Menggambar peta
     }
 }
 
-void Sit (char Tipe, int Isi, int Jmlorg ){
+void Sit (char tipe, int isi, int Jmlorg ){
   //KAMUS
-  int i,j;
-
+  int i,j,count;
+  int jml,wkt;
   //ALGORITMA
+  count = JmlOrg;
   for (i=0; i<=7;i++){
     for (j=0; j<=7;j++){
-      if((Tipe(R,i,j) == Tipe) && (Isi(R,i,j) == Isi)){
-        Tipe(R,i,j) = 'C';
-        IsOcc(R,i,j) =
-        JmlOrg--;
+      if((Tipe(R,i,j) == tipe) && (Isi(R,i,j) == isi)){
+        IsOcc(R,i,j) = true;
+        if(count > 0) {
+          TipeR(R,i,j) = 'C';
+          count--;
+        }
       }
     }
   }
+  DelQ(WaitQueue,&jml,&wkt);
 }
 
 void EditIsiMeja(Room *R, int X, int Y){

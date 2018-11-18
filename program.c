@@ -11,6 +11,7 @@ PLAYER play;
 JAM time;
 Room R;
 Stack ST, SH;
+Queue WaitQueue;
 
 void utama(){
     Kata inp;
@@ -21,7 +22,7 @@ void utama(){
         printf("\n  --------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(time));
         printf("    Waiting Cust  ");
-        Draw(R);  
+        Draw(R);
         printf("  Food Stack\n");
         printf("  %-16s        %d\n",Top(ST));
         printf("       Order      ");
@@ -76,7 +77,7 @@ int main(){
             }
         }
         else if (input==3){
-            
+
         }
         else{
             printf("Input salah");
