@@ -12,6 +12,7 @@ int IsiR(Room R, int X, int Y){//Getter isi u/ Room
     return R.S[X][Y].isi;
 }
 
+
 void MakeRoom (Room *R,int ID){//Prosedur membuat room
     int M = 8;
     int N = 8;
@@ -54,24 +55,25 @@ void Draw(Room R){//Prosedur Menggambar peta
     }
 }
 
-void Sit (char tipe, int isi, int Jmlorg ){
+void Sit (char Tipe, int Isi, int Jmlorg ){
   //KAMUS
-  int i,j,count;
+  int i,j;
+
   //ALGORITMA
-  count = JmlOrg;
   for (i=0; i<=7;i++){
     for (j=0; j<=7;j++){
-      if((Tipe(R,i,j) == tipe) && (Isi(R,i,j) == isi)){
-        IsOcc(R,i,j) = true;
-        if(count > 0) {
-          TipeR(R,i,j) = 'C';
-          count--;
-        }
+      if((Tipe(R,i,j) == Tipe) && (Isi(R,i,j) == Isi)){
+        Tipe(R,i,j) = 'C';
+        IsOcc(R,i,j) =
+        JmlOrg--;
       }
     }
   }
 }
 
+void EditIsiMeja(Room *R, int X, int Y){
+  (*R).S[X][Y]=S;
+}
 void EditSquare(Room *R, Square S, int X, int Y){
   (*R).S[X][Y]=S;
 }
