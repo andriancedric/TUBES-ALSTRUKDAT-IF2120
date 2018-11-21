@@ -13,7 +13,7 @@ boolean IsEmptyQ (Queue Q){
 boolean IsFullQ (Queue Q){
   /* Mengirim true jika tabel penampung elemen Q sudah penuh */
   /* yaitu mengandung elemen sebanyak MaxEl */
-  return (MaxEl(Q) == NBElmt(Q));
+  return (MaxEl(Q) == NBElmtQ(Q));
 }
 
 int NBElmtQ (Queue Q){
@@ -27,20 +27,10 @@ int NBElmtQ (Queue Q){
   }
   else {
     count = 0;
-    if (Head(Q)<=Tail(Q)){
-      for( i = Head(Q); i<=Tail(Q); i++){
-        count++;
-      }
-      return count;
+    for (i = Head(Q); i<= Tail(Q); i++){
+      count ++;
     }
-    else {
-      for (i = Head(Q); i<= MaxEl(Q); i++){
-        count ++;
-      }
-      for (i = 1; i<= Tail(Q);i++){
-        count ++;
-      }
-      return count;
+    return count;
     }
   }
 }
@@ -71,7 +61,7 @@ void DeAlokasiQ(Queue * Q){
 }
 
 /* *** Primitif Add/Delete *** */
-void AddQ (Queue * Q, int jumlahorang, int wktantri)
+void AddQ (Queue * Q, int jumlahorang, int wktantri);
 {
   /* Proses: Menambahkan X pada Q dengan aturan FIFO */
   /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
@@ -86,21 +76,89 @@ void AddQ (Queue * Q, int jumlahorang, int wktantri)
     WktAntriTail(*Q) = wktantri;
     JumlahOrangTail(*Q) = jumlahorang;
   }
-  else if(IsFullQ(*Q)){
+  else if(IsFullQ(Q)){
     printf("Queue Penuh!");
   }
   else {
-    if (Tail(*Q) == MaxEl(*Q)){
-      Tail(*Q) = 1;
-      WktAntriTail(*Q) = wktantri;
-      JumlahOrangTail(*Q) = jumlahorang;
+    Tail(*Q)++;
+    WktAntri(*Q,Tail(*Q)) = wktantri;
+    JumlahOrang(*Q,Tail(*Q)) = jumlahorang;
+  }
+}
+
+boolean SearchQ(Queue Q, int X ){
+  //KAMUS
+  address i;
+  boolean found;
+  //ALGORITMA
+  found = false;
+  i = Head(*Q);
+  while((i <= Tail(*Q)) && !found){
+    if(JumlahOrang(Q,i) == X){
+      found = true;
     }
     else {
-      Tail(*Q)++;
-      WktAntriTail(*Q) = wktantri;
-      JumlahOrangTail(*Q) = jumlahorang;
+      i++;
     }
   }
+  return found;
+}
+void SortQ(Queue *Q){
+  //KAMUS
+  address i;
+  int wtemp,jtemp;
+  boolean found;
+  //ALGORITMA
+  found = false;
+  i = Head(*Q);
+  while((i<=Tail(*Q)) && !found){
+    if(JumlahOrang(*Q,i) == 2){
+      DelQIdx(*Q,i,&jtemp,&wtemp);
+      found = true
+    }
+    else{
+      i++;
+    }
+  }
+  AddDepanQ(Q,jtemp,wtemp);
+}
+
+void AddDepanQ (Queue *Q, int jumlahorang, int wktantri){
+  /* sama menambahkan antrian baru di depan (PrioQueue) */
+  //KAMUS
+  address i;
+  //ALGORITMA
+  if(IsEmptyQ(*Q)){
+    Head(*Q) = 1;
+    Tail(*Q) = 1;
+    JumlahOrang(*Q,1) = jumlahorang;
+    WktAntri(*Q,1) = wktantri;
+  }
+  else{
+    Tail(*Q)++;
+    i = Tail(*Q);
+    while(i>Head(*Q)){
+      JumlahOrang(*Q,i) = JumlahOrang(*Q,i-1);
+      WktAntri(*Q,i) = WktAntri(*Q,i-1);
+      i--;
+    }
+    JumlahOrang(*Q,i) = jumlahorang;
+    WktAntri(*Q,i) = wktantri;
+  }
+}
+void DelQIdx(Queue *Q, address idx, int * jumlahorang, int * wktantri){
+  //KAMUS
+  address i;
+  //ALGORITMA
+  wktantri = WktAntri(*Q,idx);
+  jumlahorang = JumlahOrang(*Q,idx);
+  i = idx;
+  while(i<Tail(*Q)){
+    JumlahOrang(*Q,i) = JumlahOrang(*Q,i+1);
+    WktAntri(*Q,i) = WktAntri(*Q,i+1);
+    i++;
+  }
+  Tail(*Q)--;
 }
 
 void DelQ (Queue * Q, int * jumlahorang, int * wktantri){
@@ -109,6 +167,7 @@ void DelQ (Queue * Q, int * jumlahorang, int * wktantri){
   /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
           Q mungkin kosong */
   //KAMUS
+  address i;
   //ALGORITMA
   *jumlahorang = JumlahOrangHead(*Q);
   *wktantri = WktAntriHead(*Q);
@@ -117,11 +176,14 @@ void DelQ (Queue * Q, int * jumlahorang, int * wktantri){
     Tail(*Q) = 0;
   }
   else {
-    if(Head(*Q) == MaxEl(*Q)) {
-      Head(*Q) = 1;
+    *jumlahorang = JumlahOrangHead(*Q);
+    *wktantri = WktAntriHead(*Q);
+    i = Head(*Q);
+    while(i<Tail(*Q)){
+      WktAntri(*Q,i) = WktAntri(*Q,i+1);
+      JumlahOrang(*Q,i) = JumlahOrang(*Q,i+1);
+      i++;
     }
-    else {
-      Head(*Q)++;
-    }
+    Tail(*Q) = i;
   }
 }

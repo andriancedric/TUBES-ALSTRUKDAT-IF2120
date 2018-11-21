@@ -93,6 +93,8 @@ typedef struct { infotypeQ *T;  /*panjang antrian maksimal*/
 #define JumlahOrangTail(Q) (Q).T[(Q).TAIL].jumlahorang
 #define Head(Q) (Q).HEAD
 #define Tail(Q) (Q).TAIL
+#define WktAntri(Q,i) (Q).T[i].wktantri
+#define JumlahOrang(Q,i) (Q).T[i].jumlahorang
 #define MaxEl(Q) (Q).MaxEl
 
 #endif
