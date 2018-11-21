@@ -174,17 +174,17 @@
     /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
     /* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
     /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
-    void DeAlokasiQ(Queue * Q){
+    void DeAlokasiQ(Queue * Q);
       /* Proses: Mengembalikan memori Q */
       /* I.S. Q pernah dialokasi */
       /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
     /* *** Primitif Add/Delete *** */
-    void AddQ (Queue * Q, infotype X);
+    void AddQ(Queue *Q, int jumlahorang, int wktantri);
     /* Proses: Menambahkan X pada Q dengan aturan FIFO */
     /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
     /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
-    void DelQ (Queue * Q, infotype * X);
+    void DelQ(Queue *Q, int jumlahorang, int wktantri);
     /* Proses: Menghapus X pada Q dengan aturan FIFO */
     /* I.S. Q tidak mungkin kosong */
     /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
