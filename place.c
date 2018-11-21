@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "queue.c"
 #include "map.c"
+#include "FP.h"
 
 //KAMUS
 
@@ -129,4 +130,6 @@ void Place(){
             printf("Meja sudah ditempati customer lain");
         }
     }
+
+    KesabaranMinusQ(&WaitQueue,1,&Play);
 }

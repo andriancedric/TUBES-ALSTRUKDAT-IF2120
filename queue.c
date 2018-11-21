@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "KamusVariabel.h"
 #include "FP.h"
+#include "map.h"
 
 
 /* ********* Prototype ********* */
@@ -185,5 +186,22 @@ void DelQ (Queue * Q, int * jumlahorang, int * wktantri){
       i++;
     }
     Tail(*Q) = i;
+  }
+}
+
+void KesabaranMinusQ(Queue *Q, int c, PLAYER *Play){
+  /* Mengirimkan Queue dengan setiap elemen Queue dikurangkan c */
+  //KAMUS
+  address i;
+  int X,Y;
+  //ALGORITMA
+  i = Head(*Q);
+  while(i<=Tail(*Q)){
+    WktAntri(*Q,i) = WktAntri(*Q,i) - c;
+    if(WktAntri(*Q,i) == 0){
+      DelQIdx(*Q,i,&X,&Y);
+      Life(*Play)--;
+    }
+    i++;
   }
 }

@@ -4,7 +4,6 @@
 #define FP_H
 
 #include "boolean.h"
-#include "modstack.h"
 // ADT JAM
     void TulisJAM (JAM J);
     /* I.S. : J sembarang */
@@ -51,7 +50,7 @@
     int NbElmtArr (TabInt T);
       /* Mengirimkan banyaknya elemen efektif tabel */
       /* Mengirimkan nol jika tabel kosong */
-    int MaxNbElArr (TabInt T);
+    int MaxNbElArr (TabInt T)
       /* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
     IdxType GetFirstIdxArr (TabInt T);
     /* Prekondisi : Tabel T tidak kosong */
@@ -63,6 +62,9 @@
     boolean IsIdxValid (TabInt T, IdxType i);
     /* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
     /* yaitu antara indeks yang terdefinisi utk container*/
+    boolean IsIdxEff (TabInt T, IdxType i);
+    /* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
+    /* yaitu antara FirstIdx(T)..LastIdx(T) */
 
     boolean IsArrEmpty (TabInt T);
     /* Mengirimkan true jika tabel T kosong, mengirimkan false jika tidak */
@@ -178,21 +180,30 @@
       /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
     /* *** Primitif Add/Delete *** */
-    void AddQ (Queue * Q, int jumlahorang, int wktantri);
+    void AddQ (Queue * Q, infotype X);
     /* Proses: Menambahkan X pada Q dengan aturan FIFO */
     /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
     /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
-    void DelQ (Queue * Q, int * jumlahorang, int * wktantri);
+    void DelQ (Queue * Q, infotype * X);
     /* Proses: Menghapus X pada Q dengan aturan FIFO */
     /* I.S. Q tidak mungkin kosong */
     /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
             Q mungkin kosong */
+    boolean SearchQ(Queue Q, int X);
 
-//STACK
+    void SortQ(Queue * Q);
 
-    /* ************ Prototype ************ */
-    /* *** Konstruktor/Kreator *** */
-    void CreateEmptySt (Stack *S);
+    void AddDepanQ(Queue * Q, int jumlahorang, int wktantri);
+
+    void DelQIdx(Queue * Q, address idx, int *jumlahorang, int *wktantri);
+
+    void KesabaranMinusQ(Queue * Q, int c);
+
+   //STACK
+
+   /* ************ Prototype ************ */
+   /* *** Konstruktor/Kreator *** */
+   void CreateEmptySt(Stack * S);
     /* I.S. sembarang; */
     /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
     /* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
@@ -205,13 +216,13 @@
     /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
     /* ************ Menambahkan sebuah elemen ke Stack ************ */
-    void Push (Stack * S, int X);
+    void Push (Stack * S, infotype X);
     /* Menambahkan X sebagai elemen Stack S. */
     /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
     /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 
     /* ************ Menghapus sebuah elemen Stack ************ */
-    void Pop (Stack * S, int* X);
+    void Pop (Stack * S, infotype* X);
     /* Menghapus X dari Stack S. */
     /* I.S. S  tidak mungkin kosong */
     /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
