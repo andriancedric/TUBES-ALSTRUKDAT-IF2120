@@ -2,7 +2,7 @@
 //
 
 #include "map.h"
-#include "KamusVariabel.h"
+//include "KamusVariabel.h"
 
 char TipeR(Room R, int X, int Y){//Getter Tipe u/ Room
     return R.S[X][Y].tipe;
@@ -55,7 +55,7 @@ void Draw(Room R){//Prosedur Menggambar peta
     }
 }
 
-void Sit (char tipe, int isi, int Jmlorg ){
+/*void Sit (char tipe, int isi, int Jmlorg ){
   //KAMUS
   int i,j,count;
   int jml,wkt;
@@ -78,6 +78,7 @@ void Sit (char tipe, int isi, int Jmlorg ){
 void EditIsiMeja(Room *R, int X, int Y){
   (*R).S[X][Y]=S;
 }
+*/
 void EditSquare(Room *R, Square S, int X, int Y){
   (*R).S[X][Y]=S;
 }
@@ -96,20 +97,24 @@ void UpdatePosition(char *input, Room *R){
   MakeSquare(&Sq,'.',0);
   EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
   if (strcmp(input,"GU")==0){
-    Absis(PosisiP)--;
-    Absis(PosisiP)=(Absis(PosisiP) % M(*R));
+    if (Absis(PosisiP)>0){
+      Absis(PosisiP)--;
+    }
   }
   else if (strcmp(input,"GL")==0){
-    Ordinat(PosisiP)--;
-    Ordinat(PosisiP)=(Ordinat(PosisiP) % N(*R));
+    if (Ordinat(PosisiP)>0){
+      Ordinat(PosisiP)--;
+    }
   }
   else if (strcmp(input,"GR")==0){
-    Ordinat(PosisiP)++;
-    Ordinat(PosisiP)=(Ordinat(PosisiP) % N(*R));
+    if (Ordinat(PosisiP)<(N(*R)-1)){
+      Ordinat(PosisiP)++;
+    }
   }
   else if (strcmp(input,"GD")==0){
-    Absis(PosisiP)++;
-    Absis(PosisiP)=(Absis(PosisiP) % M(*R));
+    if (Absis(PosisiP)<(M(*R)-1)){
+      Absis(PosisiP)++;
+    }
   }
   MakeSquare(&Sq,'P',0);
   EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
@@ -119,7 +124,7 @@ void UpdatePosition(char *input, Room *R){
 
 //void MakeDoor(Square *S, Room *R, Graph *G, int X, int Y);
 //Prosedur khusus untuk membuat pintu
-/*
+
 int main(){
     int ext_status;
     Room R;
@@ -135,4 +140,3 @@ int main(){
     }
     return 0;
 }
- */
