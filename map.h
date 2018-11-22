@@ -2,6 +2,7 @@
 
 #include "boolean.h"
 #include "point.h"
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #ifndef map_H
@@ -14,8 +15,8 @@ typedef struct {
 	char tipe;
 	int isi;/*Nomor meja jika tipe meja, ID Bahan Makanan jika tipe M, Nomor pintu
               bertipe pintu, 0 jika tidak ada apa2*/
-	//boolean occupied;
-	//int capacity;
+	boolean occupied;
+	int capacity;
 }Square;
 
 typedef struct {
@@ -40,7 +41,7 @@ typedef struct {
 #define List(G) (G).L
 #define Tipe(S) (S).tipe
 #define Isi(S) (S).isi
-//#define IsOcc(S) (S).occupied
-//#define CapMeja(S) (S).capacity
+#define IsOcc(S) (S).occupied
+#define CapMeja(S) (S).capacity
 
 #endif

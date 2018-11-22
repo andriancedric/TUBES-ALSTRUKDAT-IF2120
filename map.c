@@ -116,17 +116,17 @@ void UpdatePosition(char *input, Room *R, List L, Graph *G){
       Absis(PosisiP)--;
     }
   }
-  else if (strcmp(input,"GL")){
+  else if (strcmp(input,"GL")==0){
     if (Ordinat(PosisiP)>0){
       Ordinat(PosisiP)--;
     }
   }
-  else if (strcmp(input,"GR")){
+  else if (strcmp(input,"GR")==0){
     if (Ordinat(PosisiP)<(N(*R)-1)){
       Ordinat(PosisiP)++;
     }
   }
-  else if (strcmp(input,"GD")){
+  else if (strcmp(input,"GD")==0){
     if (Absis(PosisiP)<(M(*R)-1)){
       Absis(PosisiP)++;
     }
@@ -166,7 +166,7 @@ void MakeDoor(Room *R, Graph *G, List L, int X1, int Y1, int X2, int Y2, int ID)
   }
 }
 
-/* int main(){
+int main(){
     int ext_status;
     Room R;
     List L;
@@ -194,4 +194,3 @@ void MakeDoor(Room *R, Graph *G, List L, int X1, int Y1, int X2, int Y2, int ID)
     }
     return 0;
 }
- */
