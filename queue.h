@@ -81,7 +81,7 @@ void AddDepanQ(Queue *Q, int jumlahorang, int wktantri);
 void DelQIdx(Queue *Q, address idx, int *jumlahorang, int *wktantri);
 /* Proses : mengeluarkan orang yang berada pada index ke idx dari queue */
 
-void KesabaranMinusQ(Queue *Q, int c, int *life);
+void KesabaranMinusQ(Queue *Q, int c, PLAYER * play);
 /* Proses : mengurangi Kesabaran Customer setiap kali Command di lakukan, jika kesabaran sudah 0 maka Customer */
 /*          di delete dari antrian dan nyawa player berkurang 1 */
 
