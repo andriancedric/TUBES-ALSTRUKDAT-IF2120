@@ -2,6 +2,7 @@
 
 #include "boolean.h"
 #include "KamusVariabel.h"
+#include "point.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,16 +38,10 @@ typedef struct {
 	addressL First;
 } List;//List dari room2 yang terhubung ke suatu ruangan tertentu
 
+#define Nil NULL
 
-typedef struct tElmtgraph *addressG;
-typedef struct tElmtgraph {
-  int ID;
-	List L;
-	addressG next;
-} ElmtGraph;
-typedef struct {
-	addressG GFirst;
-} Graph;//List dari list tentang room2 yang terhubung dengan room
+//typedef struct adrNode *Node;
+
 
 #define Room(P) (P).r
 #define Next(P) (P).next
