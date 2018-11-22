@@ -24,17 +24,18 @@ void utama(){
         printf("\n  --------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(time));
         printf("    Waiting Cust  ");
-        Draw(R);
-        printf("  Food Stack\n");
-        printf("  %-16s        %d\n",Top(ST));
+        printf("              Food Stack\n");
+        printf("       %-16s        %d\n",Top(ST));
         printf("       Order      ");
-        printf("  Hand\n");
-        printf("  %-16s        %d\n",Top(SH));
+        printf("              Hand\n");
+        printf("       %-16s        %d\n",Top(SH));
         printf("  --------------------------------------------------------\n");
         printf("  Command: ");
         scanf("%s",inp.TabKata);
         Length(&inp);
         if (compareKata(inp,"GD") || compareKata(inp,"GU") || compareKata(inp,"GL") || compareKata(inp,"GR")) UpdatePosition(inp,&R);
+        else Time(time)--;
+        Time(time)++;
     }
 }
 
@@ -64,6 +65,7 @@ int main(){
     MakeRoom(&R,3);
     MakeRoom(&R,4);
     Money(play) = 0;
+    Life(play) = 3;
     Nama(play)[0] = ' ';
 
     while (input!=4){
