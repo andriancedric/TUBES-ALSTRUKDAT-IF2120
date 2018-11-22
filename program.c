@@ -6,6 +6,8 @@
 #include "modstack.h"
 #include "mesinkata.c"
 #include "mesinkar.c"
+#include "jam.h"
+#include "queue.h"
 
 PLAYER play;
 JAM time;

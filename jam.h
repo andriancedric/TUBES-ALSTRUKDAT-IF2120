@@ -1,5 +1,5 @@
-#ifndef kamusvar_H
-#define kamusvar_H
+#ifndef jam_H
+#define jam_H
 
 
 #include "boolean.h"
@@ -10,3 +10,5 @@ typedef struct {
 } JAM;
 /*Definisi pemanggilan Time */
 #define Time(J) (J).SS
+
+#endif

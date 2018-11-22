@@ -2,7 +2,6 @@
 //
 
 #include "map.h"
-//include "KamusVariabel.h"
 
 char TipeR(Room R, int X, int Y){//Getter Tipe u/ Room
     return R.S[X][Y].tipe;
