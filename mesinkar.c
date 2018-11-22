@@ -10,6 +10,13 @@ boolean EOP;
 static FILE * pita;
 static int retval;
 
+void OPENFILE(char* filename) {
+  pita = fopen(filename,"r");
+  if (pita == NULL) {
+        perror("Failed: ");
+    }
+}
+
 void START(char* filename) {
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
@@ -39,4 +46,5 @@ void ADV() {
 	if (EOP) {
        fclose(pita);
  	}
+  printf("%c",CC);
 }
