@@ -2,6 +2,7 @@
 
 #include "boolean.h"
 #include "KamusVariabel.h"
+#include "point.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
