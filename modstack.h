@@ -3,11 +3,6 @@
 
 #include "boolean.h"
 
-#define Nil 0
-
-
-
-
 typedef int address;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */

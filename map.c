@@ -1,7 +1,5 @@
-//Driver map.h
-//
-
 #include "map.h"
+#include "mesinkata.h"
 
 char TipeR(Room R, int X, int Y){//Getter Tipe u/ Room
     return R.S[X][Y].tipe;
@@ -53,7 +51,7 @@ void Draw(Room R){//Prosedur Menggambar peta
     }
 }
 
-/*void Sit (char tipe, int isi, int Jmlorg ){
+void Sit (Room *R, char tipe, int isi, int Jmlorg ){
   //KAMUS
   int i,j,count;
   int jml,wkt;
@@ -72,9 +70,6 @@ void Draw(Room R){//Prosedur Menggambar peta
   }
 }
 
-void EditIsiMeja(Room *R, int X, int Y){
-  (*R).S[X][Y]=S;
-}*/
 void EditSquare(Room *R, Square S, int X, int Y){
   (*R).S[X][Y]=S;
 }
@@ -88,26 +83,26 @@ void MakeSquare(Square *S, char tipe, int ID){
 }
 //Membuat Square
 
-void UpdatePosition(char *input, Room *R){
+void UpdatePosition(Kata input, Room *R){
   Square Sq;
   MakeSquare(&Sq,'.',0);
   EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
-  if (strcmp(input,"GU")==0){
+  if (compareKata(input,"GU")){
     if (Absis(PosisiP)>0){
       Absis(PosisiP)--;
     }
   }
-  else if (strcmp(input,"GL")==0){
+  else if (compareKata(input,"GL")){
     if (Ordinat(PosisiP)>0){
       Ordinat(PosisiP)--;
     }
   }
-  else if (strcmp(input,"GR")==0){
+  else if (compareKata(input,"GR")){
     if (Ordinat(PosisiP)<(N(*R)-1)){
       Ordinat(PosisiP)++;
     }
   }
-  else if (strcmp(input,"GD")==0){
+  else if (compareKata(input,"GD")){
     if (Absis(PosisiP)<(M(*R)-1)){
       Absis(PosisiP)++;
     }
@@ -121,7 +116,7 @@ void UpdatePosition(char *input, Room *R){
 //void MakeDoor(Square *S, Room *R, Graph *G, int X, int Y);
 //Prosedur khusus untuk membuat pintu
 
-int main(){
+/* int main(){
     int ext_status;
     Room R;
     MakeRoom(&R,1);
@@ -136,3 +131,4 @@ int main(){
     }
     return 0;
 }
+ */

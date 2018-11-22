@@ -34,6 +34,7 @@ void utama(){
         printf("  Command: ");
         scanf("%s",inp.TabKata);
         Length(&inp);
+        if (compareKata(inp,"GD") || compareKata(inp,"GU") || compareKata(inp,"GL") || compareKata(inp,"GR")) UpdatePosition(inp,&R);
     }
 }
 

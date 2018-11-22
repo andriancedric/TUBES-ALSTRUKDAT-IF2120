@@ -1,7 +1,6 @@
 #ifndef jam_H
 #define jam_H
 
-
 #include "boolean.h"
 
 /* Untuk ADT JAM -> Waktu game  */
