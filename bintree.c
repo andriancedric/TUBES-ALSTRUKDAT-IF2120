@@ -51,7 +51,7 @@ void MakeTree(Kata Akar, BinTree L, BinTree R, BinTree *P)
 }
 
 
-void BuildTree(BinTree *P)
+void BuildTree(BinTree *P, int* idx)
 // Membentuk sebuah pohon biner P dari pita karakter yang dibaca 
 // I.S. Pita berisi "konstanta" pohon dalam bentuk prefix. Memori pasti cukup, alokasi pasti  berhasil. 
 // F.S. P dibentuk dari ekspresi dalam  pita 
@@ -77,9 +77,12 @@ void BuildTree(BinTree *P)
         i++;
       }
       //Fill a node with STRING NUM converted to INTEGER with atoi()
+      Text.ID = *idx;
       Akar(*P) = Text;
-      BuildTree(&Left(*P));
-      BuildTree(&Right(*P));
+      *idx= *idx +1;
+      BuildTree(&Left(*P),idx);
+      //idx++;
+      BuildTree(&Right(*P),idx);
     }
   ADV();
 }
@@ -229,6 +232,7 @@ void PrintTreeL (BinTree P, int h, int CLevel) {
       printf(" ");
     }
     printKata(Akar(P));
+    printID(Akar(P));
     if (Left(P) != Nil) {
       PrintTreeL(Left(P),h,CLevel+1);
     }

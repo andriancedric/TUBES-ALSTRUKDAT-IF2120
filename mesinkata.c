@@ -96,6 +96,12 @@ void printKata(Kata kata1){
 	printf("\n");
 }
 
+void printID(Kata kata1){
+	printf("%d", kata1.ID);
+
+	//printf("\n");
+}
+
 void writefromMatriks(FILE* f, char strmatriks[8][8]){
 	for(int i=0; i<8; i++) {
 		for(int j=0; j<8; j++)

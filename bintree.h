@@ -45,7 +45,7 @@ void MakeTree(Kata Akar, BinTree L, BinTree R, BinTree *P);
 BinTree BuildBalanceTree(int n);
 /* Menghasilkan sebuah balanced tree dengan n node, nilai setiap node dibaca */
 
-void BuildTree(BinTree *P);
+void BuildTree(BinTree *P, int* idx);
 /* Manajemen Memory */
 addrNode AlokNode(Kata X);
 /* Mengirimkan addrNode hasil alokasi sebuah elemen */
