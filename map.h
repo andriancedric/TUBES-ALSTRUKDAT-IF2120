@@ -1,9 +1,7 @@
 /* Ini adalah header untuk menyimpan ADT map dalam permainan */
 
 #include "boolean.h"
-#include "KamusVariabel.h"
 #include "point.h"
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #ifndef map_H

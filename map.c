@@ -66,7 +66,7 @@ void Draw(Room R){//Prosedur Menggambar peta
     }
 }
 
-/*void Sit (char tipe, int isi, int Jmlorg ){
+void Sit (Room *R, char tipe, int isi, int Jmlorg ){
   //KAMUS
   int i,j,count;
   int jml,wkt;
@@ -85,9 +85,6 @@ void Draw(Room R){//Prosedur Menggambar peta
   }
 }
 
-void EditIsiMeja(Room *R, int X, int Y){
-  (*R).S[X][Y]=S;
-}*/
 void EditSquare(Room *R, Square S, int X, int Y){
   (*R).S[X][Y]=S;
 }
@@ -119,17 +116,17 @@ void UpdatePosition(char *input, Room *R, List L, Graph *G){
       Absis(PosisiP)--;
     }
   }
-  else if (strcmp(input,"GL")==0){
+  else if (strcmp(input,"GL")){
     if (Ordinat(PosisiP)>0){
       Ordinat(PosisiP)--;
     }
   }
-  else if (strcmp(input,"GR")==0){
+  else if (strcmp(input,"GR")){
     if (Ordinat(PosisiP)<(N(*R)-1)){
       Ordinat(PosisiP)++;
     }
   }
-  else if (strcmp(input,"GD")==0){
+  else if (strcmp(input,"GD")){
     if (Absis(PosisiP)<(M(*R)-1)){
       Absis(PosisiP)++;
     }
@@ -169,7 +166,7 @@ void MakeDoor(Room *R, Graph *G, List L, int X1, int Y1, int X2, int Y2, int ID)
   }
 }
 
-int main(){
+/* int main(){
     int ext_status;
     Room R;
     List L;
@@ -197,3 +194,4 @@ int main(){
     }
     return 0;
 }
+ */

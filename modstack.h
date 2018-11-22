@@ -3,7 +3,6 @@
 
 #include "boolean.h"
 
-#define Nil 0
 
 
 

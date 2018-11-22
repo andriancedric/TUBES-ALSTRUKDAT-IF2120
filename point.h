@@ -8,7 +8,16 @@ typedef struct {
 	int Y; /* ordinat*/
 	int ID; /*penunjuk lokasi di mana player berada, misal Room 1, Room 2, Dapur*/
 } POINT;
-/*Definisi pemanggilan Point */
+
+typedef struct{
+	int life;
+	int money;
+    char name[20];
+} PLAYER;
+
+#define Life(P) (P).life
+#define Money(P) (P).money
+#define Nama(P) (P).name
 #define Absis(P) (P).X
 #define Ordinat(P) (P).Y
 #define IDP(P) (P).ID

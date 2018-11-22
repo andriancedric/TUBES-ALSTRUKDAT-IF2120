@@ -4,20 +4,69 @@
 #include "boolean.h"
 
 /*Untuk ADT ARRAY -> <makanan,nomormeja,kesabaran>*/
+/*  Kamus Umum */
+#define IdxMaxArr 12
+/* Indeks maksimum array, sekaligus ukuran maksimum array dalam C */
+#define IdxMinArr 1
+/* Indeks minimum array */
+#define ValUndef -999
+/* Indeks tak terdefinisi*/
+
 typedef int IdxType;  /* type indeks */
 typedef struct{
-  int nomormeja;
   int kesabaran;
-  char makanan;
-} infotypeArr;
+  int ID_Makanan;
+} Pesanan;
 
 typedef struct {
-    infotypeArr TI[30];
+    Pesanan TI[IdxMaxArr+1];
     int Neff;
 } TabInt;
 /*Definisi pemanggilan Array */
-#define Nomormeja(T,i) (T).TI[(i)].nomormeja
 #define Kesabaran(T,i) (T).TI[(i)].kesabaran
-#define Makanan(T,i) (T).TI[(i)].makanan  /*coba deh bisa di string atau engga */
+#define Makanan(T,i) (T).TI[(i)].ID_Makanan  /*coba deh bisa di string atau engga */
 
+/* ********** SELEKTOR (TAMBAHAN) ********** */
+/* *** Banyaknya elemen *** */
+int NbElmtArr (TabInt T);
+/* Mengirimkan banyaknya elemen efektif tabel */
+/* Mengirimkan nol jika tabel kosong */
+/* *** Daya tampung container *** */
+int MaxNbElArr (TabInt T);
+/* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
+/* *** Selektor INDEKS *** */
+IdxType GetFirstIdx (TabInt T);
+/* Prekondisi : Tabel T tidak kosong */
+/* Mengirimkan indeks elemen T pertama */
+IdxType GetLastIdx (TabInt T);
+/* Prekondisi : Tabel T tidak kosong */
+/* Mengirimkan indeks elemen T terakhir */
+
+/* ********** TEST KOSONG/PENUH ********** */
+/* *** Test tabel kosong *** */
+boolean IsEmptyArr (TabInt T);
+/* Mengirimkan true jika tabel T kosong, mengirimkan false jika tidak */
+/* *** Test tabel penuh *** */
+boolean IsFullArr (TabInt T);
+/* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
+
+/* ********** MENAMBAH ELEMEN ********** */
+void AddEli (TabInt * T, IdxType i);
+/* Menambahkan X sebagai elemen ke-i tabel tanpa mengganggu kontiguitas
+   terhadap elemen yang sudah ada */
+/* I.S. Tabel tidak kosong dan tidak penuh */
+/*      i adalah indeks yang valid. */
+/* F.S. X adalah elemen ke-i T yang baru */
+/* Proses : Geser elemen ke-i+1 s.d. terakhir */
+/*          Isi elemen ke-i dengan X */
+
+/* ********** MENGHAPUS ELEMEN ********** */
+void DelEli (TabInt * T, IdxType i);
+/* Menghapus elemen ke-i tabel tanpa mengganggu kontiguitas */
+/* I.S. Tabel tidak kosong, i adalah indeks efektif yang valid */
+/* F.S. X adalah nilai elemen ke-i T sebelum penghapusan */
+/*      Banyaknya elemen tabel berkurang satu */
+/*      Tabel T mungkin menjadi kosong */
+/* Proses : Geser elemen ke-i+1 s.d. elemen terakhir */
+/*          Kurangi elemen efektif tabel */
 #endif

@@ -62,7 +62,7 @@ void AddQ(Queue *Q, int jumlahorang, int wktantri);
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
-void DelQ(Queue *Q, int jumlahorang, int wktantri);
+void DelQ(Queue *Q, int *jumlahorang, int *wktantri);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
@@ -81,7 +81,7 @@ void AddDepanQ(Queue *Q, int jumlahorang, int wktantri);
 void DelQIdx(Queue *Q, address idx, int *jumlahorang, int *wktantri);
 /* Proses : mengeluarkan orang yang berada pada index ke idx dari queue */
 
-void KesabaranMinusQ(Queue *Q, int c);
+void KesabaranMinusQ(Queue *Q, int c, PLAYER * play);
 /* Proses : mengurangi Kesabaran Customer setiap kali Command di lakukan, jika kesabaran sudah 0 maka Customer */
 /*          di delete dari antrian dan nyawa player berkurang 1 */
 

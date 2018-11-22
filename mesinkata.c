@@ -9,7 +9,7 @@ boolean EndKata;
 Kata CKata;
 
 void IgnoreBlank(){
-    while ((CC== BLANK || CC == '\n' || CC == ';' || CC == ',' /*|| CC== ':'*/) && CC != MARK){
+    while ((CC== BLANK || CC == '\n' || CC == ';' || CC == ',' || CC !='(' || CC != ')') && CC != MARK){
         ADV();
     }
 }
@@ -55,7 +55,7 @@ void SalinKata(){
         CKata.TabKata[i] = CC;
         //printf("%c", CC);
         ADV();
-        if ( CC== MARK || CC == ':' || CC == ';'  || CC == '\n' || CC == ','){
+        if ( CC== MARK || CC == ':' || CC == ';'  || CC == '\n' || CC == ',' ){
             break;
         }
         else
@@ -75,6 +75,12 @@ void SalinKata(){
     }*/
 }
 
+void Length(Kata *kata){
+    int i;
+    for(i = 0; kata->TabKata[i] != '\0'; ++i);
+    kata->Length = i;
+}
+
 boolean compareKata(Kata kata1, char* teks){
 	for(int i = 0; i<=kata1.Length ; i++){
 		if (kata1.TabKata[i] != teks[i])
@@ -83,17 +89,17 @@ boolean compareKata(Kata kata1, char* teks){
 	return true;
 }
 
-void Length(Kata* kata){
-	int i;
-	for(i = 0; kata->TabKata[i] != '\0'; i++);
-	kata->Length = i;
-}
-
 void printKata(Kata kata1){
-	for(int i = 0; i<=kata1.Length ; i++){
+	for(int i = 0; i<kata1.Length ; i++){
 		printf("%c", kata1.TabKata[i]);
 	}
 	printf("\n");
+}
+
+void printID(Kata kata1){
+	printf("%d", kata1.ID);
+
+	//printf("\n");
 }
 
 void writefromMatriks(FILE* f, char strmatriks[8][8]){
