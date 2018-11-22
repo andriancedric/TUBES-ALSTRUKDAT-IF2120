@@ -80,7 +80,7 @@ typedef int address;   /* indeks tabel */
 typedef struct { infotypeQ *T;  /*panjang antrian maksimal*/
                  address HEAD;  /* alamat penghapusan */
                  address TAIL;  /* alamat penambahan */
-								 int MaxEl /* Max elemen queue */
+				 int MaxEl; /* Max elemen queue */
                } Queue;
 /* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */

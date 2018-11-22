@@ -12,7 +12,6 @@ int IsiR(Room R, int X, int Y){//Getter isi u/ Room
     return R.S[X][Y].isi;
 }
 
-
 void MakeRoom (Room *R,int ID){//Prosedur membuat room
     int M = 8;
     int N = 8;
@@ -30,8 +29,8 @@ void MakeRoom (Room *R,int ID){//Prosedur membuat room
             //ext_status = 1;
             for (int i=0; i < M; i++) {
                 for (int j = 0; j < N; ++j) {
-                    Tipe(S[i][j]) = '.';//Secara default membuat . (tempat kosong)
-                    Isi(S[i][j]) = 0;//Isi tempat kosong adalah 0
+                    Tipe(SquareXY(*R,i,j)) = '.';//Secara default membuat . (tempat kosong)
+                    Isi(SquareXY(*R,i,j)) = 0;//Isi tempat kosong adalah 0
                 }
             }
             Rt.S=S;
@@ -55,29 +54,25 @@ void Draw(Room R){//Prosedur Menggambar peta
     }
 }
 
-void Sit (char tipe, int isi, int Jmlorg ){
+void Sit (Room *R, char tipe, int isi, int Jmlorg ){
   //KAMUS
   int i,j,count;
   int jml,wkt;
   //ALGORITMA
-  count = JmlOrg;
+  count = Jmlorg;
   for (i=0; i<=7;i++){
     for (j=0; j<=7;j++){
-      if((Tipe(R,i,j) == tipe) && (Isi(R,i,j) == isi)){
-        IsOcc(R,i,j) = true;
+      if((TipeR(*R,i,j) == tipe) && (IsiR(*R,i,j) == isi)){
+        IsOcc(SquareXY(*R,i,j)) = true;
         if(count > 0) {
-          TipeR(R,i,j) = 'C';
+          Tipe(SquareXY(*R,i,j)) = 'C';
           count--;
         }
       }
     }
   }
-  DelQ(WaitQueue,&jml,&wkt);
 }
 
-void EditIsiMeja(Room *R, int X, int Y){
-  (*R).S[X][Y]=S;
-}
 void EditSquare(Room *R, Square S, int X, int Y){
   (*R).S[X][Y]=S;
 }

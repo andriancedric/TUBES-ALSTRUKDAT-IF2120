@@ -18,7 +18,7 @@ typedef struct {
 	boolean occupied;
 	int capacity;
 }Square;
-#define IsOcc
+
 typedef struct {
 	int ID;
 	int M;/*Baris*/
