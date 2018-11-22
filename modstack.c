@@ -12,7 +12,7 @@ void CreateEmptySt (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT u
     printf("Tumpukan kosong, tidak bisa melakukan CH atau CT");
   }
   else { /*Jika tumpukan ada isinya dan melakukan CH atau CT*/
-  Top(*S) = Nil;
+  Top(*S) = 0;
   }
 }
 
@@ -22,14 +22,14 @@ boolean IsEmptySt (Stack S)
 {
   //KAMUS
   //ALGORITMA
-  return (Top(S) == Nil);
+  return (Top(S) == 0);
 }
 boolean IsFullSt (Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 {
   //KAMUS
   //ALGORITMA
-  return (Top(S) == 6);
+  return (Top(S) == 5);
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
