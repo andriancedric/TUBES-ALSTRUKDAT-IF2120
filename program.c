@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "KamusVariabel.h"
 #include "boolean.h"
 #include "map.c"
 #include "credit.c"
@@ -8,6 +7,7 @@
 #include "mesinkar.c"
 #include "jam.h"
 #include "queue.h"
+#include "point.h"
 
 PLAYER play;
 JAM time;
@@ -34,7 +34,20 @@ void utama(){
         scanf("%s",inp.TabKata);
         Length(&inp);
         if (compareKata(inp,"GD") || compareKata(inp,"GU") || compareKata(inp,"GL") || compareKata(inp,"GR")) UpdatePosition(inp,&R);
-        else Time(time)--;
+        else if (compareKata(inp,"ORDER")){}
+        else if (compareKata(inp,"PUT")){}
+        else if (compareKata(inp,"TAKE")){}
+        else if (compareKata(inp,"CH")){}
+        else if (compareKata(inp,"CT")){}
+        else if (compareKata(inp,"PLACE")){}
+        else if (compareKata(inp,"GIVE")){}
+        else if (compareKata(inp,"RECIPE")){}
+        else if (compareKata(inp,"SAVE")){}
+        else if (compareKata(inp,"LOAD")){}
+        else{
+            printf("Input salah bos.\n");
+            Time(time)--;
+        }
         Time(time)++;
     }
 }

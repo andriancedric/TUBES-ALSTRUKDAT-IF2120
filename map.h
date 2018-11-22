@@ -4,7 +4,6 @@
 #include "point.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "point.h"
 #ifndef map_H
 #define map_H
 
