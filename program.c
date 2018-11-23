@@ -28,8 +28,8 @@ void utama(){
     while (!compareKata(inp,"EXIT")){
         printf("\n  --------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(time));
-        printf("    Waiting Cust  "); Draw(R);
-        printf("Food Stack\n");
+        Draw(R);
+        printf("    Waiting Cust            Food Stack\n");
         printf("       %-16s        %d\n",Top(ST));
         printf("       Order      ");
         printf("              Hand\n");
@@ -46,7 +46,10 @@ void utama(){
         else if (compareKata(inp,"CT")){}
         else if (compareKata(inp,"PLACE")){}
         else if (compareKata(inp,"GIVE")){}
-        else if (compareKata(inp,"RECIPE")) PrintTree(P,4);
+        else if (compareKata(inp,"RECIPE")){
+            PrintTree(P,4);
+            Time(time)--;
+        }
         else if (compareKata(inp,"SAVE")){}
         else if (compareKata(inp,"LOAD")){}
         else{
