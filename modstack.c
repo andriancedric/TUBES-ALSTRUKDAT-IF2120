@@ -1,7 +1,9 @@
-
 #include <stdio.h>
 #include "modstack.h"
-#include "bintree.h"
+#include "bintree.c"
+
+//KAMUS UNTUK UANG MAKANAN
+int uangmakanan = 0;
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
@@ -98,12 +100,18 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
 	/*F.S. : Makanan yang terbentuk dipindah ke tray*/
 
 	//KAMUS
-	int IDTemp;
+	int IDTemp, indeks;
   Stack STemp;
   boolean validasi;
   BinTree P;
 
 	//ALGORITMA
+  /*PEMBUATAN BINTREE*/
+  indeks = 1;
+  START("readme.txt");
+  BuildTree(&P, &indeks);
+
+  /*VALIDASI STACK DENGAN BINTREE*/
   validasi = true;
 	if (IsFullSt(*ST)){ /*tray penuh*/
 		printf("Tray sudah penuh");
@@ -116,11 +124,11 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
     /*Validasi bahan makanan pada tangan*/
     while(!IsEmptySt(STemp) && (validasi == true)) {
         Pop(&STemp, &IDTemp);
-        if (Akar(P) != IDTemp){
+        if (Akar(P).ID != IDTemp){
           validasi = false;
           printf("Bahan makanan tidak sesuai urutan, tidak bisa dipindahkan ke tray");
         }
-        else if (Akar(P) == IDTemp){
+        else if (Akar(P).ID == IDTemp){
             if (Left(P) != Nil){
               Akar(P) = Akar(Left(P));
             }
@@ -129,10 +137,39 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
             }   
         }
     }
-    
-    if (validasi == true){
-		Pop(SH,&IDTemp);
-		Push(ST, IDTemp);
+
+
+    if ((validasi == true) && IDTemp == 3){
+		  CreateEmptySt(SH);
+		  Push(ST, 4); /*BANANA SPLIT*/
+	  }
+    else if ((validasi == true) && IDTemp == 5){
+		  CreateEmptySt(SH);
+		  Push(ST, 6); /*SUNDAE*/
+	  }
+    else if ((validasi == true) && IDTemp == 8){
+		  CreateEmptySt(SH);
+		  Push(ST, 9); /*NASI TELUR DADAR*/
+	  }
+    else if ((validasi == true) && IDTemp == 10){
+		  CreateEmptySt(SH);
+		  Push(ST, 11); /*NASI AYAM GORENG*/
+	  }
+    else if ((validasi == true) && IDTemp == 14){
+		  CreateEmptySt(SH);
+		  Push(ST, 15); /*BURGER*/
+	  }
+    else if ((validasi == true) && IDTemp == 16){
+		  CreateEmptySt(SH);
+		  Push(ST, 17); /*HOTDOG*/
+	  }
+    else if ((validasi == true) && IDTemp == 20){
+		  CreateEmptySt(SH);
+		  Push(ST, 21); /*SPAGHETTI BOLOGNESE*/
+	  }
+    else if ((validasi == true) && IDTemp == 22){
+		  CreateEmptySt(SH);
+		  Push(ST, 23); /*SPAGHETTI */
 	  }
   }
 }
@@ -161,5 +198,27 @@ void Give (Stack *ST, int *ID) {
   //ALGORITMA
   Pop(ST, &IDTemp);
   *ID = IDTemp;
+
+  /*Validasi ID Makanan dengan Harga makanan */
+  if (*ID == 4 && *ID == 9) /*BANANA SPLIT dan NASI TELUR DADAR*/
+  {
+    uangmakanan = uangmakanan + 10000;
+  }
+  else if (*ID == 6) /* SUNDAE */
+  {
+    uangmakanan = uangmakanan + 8000;
+  }
+  else if (*ID == 11 && *ID == 21 && *ID == 23) /* NASI AYAM GORENG, SPAGHETTI BOLOGNESE, dan SPAGHETTI CARBONARA */
+  {
+    uangmakanan = uangmakanan + 15000;
+  }
+  else if (*ID == 15 && *ID == 17) /*BURGER dan HOTDOG*/
+  {
+    uangmakanan = uangmakanan + 12000;
+  }
 }
-     
+
+/*Simpan variabel money*/   
+int MoneyTemp(){
+  return uangmakanan;
+}

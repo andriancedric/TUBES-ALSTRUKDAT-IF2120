@@ -10,6 +10,7 @@
 #include "point.h"
 #include "bintree.c"
 
+char* filename;
 PLAYER play;
 JAM time;
 Room R;
@@ -19,6 +20,7 @@ List L;
 Graph G;
 int idxx = 1;
 BinTree P;
+
 
 void utama(){
     Kata inp;
@@ -50,8 +52,18 @@ void utama(){
             PrintTree(P,4);
             Time(time)--;
         }
-        else if (compareKata(inp,"SAVE")){}
-        else if (compareKata(inp,"LOAD")){}
+        else if (compareKata(inp,"SAVE")){
+			printf("Input the desired savedata filename : ");
+			scanf("%d",&filename);
+			WriteSaveFile(filename);
+			printf("Data successfully written. Come again, baby.\n");
+		}
+        else if (compareKata(inp,"LOAD")){
+			printf("Input a file name from which the program will collect initial data. (Including '.txt') : ");
+			scanf("%d",&filename);
+			ReadSaveFile(filename);
+			printf("Data successfully loaded! Enjoy your time, baby.\n");
+		}
         else{
             printf("Input salah bos.\n");
             Time(time)--;
@@ -108,7 +120,10 @@ int main(){
             }
         }
         else if (input==3){
-
+            printf("Input a file name from which the program will collect initial data. (Including '.txt') : ");
+			scanf("%d",&filename);
+			ReadSaveFile(filename);
+			printf("Data successfully loaded! Enjoy your time, baby.\n");
         }
         else{
             printf("Input salah");
