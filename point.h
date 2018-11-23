@@ -20,6 +20,6 @@ typedef struct{
 #define Nama(P) (P).name
 #define Absis(P) (P).X
 #define Ordinat(P) (P).Y
-#define Lokasi(P) (P).lokasi
+#define IDP(P) (P).ID
 
 #endif

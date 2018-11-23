@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include "modstack.h"
+#include "bintree.h"
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
@@ -8,7 +9,7 @@ void CreateEmptySt (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT u
 {
   //KAMUS
   //ALGORITMA
-  if (IsEmpty (*S)){
+  if (IsEmptySt(*S)){
     printf("Tumpukan kosong, tidak bisa melakukan CH atau CT");
   }
   else { /*Jika tumpukan ada isinya dan melakukan CH atau CT*/
@@ -56,21 +57,84 @@ void Pop (Stack *S, int *ID)
   Top(*S)--;
 }
 
+/* Prosedur-prosedur untuk validasi dalam stack*/
+void CopyStack (Stack Sin, Stack *Sout)
+{
+  //KAMUS
+  Stack Stacktemp;
+  int Eltemp;
+  
+
+  //ALGORITMA
+  CreateEmptySt(&Stacktemp);
+  CreateEmptySt(Sout);
+  while (!IsEmptySt(Sin)){
+    Pop(&Sin,&Eltemp);
+    Push(&Stacktemp, Eltemp);
+  }
+  while (!IsEmptySt(Stacktemp)){
+    Pop(&Stacktemp, &Eltemp);
+    Push(&Sin, Eltemp);
+    Push(Sout, Eltemp);
+  }
+}
+
+void InverseStack(Stack *S){
+  //KAMUS 
+  Stack STemp;
+  int Eltemp;
+
+  //ALGORITMA
+  CreateEmptySt(&STemp);
+  while (!IsEmptySt(*S)){
+    Pop(S, &Eltemp);
+    Push(&STemp, Eltemp);
+  }
+  CopyStack(STemp, S);
+}
+
 void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
 	/*I.S. : Ada tumpukan makanan di tangan, terbentuk karena urutan*/
 	/*F.S. : Makanan yang terbentuk dipindah ke tray*/
 
 	//KAMUS
 	int IDTemp;
+  Stack STemp;
+  boolean validasi;
+  BinTree P;
 
 	//ALGORITMA
-	if (IsFull(*ST)){ /*tray penuh*/
+  validasi = true;
+	if (IsFullSt(*ST)){ /*tray penuh*/
 		printf("Tray sudah penuh");
 	} 
 	else {
+    CreateEmptySt(&STemp);
+    CopyStack(*SH,&STemp);
+    InverseStack(&STemp); /*Menginvers stack agar dapat divalidasi dengan tree recipe*/
+
+    /*Validasi bahan makanan pada tangan*/
+    while(!IsEmptySt(STemp) && (validasi == true)) {
+        Pop(&STemp, &IDTemp);
+        if (Akar(P) != IDTemp){
+          validasi = false;
+          printf("Bahan makanan tidak sesuai urutan, tidak bisa dipindahkan ke tray");
+        }
+        else if (Akar(P) == IDTemp){
+            if (Left(P) != Nil){
+              Akar(P) = Akar(Left(P));
+            }
+            else if(Right(P) != Nil){
+              Akar(P) = Akar(Right(P));
+            }   
+        }
+    }
+    
+    if (validasi == true){
 		Pop(SH,&IDTemp);
 		Push(ST, IDTemp);
-	}
+	  }
+  }
 }
 
 void Take (int ID, Stack *SH) { 
@@ -79,7 +143,7 @@ void Take (int ID, Stack *SH) {
 
     //KAMUS
     //ALGORITMA
-    if(!IsEmpty(*SH)){
+    if(!IsEmptySt(*SH)){
         Push(SH, ID);
     }
     else{

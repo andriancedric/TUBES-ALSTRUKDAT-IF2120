@@ -187,7 +187,7 @@ void DelQ (Queue * Q, int * jumlahorang, int * wktantri){
   }
 }
 
-void KesabaranMinusQ(Queue *Q, int c, int *life){
+void KesabaranMinusQ(Queue *Q, int c, PLAYER * play){
   /* Mengirimkan Queue dengan setiap elemen Queue dikurangkan c */
   //KAMUS
   address i;
@@ -198,7 +198,7 @@ void KesabaranMinusQ(Queue *Q, int c, int *life){
     WktAntri(*Q,i) = WktAntri(*Q,i) - c;
     if(WktAntri(*Q,i) == 0){
       DelQIdx(Q,i,&X,&Y);
-      *life--;
+      Life(*play)--;
     }
     i++;
   }
