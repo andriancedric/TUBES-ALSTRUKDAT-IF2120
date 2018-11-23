@@ -28,7 +28,7 @@ void utama(){
     while (!compareKata(inp,"EXIT")){
         printf("\n  --------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(time));
-        printf("    Waiting Cust  "); Draw(R,1);
+        printf("    Waiting Cust  "); Draw(R);
         printf("Food Stack\n");
         printf("       %-16s        %d\n",Top(ST));
         printf("       Order      ");
@@ -96,6 +96,9 @@ int main(){
         else if (input==2){
             if (Nama(play)[0]==' ') printf("Pilih new game atau load game dahulu\n");
             else{
+              Square Sq;
+              MakeSquare(&Sq,'P',0);
+              EditSquare(&R,Sq,Absis(PosisiP),Ordinat(PosisiP));
                 utama();
                 Credit();
                 exit(1);

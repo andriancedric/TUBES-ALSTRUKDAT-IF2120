@@ -15,7 +15,7 @@ typedef struct tadrNode {
 	int ID;
 	adrNode Next;
   adrSuccNode Trail;
-} Node;
+} GNode;
 typedef struct tadrSuccNode {
 	adrNode Succ;
   POINT start;
@@ -32,9 +32,9 @@ typedef struct {
 #define Start(Pt) (Pt)->start
 
 //Konstruktor
-adrNode AlokNode(int ID){
+adrNode AlokGNode(int ID){
   adrNode P;
-  P = (Node *) malloc (sizeof(Node));
+  P = (GNode *) malloc (sizeof(GNode));
   ID(P)=ID;
   NPred(P)=0;
   Trail(P)=Nil;
@@ -42,7 +42,7 @@ adrNode AlokNode(int ID){
   return P;
 }
 
-adrSuccNode AlokSuccNode(adrNode Pn,int X,int Y){
+adrSuccNode AlokSuccGNode(adrNode Pn,int X,int Y){
   adrSuccNode P;
   POINT Pt;
   P = (SuccNode *) malloc (sizeof(SuccNode));
@@ -55,11 +55,11 @@ adrSuccNode AlokSuccNode(adrNode Pn,int X,int Y){
   return P;
 }
 
-void DealokNode(adrNode P){
+void DealokGNode(adrNode P){
   free(P);
 }
 
-void DealokSuccNode(adrNode P){
+void DealokSuccGNode(adrNode P){
   free(P);
 }
 
@@ -69,7 +69,7 @@ void CreateGraph (Graph *G){
 }
 
 //Fungsi/prosedur lain
-adrNode SearchNode(Graph G, int ID){
+adrNode SearchGNode(Graph G, int ID){
   adrNode P;
   P=First(G);
   while (P != Nil && ID(P)!=ID){
@@ -80,7 +80,7 @@ adrNode SearchNode(Graph G, int ID){
 
 adrSuccNode SearchEdge(Graph G, int prec, int succ){
   adrNode P;
-  P=SearchNode(G,prec);
+  P=SearchGNode(G,prec);
   if (P!=Nil){
     adrSuccNode Psucc;
     Psucc=Trail(P);
@@ -94,43 +94,43 @@ adrSuccNode SearchEdge(Graph G, int prec, int succ){
   }
 }
 
-void InsertNode(Graph *G,int ID,adrNode Pn){
+void InsertGNode(Graph *G,int ID,adrNode Pn){
   adrNode P;
   P=First(*G);
   if (P!=Nil){
     while (Next(P) != Nil){
       P=Next(P);
     }
-    Pn=AlokNode(ID);
+    Pn=AlokGNode(ID);
     Next(P)=Pn;
   }
   else{
-    Pn=AlokNode(ID);
+    Pn=AlokGNode(ID);
     First(*G)=Pn;
   }
 }
 
 void InsertEdge(Graph *G,int prec,int succ,int X,int Y){
   adrNode Pprec,Psucc;
-  Pprec=SearchNode(*G,prec);
-  Psucc=SearchNode(*G,succ);
+  Pprec=SearchGNode(*G,prec);
+  Psucc=SearchGNode(*G,succ);
   if (Pprec==Nil){
-    InsertNode(G,prec,Pprec);
+    InsertGNode(G,prec,Pprec);
   }
   if (Psucc==Nil){
-    InsertNode(G,succ,Psucc);
+    InsertGNode(G,succ,Psucc);
   }
   if (SearchEdge(*G,prec,succ)==Nil){
     adrSuccNode PSN;
     PSN=Trail(Pprec);
     if (PSN==Nil){
-      Trail(Pprec)=AlokSuccNode(Psucc,X,Y);
+      Trail(Pprec)=AlokSuccGNode(Psucc,X,Y);
     }
     else{
       while (Next(PSN)!=Nil){
         PSN=Next(PSN);
       }
-      Next(PSN)=AlokSuccNode(Psucc,X,Y);
+      Next(PSN)=AlokSuccGNode(Psucc,X,Y);
     }
   }
 }

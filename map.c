@@ -14,7 +14,7 @@ int IsiR(Room R, int X, int Y){//Getter isi u/ Room
 
 void MakeRoom (List *L,Graph *G,Room *R,int ID){//Prosedur membuat room
   adrNode Pn;
-  Pn=SearchNode(*G,ID);
+  Pn=SearchGNode(*G,ID);
     if (Pn==Nil){
       int M = 8;
       int N = 8;
@@ -39,7 +39,7 @@ void MakeRoom (List *L,Graph *G,Room *R,int ID){//Prosedur membuat room
               Rt.S=S;
               *R=Rt;
               InsertEList(L,ID,*R);
-              InsertNode(G,ID,Pn);
+              InsertGNode(G,ID,Pn);
           /*}
               else {
               ext_status = 0; (ext_status Harusnya buat error msg tapi aku males...)
@@ -144,7 +144,6 @@ void UpdatePosition(Kata input, Room *R, List L, Graph *G){
   }
   MakeSquare(&Sq,'P',IDR);
   EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
-  Draw(*R);
 }
 //Prosedur untuk update display dan posisi player
 
