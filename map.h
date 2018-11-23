@@ -2,7 +2,7 @@
 
 #include "boolean.h"
 #include "point.h"
-#include <string.h>
+#include "mesinkata.h"
 #include <stdio.h>
 #include <stdlib.h>
 #ifndef map_H

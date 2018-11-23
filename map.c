@@ -98,7 +98,7 @@ void MakeSquare(Square *S, char tipe, int ID){
 }
 //Membuat Square
 
-void UpdatePosition(char *input, Room *R, List L, Graph *G){
+void UpdatePosition(Kata input, Room *R, List L, Graph *G){
   Square Sq;
   int IDR=0;
   int X;
@@ -111,22 +111,22 @@ void UpdatePosition(char *input, Room *R, List L, Graph *G){
     MakeSquare(&Sq,'D',X);
     EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
   }
-  if (strcmp(input,"GU")==0){
+  if (compareKata(input,"GU")){
     if (Absis(PosisiP)>0){
       Absis(PosisiP)--;
     }
   }
-  else if (strcmp(input,"GL")==0){
+  else if (compareKata(input,"GL")){
     if (Ordinat(PosisiP)>0){
       Ordinat(PosisiP)--;
     }
   }
-  else if (strcmp(input,"GR")==0){
+  else if (compareKata(input,"GR")){
     if (Ordinat(PosisiP)<(N(*R)-1)){
       Ordinat(PosisiP)++;
     }
   }
-  else if (strcmp(input,"GD")==0){
+  else if (compareKata(input,"GD")){
     if (Absis(PosisiP)<(M(*R)-1)){
       Absis(PosisiP)++;
     }
@@ -166,7 +166,7 @@ void MakeDoor(Room *R, Graph *G, List L, int X1, int Y1, int X2, int Y2, int ID)
   }
 }
 
-int main(){
+/*int main(){
     int ext_status;
     Room R;
     List L;
@@ -193,4 +193,4 @@ int main(){
       scanf("%s",&input);
     }
     return 0;
-}
+}*/

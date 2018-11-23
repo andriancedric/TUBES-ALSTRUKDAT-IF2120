@@ -14,6 +14,8 @@ JAM time;
 Room R;
 Stack ST, SH;
 Queue WaitQueue;
+List L;
+Graph G;
 
 void utama(){
     Kata inp;
@@ -33,7 +35,7 @@ void utama(){
         printf("  Command: ");
         scanf("%s",inp.TabKata);
         Length(&inp);
-        if (compareKata(inp,"GD") || compareKata(inp,"GU") || compareKata(inp,"GL") || compareKata(inp,"GR")) UpdatePosition(inp,&R);
+        if (compareKata(inp,"GD") || compareKata(inp,"GU") || compareKata(inp,"GL") || compareKata(inp,"GR")) UpdatePosition(inp,&R,L,&G);
         else if (compareKata(inp,"ORDER")){}
         else if (compareKata(inp,"PUT")){}
         else if (compareKata(inp,"TAKE")){}
@@ -73,10 +75,10 @@ int main(){
     printf(">> Input: ");
     scanf("%d", &input);
 
-    MakeRoom(&R,1);
-    MakeRoom(&R,2);
-    MakeRoom(&R,3);
-    MakeRoom(&R,4);
+    MakeRoom(&L,&G,&R,1);
+    MakeRoom(&L,&G,&R,2);
+    MakeRoom(&L,&G,&R,3);
+    MakeRoom(&L,&G,&R,4);
     Money(play) = 0;
     Life(play) = 3;
     Nama(play)[0] = ' ';
