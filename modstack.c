@@ -124,11 +124,11 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
     /*Validasi bahan makanan pada tangan*/
     while(!IsEmptySt(STemp) && (validasi == true)) {
         Pop(&STemp, &IDTemp);
-        if (Akar(P) != IDTemp){
+        if (Akar(P).ID != IDTemp){
           validasi = false;
           printf("Bahan makanan tidak sesuai urutan, tidak bisa dipindahkan ke tray");
         }
-        else if (Akar(P) == IDTemp){
+        else if (Akar(P).ID == IDTemp){
             if (Left(P) != Nil){
               Akar(P) = Akar(Left(P));
             }
