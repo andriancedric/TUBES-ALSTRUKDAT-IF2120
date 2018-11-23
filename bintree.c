@@ -9,7 +9,6 @@
 #include "mesinkata.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 /* *** PROTOTYPE *** */
 /* *** Konstruktor *** */
 void Allocate (addrNode *P)
@@ -232,7 +231,6 @@ void PrintTreeL (BinTree P, int h, int CLevel) {
       printf(" ");
     }
     printKata(Akar(P));
-    printID(Akar(P));
     if (Left(P) != Nil) {
       PrintTreeL(Left(P),h,CLevel+1);
     }

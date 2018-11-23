@@ -7,7 +7,6 @@
 #define _BINTREE_H_
 
 /* Modul lain yang digunakan : */
-#include "listrek.h"
 #include "boolean.h"
 #include "mesinkar.h"
 #include "mesinkata.h"

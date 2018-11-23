@@ -3,13 +3,11 @@
 
 #include "boolean.h"
 
-typedef int address;   /* indeks tabel */
-
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
 	int T[6]; /* tabel penyimpan elemen */
-	address TOP;  /* alamat TOP: elemen puncak */
+	int TOP;  /* alamat TOP: elemen puncak */
 } Stack;
 /* Definisi stack S kosong : S.TOP = Nil */
 /* Elemen yang dipakai menyimpan nilai Stack T[1]..T[MaxEl] */

@@ -10,14 +10,14 @@ typedef struct
     int wktantri;    /* waktu antrean si pelanggan */
     int jumlahorang; /*antrian per grup, kan antriannya ga harus sendiri (per kelomppok)*/
 } infotypeQ;
-typedef int address; /* indeks tabel */
+
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct
 {
     infotypeQ *T; /*panjang antrian maksimal*/
-    address HEAD; /* alamat penghapusan */
-    address TAIL; /* alamat penambahan */
+    int HEAD; /* alamat penghapusan */
+    int TAIL; /* alamat penambahan */
     int MaxEl;     /* Max elemen queue */
 } Queue;
 /* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
@@ -78,7 +78,7 @@ void SortQ(Queue *Q);
 void AddDepanQ(Queue *Q, int jumlahorang, int wktantri);
 /* Proses : Memasukkan Orang ke paling depan Queue */
 
-void DelQIdx(Queue *Q, address idx, int *jumlahorang, int *wktantri);
+void DelQIdx(Queue *Q, int idx, int *jumlahorang, int *wktantri);
 /* Proses : mengeluarkan orang yang berada pada index ke idx dari queue */
 
 void KesabaranMinusQ(Queue *Q, int c, int *life);
