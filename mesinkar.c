@@ -46,5 +46,4 @@ void ADV() {
 	if (EOP) {
        fclose(pita);
  	}
-  printf("%c",CC);
 }
