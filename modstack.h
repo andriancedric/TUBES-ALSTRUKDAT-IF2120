@@ -16,8 +16,8 @@ typedef struct {
    /* S.TOP adalah alamat elemen TOP */
 
 /* Definisi akses dengan Selektor : Set dan Get */
-#define Top(S) (S).TOP
-#define InfoTop(S) (S).T[(S).TOP]
+#define TopSt(S) (S).TOP
+#define InfoTopSt(S) (S).T[(S).TOP]
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */

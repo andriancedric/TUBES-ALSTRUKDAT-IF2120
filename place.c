@@ -5,48 +5,10 @@
 #include "array.c"
 #include "point.h"
 //KAMUS
-void PrintArr(TabInt T);
-void PrintQ(Queue Q);
 void Order(Room R, TabInt * T, POINT P);
 void Place(Room R, Queue * Q, POINT P);
 
 //ALGORITMA
-void PrintArr(TabInt T){
-  //KAMUS
-  int i;
-  //ALGORITMA
-  for(i = 1; i <= 12; i++ ){
-    switch (Makanan(T,i)) {
-      case 4: printf("Banana Split_%d\n",i);
-              break;
-      case 6: printf("Sundae_&d\n",i);
-              break;
-      case 9: printf("Nasi Telur Dadar_%d\n",i);
-              break;
-      case 11: printf("Nasi Ayam Goreng_%d\n",i);
-              break;
-      case 15: printf("Burger_%d\n",i);
-              break;
-      case 17: printf("Hot Dog_%d\n",i);
-              break;
-      case 21: printf("Spaghetti Bolognese_%d\n",i);
-              break;
-      case 23: printf("Spaghetti Carbonara_%d\n",i);
-              break;
-      case ValUndef : break;
-    }
-  }
-}
-
-void PrintQ(Queue Q){
-  //KAMUS
-  address i;
-  //ALGORITMA
-  for (i = Head(Q); i <= Tail(Q); i++){
-    printf("%d\n",&JumlahOrang(Q,i));
-  }
-}
-
 void Order(Room R,TabInt * T, POINT P){
   //KAMUS
   //ALGORITMA

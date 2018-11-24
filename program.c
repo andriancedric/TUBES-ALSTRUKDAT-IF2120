@@ -2,7 +2,7 @@
 #include "boolean.h"
 #include "map.c"
 #include "credit.c"
-#include "modstack.h"
+#include "modstack.c"
 #include "mesinkata.c"
 #include "mesinkar.c"
 #include "jam.h"
@@ -33,20 +33,28 @@ void utama(){
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(time));
         Draw(R);
         printf("    Waiting Cust            Food Stack\n");
-        printf("       %-16s        %d\n",Top(ST));
+        printf("       %-16s        %d\n",InfoTopSt(ST));
         printf("       Order      ");
-        printf("              Hand\n");
-        printf("       %-16s        %d\n",Top(SH));
+        printf("            Hand\n");
+        printf("       %-16s        %d\n",InfoTopSt(SH));
         printf("  --------------------------------------------------------\n");
         printf("  Command: ");
         scanf("%s",inp.TabKata);
         Length(&inp);
         if (compareKata(inp,"GD") || compareKata(inp,"GU") || compareKata(inp,"GL") || compareKata(inp,"GR")) UpdatePosition(inp,&R,L,&G);
         else if (compareKata(inp,"ORDER")){}
-        else if (compareKata(inp,"PUT")){}
-        else if (compareKata(inp,"TAKE")){}
-        else if (compareKata(inp,"CH")){}
-        else if (compareKata(inp,"CT")){}
+        else if (compareKata(inp,"PUT")){ 
+            Put(&ST,&SH);
+            }
+        else if (compareKata(inp,"TAKE")){
+            
+        }
+        else if (compareKata(inp,"CH")){
+            CreateEmptySt(&SH);
+        }
+        else if (compareKata(inp,"CT")){
+            CreateEmptySt(&ST);
+        }
         else if (compareKata(inp,"PLACE")){}
         else if (compareKata(inp,"GIVE")){}
         else if (compareKata(inp,"RECIPE")){
@@ -100,7 +108,9 @@ int main(){
     Nama(play)[0] = ' ';
     START("readtree.txt");
 	BuildTree(&P,&idxx);
-
+    CreateEmptySt(&SH);
+    CreateEmptySt(&ST);
+    
     while (input!=4){
         if (input==1){
             printf(">>> Nama: ");
