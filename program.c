@@ -13,6 +13,7 @@
 char* filename;
 PLAYER play;
 JAM time;
+int IDR;
 Room R;
 Stack ST, SH;
 Queue WaitQueue;
@@ -93,10 +94,7 @@ int main(){
     printf(">> Input: ");
     scanf("%d", &input);
 
-    MakeRoom(&L,&G,&R,1);
-    MakeRoom(&L,&G,&R,2);
-    MakeRoom(&L,&G,&R,3);
-    MakeRoom(&L,&G,&R,4);
+    MakeBuilding(&L,&G,&R,&IDR);
     Money(play) = 0;
     Life(play) = 3;
     Nama(play)[0] = ' ';
@@ -112,7 +110,9 @@ int main(){
             if (Nama(play)[0]==' ') printf("Pilih new game atau load game dahulu\n");
             else{
               Square Sq;
-              MakeSquare(&Sq,'P',0);
+              MakeSquare(&Sq,'P',0,false,0);
+              Absis(PosisiP)=1;
+              Ordinat(PosisiP)=1;
               EditSquare(&R,Sq,Absis(PosisiP),Ordinat(PosisiP));
                 utama();
                 Credit();

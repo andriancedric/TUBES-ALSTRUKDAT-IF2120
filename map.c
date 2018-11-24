@@ -54,7 +54,12 @@ void MakeRoom (List *L,Graph *G,Room *R,int ID){//Prosedur membuat room
 void Draw(Room R){//Prosedur Menggambar peta
     Square S;
     int M=M(R);
-    printf("                 Room %d\n",ID(&R));
+    if (ID(&R)==4){
+      printf("                 Kitchen\n",ID(&R));
+    }
+    else{
+      printf("                 Room %d\n",ID(&R));
+    }
     for(int i=0;i<M(R);i++){
         printf("                 ");
         for(int j=0;j<N(R);j++){
@@ -90,9 +95,11 @@ void EditSquare(Room *R, Square S, int X, int Y){
 }
 //Mengedit Square di room
 
-void MakeSquare(Square *S, char tipe, int ID){
+void MakeSquare(Square *S, char tipe, int ID, boolean Occ, int cap){
   Tipe(*S)=tipe;
   Isi(*S)=ID;
+  IsOcc(*S)=Occ;
+  CapMeja(*S)=cap;
   //IsOcc(*S) = false;
   //CapMeja(*S) = 0;
 }
@@ -104,31 +111,40 @@ void UpdatePosition(Kata input, Room *R, List L, Graph *G){
   int X;
   X=Isi((*R).S[Absis(PosisiP)][Ordinat(PosisiP)]);
   if (X==0){
-    MakeSquare(&Sq,'-',0);
+    MakeSquare(&Sq,'-',0,false,0);
     EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
   }
   else{
-    MakeSquare(&Sq,'D',X);
+    MakeSquare(&Sq,'D',X,false,0);
     EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
   }
   if (compareKata(input,"GU")){
     if (Absis(PosisiP)>0){
-      Absis(PosisiP)--;
+      if((TipeR(*R,Absis(PosisiP)-1,Ordinat(PosisiP))=='-')||(TipeR(*R,Absis(PosisiP)-1,Ordinat(PosisiP))=='D')){
+        Absis(PosisiP)--;
+      }
     }
   }
   else if (compareKata(input,"GL")){
     if (Ordinat(PosisiP)>0){
-      Ordinat(PosisiP)--;
+      if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)-1)=='-')||(TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)-1)=='D')){
+        printf("%c\n", TipeR(*R,Ordinat(PosisiP)-1,Absis(PosisiP)));
+        Ordinat(PosisiP)--;
+      }
     }
   }
   else if (compareKata(input,"GR")){
     if (Ordinat(PosisiP)<(N(*R)-1)){
-      Ordinat(PosisiP)++;
+      if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)+1)=='-')||(TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)+1)=='D')){
+        Ordinat(PosisiP)++;
+      }
     }
   }
   else if (compareKata(input,"GD")){
     if (Absis(PosisiP)<(M(*R)-1)){
-      Absis(PosisiP)++;
+      if((TipeR(*R,Absis(PosisiP)+1,Ordinat(PosisiP))=='-')||(TipeR(*R,Absis(PosisiP)+1,Ordinat(PosisiP))=='D')){
+        Absis(PosisiP)++;
+      }
     }
   }
   if (Tipe((*R).S[Absis(PosisiP)][Ordinat(PosisiP)])=='D'){
@@ -142,7 +158,7 @@ void UpdatePosition(Kata input, Room *R, List L, Graph *G){
     Ordinat(PosisiP)=Ordinat(Start(Pn));
     IDR=Isi((*R).S[Absis(PosisiP)][Ordinat(PosisiP)]);
   }
-  MakeSquare(&Sq,'P',IDR);
+  MakeSquare(&Sq,'P',IDR, false, 0);
   EditSquare(R,Sq,Absis(PosisiP),Ordinat(PosisiP));
 }
 //Prosedur untuk update display dan posisi player
@@ -153,9 +169,9 @@ void MakeDoor(Room *R, Graph *G, List L, int X1, int Y1, int X2, int Y2, int ID)
   tElmtList P;
   P=SearchList(L,ID);
   if (P!=Nil){
-    MakeSquare(&Sq,'D',ID);
+    MakeSquare(&Sq,'D',ID,false,0);
     EditSquare(R,Sq,X1,Y1);
-    MakeSquare(&Sq,'D',ID(R));
+    MakeSquare(&Sq,'D',ID(R),false,0);
     EditSquare(&Room(P),Sq,X2,Y2);
     InsertEdge(G,ID(R),ID,X2,Y2);
     InsertEdge(G,ID,ID(R),X1,Y1);
@@ -163,6 +179,163 @@ void MakeDoor(Room *R, Graph *G, List L, int X1, int Y1, int X2, int Y2, int ID)
   else{
   printf("failed");
   }
+}
+
+void MakeBuilding(List *L, Graph *G, Room *R, int *Id){
+  Square Sq;
+  MakeRoom(L,G,R,1);
+    /*Kursi*/
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,0,1);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,1,0);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,1,2);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,2,1);
+    MakeSquare(&Sq,'X',2,false,2);
+    EditSquare(R,Sq,1,5);
+    MakeSquare(&Sq,'X',2,false,2);
+    EditSquare(R,Sq,1,7);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,5,6);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,7,6);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,6,7);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,6,5);
+    MakeSquare(&Sq,'X',3,false,2);
+    EditSquare(R,Sq,6,0);
+    MakeSquare(&Sq,'X',3,false,2);
+    EditSquare(R,Sq,6,2);
+    /*ID*/
+    MakeSquare(&Sq,'1',1,false,4);
+    EditSquare(R,Sq,1,1);
+    MakeSquare(&Sq,'2',2,false,4);
+    EditSquare(R,Sq,1,6);
+    MakeSquare(&Sq,'3',3,false,4);
+    EditSquare(R,Sq,6,1);
+    MakeSquare(&Sq,'4',4,false,4);
+    EditSquare(R,Sq,6,6);
+  MakeRoom(L,G,R,2);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,0,1);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,1,0);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,1,2);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,2,1);
+    MakeSquare(&Sq,'X',2,false,2);
+    EditSquare(R,Sq,1,5);
+    MakeSquare(&Sq,'X',2,false,2);
+    EditSquare(R,Sq,1,7);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,5,6);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,7,6);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,6,7);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,6,5);
+    MakeSquare(&Sq,'X',3,false,2);
+    EditSquare(R,Sq,6,0);
+    MakeSquare(&Sq,'X',3,false,2);
+    EditSquare(R,Sq,6,2);
+    /*ID*/
+    MakeSquare(&Sq,'1',1,false,4);
+    EditSquare(R,Sq,1,1);
+    MakeSquare(&Sq,'2',2,false,4);
+    EditSquare(R,Sq,1,6);
+    MakeSquare(&Sq,'3',3,false,4);
+    EditSquare(R,Sq,6,1);
+    MakeSquare(&Sq,'4',4,false,4);
+    EditSquare(R,Sq,6,6);
+  MakeRoom(L,G,R,3);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,0,1);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,1,0);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,1,2);
+    MakeSquare(&Sq,'X',1,false,4);
+    EditSquare(R,Sq,2,1);
+    MakeSquare(&Sq,'X',2,false,2);
+    EditSquare(R,Sq,1,5);
+    MakeSquare(&Sq,'X',2,false,2);
+    EditSquare(R,Sq,1,7);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,5,6);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,7,6);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,6,7);
+    MakeSquare(&Sq,'X',4,false,4);
+    EditSquare(R,Sq,6,5);
+    MakeSquare(&Sq,'X',3,false,2);
+    EditSquare(R,Sq,6,0);
+    MakeSquare(&Sq,'X',3,false,2);
+    EditSquare(R,Sq,6,2);
+    /*ID*/
+    MakeSquare(&Sq,'1',1,false,4);
+    EditSquare(R,Sq,1,1);
+    MakeSquare(&Sq,'2',2,false,4);
+    EditSquare(R,Sq,1,6);
+    MakeSquare(&Sq,'3',3,false,4);
+    EditSquare(R,Sq,6,1);
+    MakeSquare(&Sq,'4',4,false,4);
+    EditSquare(R,Sq,6,6);
+  MakeRoom(L,G,R,4);
+    MakeSquare(&Sq,'M',1,false,4);
+    EditSquare(R,Sq,0,0);
+    MakeSquare(&Sq,'M',2,false,4);
+    EditSquare(R,Sq,1,0);
+    MakeSquare(&Sq,'M',3,false,4);
+    EditSquare(R,Sq,2,0);
+    MakeSquare(&Sq,'M',4,false,4);
+    EditSquare(R,Sq,3,0);
+    MakeSquare(&Sq,'M',5,false,2);
+    EditSquare(R,Sq,4,0);
+    MakeSquare(&Sq,'M',6,false,2);
+    EditSquare(R,Sq,5,0);
+    MakeSquare(&Sq,'M',7,false,4);
+    EditSquare(R,Sq,6,0);
+    MakeSquare(&Sq,'M',8,false,4);
+    EditSquare(R,Sq,7,2);
+    MakeSquare(&Sq,'M',9,false,4);
+    EditSquare(R,Sq,7,3);
+    MakeSquare(&Sq,'M',10,false,4);
+    EditSquare(R,Sq,7,4);
+    MakeSquare(&Sq,'M',11,false,2);
+    EditSquare(R,Sq,7,5);
+    MakeSquare(&Sq,'M',12,false,2);
+    EditSquare(R,Sq,7,6);
+    MakeSquare(&Sq,'M',13,false,4);
+    EditSquare(R,Sq,7,7);
+    MakeSquare(&Sq,'M',14,false,4);
+    EditSquare(R,Sq,3,3);
+    MakeSquare(&Sq,'M',15,false,4);
+    EditSquare(R,Sq,3,4);
+    MakeSquare(&Sq,'M',16,false,4);
+    EditSquare(R,Sq,3,5);
+  /*Door1*/
+  tElmtList P;
+  P=SearchList(*L,1);
+  *R=Room(P);
+  MakeDoor(R,G,*L,4,7,4,0,2);
+  MakeDoor(R,G,*L,7,4,0,4,4);
+  /*Door2*/
+  P=SearchList(*L,2);
+  *R=Room(P);
+  MakeDoor(R,G,*L,7,4,0,4,3);
+  /*Door3*/
+  P=SearchList(*L,3);
+  *R=Room(P);
+  MakeDoor(R,G,*L,4,0,4,7,4);
+  /*Door4*/
+  P=SearchList(*L,4);
+  *R=Room(P);
 }
 
 /*int main(){
