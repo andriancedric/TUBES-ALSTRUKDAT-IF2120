@@ -12,6 +12,7 @@ void CreateEmptySt (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT u
   //KAMUS
   //ALGORITMA
   TopSt(*S) = 0;
+  InfoTopSt(*S) = 1;
 }
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
@@ -216,4 +217,31 @@ void Give (Stack *ST, int *ID) {
 /*Simpan variabel money*/   
 int MoneyTemp(){
   return uangmakanan;
+}
+
+Kata NamaMakanan(Stack S) {
+  //KAMUS
+  BinTree P;
+  int indeks, ID;
+  boolean namavalid;
+
+  //ALGORITMA
+  namavalid = false;
+  indeks = 1;
+  START("readtree.txt");
+  BuildTree(&P, &indeks);
+
+  while (Akar(P).ID != InfoTopSt(S) && namavalid == false){
+    if (Akar(P).ID == InfoTopSt(S)){
+       namavalid = true;
+       
+        return Akar(P);
+    }
+     else if(Right(P) != 0){
+              Akar(P) = Akar(Right(P));
+            }
+            else if (Left(P) != 0){
+              Akar(P) = Akar(Left(P));
+            }   
+        } 
 }
