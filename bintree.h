@@ -154,23 +154,7 @@ void DelDaunTerkiri(BinTree *P, Kata* *X);
 void DelDaun(BinTree *P, Kata* X);
 /* I.S. P tidak kosong, minimum ada 1 daun bernilai X. */
 /* F.S. Semua daun bernilai X dihapus dari P. */
-List MakeListDaun(BinTree P);
-/* Jika P adalah pohon kosong, maka menghasilkan list kosong. */
-/* Jika P bukan pohon kosong: menghasilkan list yang elemennya adalah semua daun pohon P,
-   jika semua alokasi list berhasil.
-   Daun terkiri menjadi elemen pertama dari list, diikuti elemen kanannya, dst.
-   Menghasilkan list kosong jika ada alokasi yang gagal. */
-List MakeListPreorder(BinTree P);
-/* Jika P adalah pohon kosong, maka menghasilkan list kosong. */
-/* Jika P bukan pohon kosong: menghasilkan list yang elemennya adalah semua elemen pohon P 
-   dengan urutan preorder, jika semua alokasi berhasil.   
-   Menghasilkan list kosong jika ada alokasi yang gagal. */
-List MakeListLevel(BinTree P, int N);
-/* Jika P adalah pohon kosong, maka menghasilkan list kosong. */
-/* Jika P bukan pohon kosong: menghasilkan list yang elemennya adalah semua elemen pohon P 
-   yang levelnya=N, jika semua alokasi berhasil. 
-   Elemen terkiri menjadi elemen pertama dari list, diikuti elemen kanannya, dst.
-   Menghasilkan list kosong jika ada alokasi yang gagal. */
+
 
 /* *** Binary  Search  Tree  *** */
 boolean BSearch(BinTree P, Kata* X);

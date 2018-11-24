@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "modstack.h"
-#include "bintree.c"
+#include "bintree.h"
 
 //KAMUS UNTUK UANG MAKANAN
 int uangmakanan = 0;
@@ -11,12 +11,7 @@ void CreateEmptySt (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT u
 {
   //KAMUS
   //ALGORITMA
-  if (IsEmptySt(*S)){
-    printf("Tumpukan kosong, tidak bisa melakukan CH atau CT");
-  }
-  else { /*Jika tumpukan ada isinya dan melakukan CH atau CT*/
-  Top(*S) = 0;
-  }
+  TopSt(*S) = 0;
 }
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
@@ -25,14 +20,14 @@ boolean IsEmptySt (Stack S)
 {
   //KAMUS
   //ALGORITMA
-  return (Top(S) == 0);
+  return (TopSt(S) == 0);
 }
 boolean IsFullSt (Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 {
   //KAMUS
   //ALGORITMA
-  return (Top(S) == 5);
+  return (TopSt(S) == 6);
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
@@ -43,8 +38,8 @@ void Push (Stack *S, int ID)
 {
   //KAMUS
   //ALGORITMA
-    Top(*S)++;
-    InfoTop(*S) = ID;
+    TopSt(*S)++;
+    InfoTopSt(*S) = ID;
 }
 
 /* ************ Menghapus sebuah elemen Stack ************ */
@@ -55,8 +50,8 @@ void Pop (Stack *S, int *ID)
 {
   //KAMUS
   //ALGORITMA
-  *ID = InfoTop(*S);
-  Top(*S)--;
+  *ID = InfoTopSt(*S);
+  TopSt(*S)--;
 }
 
 /* Prosedur-prosedur untuk validasi dalam stack*/
@@ -108,7 +103,7 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
 	//ALGORITMA
   /*PEMBUATAN BINTREE*/
   indeks = 1;
-  START("readme.txt");
+  START("readtree.txt");
   BuildTree(&P, &indeks);
 
   /*VALIDASI STACK DENGAN BINTREE*/
@@ -129,10 +124,10 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
           printf("Bahan makanan tidak sesuai urutan, tidak bisa dipindahkan ke tray");
         }
         else if (Akar(P).ID == IDTemp){
-            if (Left(P) != Nil){
+            if (Left(P) != 0){
               Akar(P) = Akar(Left(P));
             }
-            else if(Right(P) != Nil){
+            else if(Right(P) != 0){
               Akar(P) = Akar(Right(P));
             }   
         }
