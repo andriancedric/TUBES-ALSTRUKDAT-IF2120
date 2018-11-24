@@ -2,7 +2,7 @@
 #define QUEUE_H
 
 #include "boolean.h"
-
+#include "point.h"
 /*Untuk ADT Queue*/
 
 typedef struct
@@ -84,5 +84,7 @@ void DelQIdx(Queue *Q, int idx, int *jumlahorang, int *wktantri);
 void KesabaranMinusQ(Queue *Q, int c, PLAYER * play);
 /* Proses : mengurangi Kesabaran Customer setiap kali Command di lakukan, jika kesabaran sudah 0 maka Customer */
 /*          di delete dari antrian dan nyawa player berkurang 1 */
+
+void PrintQ(Queue Q);
 
 #endif

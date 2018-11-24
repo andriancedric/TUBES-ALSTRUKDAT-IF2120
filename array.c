@@ -69,10 +69,31 @@ void AddEli (TabInt * T, IdxType i){
   /* Proses : Geser elemen ke-i+1 s.d. terakhir */
   /*          Isi elemen ke-i dengan X */
   //KAMUS
-  IdxType j;
+  TabInt Data;
+  int r;
   //ALGORITMA
+  Neff(Data) = 8;
+  Makanan(Data, 1) = 4;
+  Makanan(Data, 2) = 6;
+  Makanan(Data, 3) = 9;
+  Makanan(Data, 4) = 11;
+  Makanan(Data, 5) = 15;
+  Makanan(Data, 6) = 17;
+  Makanan(Data, 7) = 21;
+  Makanan(Data, 8) = 23;
+
+  Kesabaran(Data, 1) = ValUndef;
+  Kesabaran(Data, 2) = ValUndef;
+  Kesabaran(Data, 3) = ValUndef;
+  Kesabaran(Data, 4) = ValUndef;
+  Kesabaran(Data, 5) = ValUndef;
+  Kesabaran(Data, 6) = ValUndef;
+  Kesabaran(Data, 7) = ValUndef;
+  Kesabaran(Data, 8) = ValUndef;
+
   srand((unsigned)time(NULL));
-  Makanan(*T,i) = (rand()%(8-1)) + 1;
+  r = (rand() % (8 - 1)) + 1;
+  Makanan(*T,i) = Makanan(Data, r);
   Kesabaran(*T,i) = (rand()%(40-30)) + 30;;
 }
 
@@ -87,8 +108,64 @@ void DelEli (TabInt * T, IdxType i){
   //KAMUS
   IdxType j;
   //ALGORITMA
-  for (j=i;j<=GetLastIdx(*T)-1;j++){
+  for (j = i; j <= GetLastIdx(*T)-1; j++){
     Makanan(*T,j) = ValUndef;
     Kesabaran(*T,j) = ValUndef;
     }
+}
+
+void KesabaranMinusArr(TabInt *T, int c, PLAYER *play){
+  /* Mengirimkan Arr dengan setiap elemen Arr dikurangkan c */
+  //KAMUS
+  IdxType i;
+  //ALGORITMA
+  i = GetFirstIdx(*T);
+  for(i = GetFirstIdx(*T); i <= GetLastIdx(*T); i++){
+    if(Makanan(*T,i) != ValUndef){
+      Kesabaran(*T,i) -= c;
+      if(Kesabaran(*T,i) == 0){
+        DelEli(T,i);
+        Life(*play)--;
+      }
+    }
+  }
+}
+
+void PrintArr(TabInt T)
+{
+  //KAMUS
+  int i;
+  //ALGORITMA
+  for (i = 1; i <= 12; i++)
+  {
+    switch (Makanan(T, i))
+    {
+    case 4:
+      printf("Banana Split_%d\n", i);
+      break;
+    case 6:
+      printf("Sundae_&d\n", i);
+      break;
+    case 9:
+      printf("Nasi Telur Dadar_%d\n", i);
+      break;
+    case 11:
+      printf("Nasi Ayam Goreng_%d\n", i);
+      break;
+    case 15:
+      printf("Burger_%d\n", i);
+      break;
+    case 17:
+      printf("Hot Dog_%d\n", i);
+      break;
+    case 21:
+      printf("Spaghetti Bolognese_%d\n", i);
+      break;
+    case 23:
+      printf("Spaghetti Carbonara_%d\n", i);
+      break;
+    case ValUndef:
+      break;
+    }
+  }
 }

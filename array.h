@@ -2,7 +2,7 @@
 #define ARRAY_H
 
 #include "boolean.h"
-
+#include "point.h"
 /*Untuk ADT ARRAY -> <makanan,nomormeja,kesabaran>*/
 /*  Kamus Umum */
 #define IdxMaxArr 12
@@ -25,7 +25,7 @@ typedef struct {
 /*Definisi pemanggilan Array */
 #define Kesabaran(T,i) (T).TI[(i)].kesabaran
 #define Makanan(T,i) (T).TI[(i)].ID_Makanan  /*coba deh bisa di string atau engga */
-
+#define Neff(T) (T).Neff
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
 int NbElmtArr (TabInt T);
@@ -69,4 +69,7 @@ void DelEli (TabInt * T, IdxType i);
 /*      Tabel T mungkin menjadi kosong */
 /* Proses : Geser elemen ke-i+1 s.d. elemen terakhir */
 /*          Kurangi elemen efektif tabel */
+
+void KesabaranMinusArr(TabInt *T, int c, PLAYER *play); 
+void PrintArr(TabInt T);
 #endif

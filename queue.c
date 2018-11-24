@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "queue.h"
-#include "map.h"
-#include "KamusVariabel.h"
 
 /* ********* Prototype ********* */
 boolean IsEmptyQ (Queue Q){
@@ -19,7 +17,7 @@ boolean IsFullQ (Queue Q){
 int NBElmtQ (Queue Q){
   /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
   //KAMUS
-  address i;
+  int i;
   int count;
   //ALGORITMA
   if (IsEmptyQ(Q)){
@@ -66,6 +64,7 @@ void AddQ (Queue * Q, int jumlahorang, int wktantri)
   /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
   /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
   //Kamus
+  int i;
   //ALGORITMA
   if (IsEmptyQ(*Q)) {
     Head(*Q) = 1;
@@ -80,85 +79,16 @@ void AddQ (Queue * Q, int jumlahorang, int wktantri)
   }
   else {
     Tail(*Q)++;
-    WktAntri(*Q,Tail(*Q)) = wktantri;
-    JumlahOrang(*Q,Tail(*Q)) = jumlahorang;
+    for(i = Tail(*Q); i > Head(*Q); i--){
+      WktAntri(*Q, i) = WktAntri(*Q, i - 1);
+      JumlahOrang(*Q, i) = JumlahOrang(*Q, i - 1);
+    }
+    WktAntri(*Q,Head(*Q)) = wktantri;
+    JumlahOrang(*Q,Head(*Q)) = jumlahorang;
   }
 }
 
-boolean SearchQ(Queue Q, int X ){
-  //KAMUS
-  address i;
-  boolean found;
-  //ALGORITMA
-  found = false;
-  i = Head(Q);
-  while((i <= Tail(Q)) && !found){
-    if(JumlahOrang(Q,i) == X){
-      found = true;
-    }
-    else {
-      i++;
-    }
-  }
-  return found;
-}
-void SortQ(Queue *Q){
-  //KAMUS
-  address i;
-  int wtemp,jtemp;
-  boolean found;
-  //ALGORITMA
-  found = false;
-  i = Head(*Q);
-  while((i<=Tail(*Q)) && !found){
-    if(JumlahOrang(*Q,i) == 2){
-      DelQIdx(Q,i,&jtemp,&wtemp);
-      found = true;
-    }
-    else{
-      i++;
-    }
-  }
-  AddDepanQ(Q,jtemp,wtemp);
-}
 
-void AddDepanQ (Queue *Q, int jumlahorang, int wktantri){
-  /* sama menambahkan antrian baru di depan (PrioQueue) */
-  //KAMUS
-  address i;
-  //ALGORITMA
-  if(IsEmptyQ(*Q)){
-    Head(*Q) = 1;
-    Tail(*Q) = 1;
-    JumlahOrang(*Q,1) = jumlahorang;
-    WktAntri(*Q,1) = wktantri;
-  }
-  else{
-    Tail(*Q)++;
-    i = Tail(*Q);
-    while(i>Head(*Q)){
-      JumlahOrang(*Q,i) = JumlahOrang(*Q,i-1);
-      WktAntri(*Q,i) = WktAntri(*Q,i-1);
-      i--;
-    }
-    JumlahOrang(*Q,i) = jumlahorang;
-    WktAntri(*Q,i) = wktantri;
-  }
-}
-void DelQIdx(Queue *Q, address idx, int * jumlahorang, int * wktantri){
-  //KAMUS
-  address i;
-  //ALGORITMA
-  *wktantri = WktAntri(*Q,idx);
-  *jumlahorang = JumlahOrang(*Q,idx);
-  i = idx;
-  while(i<Tail(*Q)){
-    JumlahOrang(*Q,i) = JumlahOrang(*Q,i+1);
-    WktAntri(*Q,i) = WktAntri(*Q,i+1);
-    i++;
-  }
-  Tail(*Q)--;
-}
 
 void DelQ (Queue * Q, int * jumlahorang, int * wktantri){
   /* Proses: Menghapus X pada Q dengan aturan FIFO */
@@ -166,7 +96,7 @@ void DelQ (Queue * Q, int * jumlahorang, int * wktantri){
   /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
           Q mungkin kosong */
   //KAMUS
-  address i;
+  int i;
   //ALGORITMA
   *jumlahorang = JumlahOrangHead(*Q);
   *wktantri = WktAntriHead(*Q);
@@ -183,14 +113,101 @@ void DelQ (Queue * Q, int * jumlahorang, int * wktantri){
       JumlahOrang(*Q,i) = JumlahOrang(*Q,i+1);
       i++;
     }
-    Tail(*Q) = i;
+    Tail(*Q)--;
   }
 }
+boolean SearchQ(Queue Q, int X)
+{
+  //KAMUS
+  int i;
+  boolean found;
+  //ALGORITMA
+  found = false;
+  i = Head(Q);
+  while ((i <= Tail(Q)) && !found)
+  {
+    if (JumlahOrang(Q, i) == X)
+    {
+      found = true;
+    }
+    else
+    {
+      i++;
+    }
+  }
+  return found;
+}
+void SortQ(Queue *Q)
+{
+  //KAMUS
+  int i;
+  int wtemp, jtemp;
+  boolean found;
+  //ALGORITMA
+  found = false;
+  i = Head(*Q);
+  while ((i <= Tail(*Q)) && !found)
+  {
+    if (JumlahOrang(*Q, i) == 2)
+    {
+      DelQIdx(Q, i, &jtemp, &wtemp);
+      found = true;
+    }
+    else
+    {
+      i++;
+    }
+  }
+  AddDepanQ(Q, jtemp, wtemp);
+}
 
+void AddDepanQ(Queue *Q, int jumlahorang, int wktantri)
+{
+  /* sama menambahkan antrian baru di depan (PrioQueue) */
+  //KAMUS
+  int i;
+  //ALGORITMA
+  if (IsEmptyQ(*Q))
+  {
+    Head(*Q) = 1;
+    Tail(*Q) = 1;
+    JumlahOrang(*Q, 1) = jumlahorang;
+    WktAntri(*Q, 1) = wktantri;
+  }
+  else
+  {
+    Tail(*Q)++;
+    i = Tail(*Q);
+    while (i > Head(*Q))
+    {
+      JumlahOrang(*Q, i) = JumlahOrang(*Q, i - 1);
+      WktAntri(*Q, i) = WktAntri(*Q, i - 1);
+      i--;
+    }
+    JumlahOrang(*Q, i) = jumlahorang;
+    WktAntri(*Q, i) = wktantri;
+  }
+}
+void DelQIdx(Queue *Q, int idx, int *jumlahorang, int *wktantri)
+{
+  //KAMUS
+  int i;
+  //ALGORITMA
+  *wktantri = WktAntri(*Q, idx);
+  *jumlahorang = JumlahOrang(*Q, idx);
+  i = idx;
+  while (i < Tail(*Q))
+  {
+    JumlahOrang(*Q, i) = JumlahOrang(*Q, i + 1);
+    WktAntri(*Q, i) = WktAntri(*Q, i + 1);
+    i++;
+  }
+  Tail(*Q)--;
+}
 void KesabaranMinusQ(Queue *Q, int c, PLAYER * play){
   /* Mengirimkan Queue dengan setiap elemen Queue dikurangkan c */
   //KAMUS
-  address i;
+  int i;
   int X,Y;
   //ALGORITMA
   i = Head(*Q);
@@ -201,5 +218,16 @@ void KesabaranMinusQ(Queue *Q, int c, PLAYER * play){
       Life(*play)--;
     }
     i++;
+  }
+}
+
+void PrintQ(Queue Q)
+{
+  //KAMUS
+  int i;
+  //ALGORITMA
+  for (i = Head(Q); i <= Tail(Q); i++)
+  {
+    printf("%d\n", &JumlahOrang(Q, i));
   }
 }
