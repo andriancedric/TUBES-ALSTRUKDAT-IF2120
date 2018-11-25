@@ -36,11 +36,12 @@ void utama(){
         Draw(R);
         /*printf("  Waiting Cust       \n");
         PrintQ(WaitQueue);*/
-        printf("  Food Stack         %d\n",InfoTopSt(ST));
+        printf("  Food Stack         \n  ");NamaMakanan(ST);
         /*printf("  Order              %s\n");
         PrintArr(Pesan);*/
-        printf("  Hand               %d\n",InfoTopSt(SH));
+        printf("  Hand               \n  ");NamaMakanan(SH);
         printf("  --------------------------------------------------------\n");
+        NOMAP:
         printf("  Command: ");
         scanf("%s",inp.TabKata);
         Length(&inp);
@@ -67,6 +68,7 @@ void utama(){
         else if (compareKata(inp,"RECIPE")){
             PrintTree(P,4);
             Time(detik)--;
+            goto NOMAP;
         }
         else if (compareKata(inp,"SAVE")){
 			printf("Input the desired savedata filename : ");
