@@ -34,7 +34,7 @@ boolean IsFullSt (Stack S)
 {
   //KAMUS
   //ALGORITMA
-  return (TopSt(S) == 6);
+  return (TopSt(S) >= 5);
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
@@ -290,7 +290,7 @@ void NamaMakanan(Stack S) {
   InverseStack(&temp);
   while (!IsEmptySt(temp)){
     indeks = InfoTopSt(temp);
-    printf("%s  ", makanan[indeks]);
+    printf(" %s ", makanan[indeks]);
     Pop(&temp,&hehe);
   }
   printf("\n");
