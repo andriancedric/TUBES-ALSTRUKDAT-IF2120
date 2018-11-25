@@ -285,6 +285,10 @@ void NamaMakanan(Stack S) {
   int hehe;
 
   //ALGORITMA
+<<<<<<< HEAD
+=======
+  if (IsEmptySt(S)) printf(" -Empty-");
+>>>>>>> 070bedea2cfa5093144754cd0d53f60d5501afeb
   CopyStack(S,&temp);
   InverseStack(&temp);
   while (!IsEmptySt(temp)){
