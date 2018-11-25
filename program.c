@@ -89,7 +89,6 @@ void utama(){
         else if (compareKata(inp,"GIVE")){}
         else if (compareKata(inp,"RECIPE")){
             PrintTree(P,4);
-            Time(detik)--;
             goto NOMAP;
         }
         else if (compareKata(inp,"SAVE")){
@@ -106,7 +105,7 @@ void utama(){
 		}
         else{
             printf("Input salah bos.\n");
-            Time(detik)--;
+            goto NOMAP;
         }
         Time(detik)++;
     }
