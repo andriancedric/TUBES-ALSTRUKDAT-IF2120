@@ -285,10 +285,7 @@ void NamaMakanan(Stack S) {
   int hehe;
 
   //ALGORITMA
-<<<<<<< HEAD
-  indeks = InfoTopSt(S);
-  printf("   %s\n", makanan[indeks]);
-=======
+  if (IsEmptySt(S)) printf(" -Empty-");
   CopyStack(S,&temp);
   InverseStack(&temp);
   while (!IsEmptySt(temp)){
@@ -297,5 +294,4 @@ void NamaMakanan(Stack S) {
     Pop(&temp,&hehe);
   }
   printf("\n");
->>>>>>> 38d5bc5ee6e97b1ac5df94f11ecd5d27660e1cd0
 }
