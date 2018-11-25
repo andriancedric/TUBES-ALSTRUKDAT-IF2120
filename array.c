@@ -50,7 +50,7 @@ boolean IsEmptyArr (TabInt T){
   return (NbElmtArr(T) == 0);
 }
 
-boolean IsFull (TabInt T){
+boolean IsFullArr (TabInt T){
   /* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
   if (NbElmtArr(T) == 12){
     return true;
