@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "modstack.h"
 #include "bintree.h"
+#include "map.c"
 
 //KAMUS UNTUK UANG MAKANAN
 int uangmakanan = 0;
@@ -190,7 +191,7 @@ void Take (int ID, Stack *SH) {
     }
 }
 
-void Give (Stack *ST, int *ID) {
+void Give (Stack *ST, TabInt *T, Room *R, int *IDH) {
   /*I.S : Ada tumpukkan di tray*/
   /*F.S : Makanan pada top of tray akan diberikan kepada pelanggan*/
 
@@ -199,24 +200,75 @@ void Give (Stack *ST, int *ID) {
 
   //ALGORITMA
   Pop(ST, &IDTemp);
-  *ID = IDTemp;
+  *IDH = IDTemp;
 
-  /*Validasi ID Makanan dengan Harga makanan */
-  if (*ID == 5 && *ID == 10) /*BANANA SPLIT dan NASI TELUR DADAR*/
-  {
-    uangmakanan = uangmakanan + 10000;
+  int IDT=-1;
+  int ID=0;
+  Kata inp;
+  printf("  Direction (L,R,U,D): ");
+  scanf("%s",inp.TabKata);
+  Length(&inp);
+  if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)-1)=='X')/*&&IsOcc(SquareXY(R,Absis(PosisiP),Ordinat(PosisiP)-1))*/&&compareKata(inp,"L")){
+    IDT=IsiR(*R,Absis(PosisiP),Ordinat(PosisiP)-1);
+    ID=IDMakanan(*T,IDT);
   }
-  else if (*ID == 7) /* SUNDAE */
-  {
-    uangmakanan = uangmakanan + 8000;
+  else if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)+1)=='X')/*&&IsOcc(SquareXY(R,Absis(PosisiP),Ordinat(PosisiP)+1))*/&&compareKata(inp,"R")){
+    IDT=IsiR(*R,Absis(PosisiP),Ordinat(PosisiP)+1);
+    ID=IDMakanan(*T,IDT);
   }
-  else if (*ID == 12 && *ID == 22 && *ID == 24) /* NASI AYAM GORENG, SPAGHETTI BOLOGNESE, dan SPAGHETTI CARBONARA */
-  {
-    uangmakanan = uangmakanan + 15000;
+  else if((TipeR(*R,Absis(PosisiP)-1,Ordinat(PosisiP))=='X')/*&&IsOcc(SquareXY(R,Absis(PosisiP)-1,Ordinat(PosisiP)))*/&&compareKata(inp,"U")){
+    IDT=IsiR(*R,Absis(PosisiP)-1,Ordinat(PosisiP));
+    ID=IDMakanan(*T,IDT);
   }
-  else if (*ID == 16 && *ID == 18) /*BURGER dan HOTDOG*/
-  {
-    uangmakanan = uangmakanan + 12000;
+  else if((TipeR(*R,Absis(PosisiP)+1,Ordinat(PosisiP))=='X')/*&&IsOcc(SquareXY(R,Absis(PosisiP)+1,Ordinat(PosisiP)))*/&&compareKata(inp,"D")){
+    IDT=IsiR(*R,Absis(PosisiP)+1,Ordinat(PosisiP));
+    ID=IDMakanan(*T,IDT);
+  }
+  if(IDT!=-1 && ID==*IDH){
+    /*Validasi ID Makanan dengan Harga makanan */
+    if (ID == 5 && ID == 10) /*BANANA SPLIT dan NASI TELUR DADAR*/
+    {
+      DelEli(T,IDT);
+      for(int X=0;X<M(*R);X){
+        for(int Y=0; Y<N(*R); Y++){
+          IsOcc(SquareXY(*R,X,Y))=false;
+        }
+      }
+      uangmakanan = uangmakanan + 10000;
+    }
+    else if (ID == 7) /* SUNDAE */
+    {
+      DelEli(T,IDT);
+      for(int X=0;X<M(*R);X){
+        for(int Y=0; Y<N(*R); Y++){
+          IsOcc(SquareXY(*R,X,Y))=false;
+        }
+      }
+      uangmakanan = uangmakanan + 8000;
+    }
+    else if (ID == 12 && ID == 22 && ID == 24) /* NASI AYAM GORENG, SPAGHETTI BOLOGNESE, dan SPAGHETTI CARBONARA */
+    {
+      DelEli(T,IDT);
+      for(int X=0;X<M(*R);X){
+        for(int Y=0; Y<N(*R); Y++){
+          IsOcc(SquareXY(*R,X,Y))=false;
+        }
+      }
+      uangmakanan = uangmakanan + 15000;
+    }
+    else if (ID == 16 && ID == 18) /*BURGER dan HOTDOG*/
+    {
+      DelEli(T,IDT);
+      for(int X=0;X<M(*R);X){
+        for(int Y=0; Y<N(*R); Y++){
+          IsOcc(SquareXY(*R,X,Y))=false;
+        }
+      }
+      uangmakanan = uangmakanan + 12000;
+    }
+  }
+  else{
+    printf("Tidak ada meja di arah itu...\n");
   }
 }
 
@@ -232,5 +284,5 @@ void NamaMakanan(Stack S) {
 
   //ALGORITMA
   indeks = InfoTopSt(S);
-  printf("%s\n", makanan[indeks]);
+  printf("   %s\n", makanan[indeks]);
 }

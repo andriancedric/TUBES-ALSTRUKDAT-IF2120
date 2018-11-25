@@ -79,12 +79,8 @@ void AddQ (Queue * Q, int jumlahorang, int wktantri)
   }
   else {
     Tail(*Q)++;
-    for(i = Tail(*Q); i > Head(*Q); i--){
-      WktAntri(*Q, i) = WktAntri(*Q, i - 1);
-      JumlahOrang(*Q, i) = JumlahOrang(*Q, i - 1);
-    }
-    WktAntri(*Q,Head(*Q)) = wktantri;
-    JumlahOrang(*Q,Head(*Q)) = jumlahorang;
+    WktAntri(*Q,Tail(*Q)) = wktantri;
+    JumlahOrang(*Q,Tail(*Q)) = jumlahorang;
   }
 }
 
@@ -226,9 +222,14 @@ void PrintQ(Queue Q)
   //KAMUS
   int i;
   //ALGORITMA
-  for (i = Head(Q); i <= Tail(Q); i++)
-  {
-    printf("%d\n", &JumlahOrang(Q, i));
+  if(IsEmptyQ(Q)){
+    printf("   -Queue Empty-\n");
+  }
+  else{
+    for (i = Head(Q); i <= Tail(Q); i++)
+    {
+      printf("   %d\n", JumlahOrang(Q, i));
+    }
   }
 }
 

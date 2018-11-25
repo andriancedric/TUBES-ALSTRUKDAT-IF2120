@@ -1,10 +1,20 @@
+#ifndef ARRAY_C
+#define ARRAY_C
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include "array.h"
 
-
+void CreateEmptyArr(TabInt * T){
+  //KAMUS
+  int i;
+  //ALGORITMA
+  for(i = 1; i<=12; i++){
+    Makanan(*T,i) = ValUndef;
+    Kesabaran(*T,i) = ValUndef;
+  }
+}
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
 int NbElmtArr (TabInt T){
@@ -92,9 +102,9 @@ void AddEli (TabInt * T, IdxType i){
   Kesabaran(Data, 8) = ValUndef;
 
   srand((unsigned)time(NULL));
-  r = (rand() % (8 - 1)) + 1;
+  r = (rand() % (9 - 1)) + 1;
   Makanan(*T,i) = Makanan(Data, r);
-  Kesabaran(*T,i) = (rand()%(40-30)) + 30;;
+  Kesabaran(*T,i) = (rand()%(41-30)) + 1;;
 }
 
 void DelEli (TabInt * T, IdxType i){
@@ -136,37 +146,54 @@ void PrintArr(TabInt T)
   //KAMUS
   int i;
   //ALGORITMA
-  for (i = 1; i <= 12; i++)
-  {
-    switch (Makanan(T, i))
+  if(IsEmptyArr(T)){
+    printf("   -Tidak ada Pesanan-\n");
+  }
+  else{
+    for (i = 1; i <= 12; i++)
     {
-    case 4:
-      printf("Banana Split_%d\n", i);
-      break;
-    case 6:
-      printf("Sundae_&d\n", i);
-      break;
-    case 9:
-      printf("Nasi Telur Dadar_%d\n", i);
-      break;
-    case 11:
-      printf("Nasi Ayam Goreng_%d\n", i);
-      break;
-    case 15:
-      printf("Burger_%d\n", i);
-      break;
-    case 17:
-      printf("Hot Dog_%d\n", i);
-      break;
-    case 21:
-      printf("Spaghetti Bolognese_%d\n", i);
-      break;
-    case 23:
-      printf("Spaghetti Carbonara_%d\n", i);
-      break;
-    case ValUndef:
-      break;
+      switch (Makanan(T, i))
+      {
+      case 4:
+        printf("   Banana Split_%d\n", i);
+        break;
+      case 6:
+        printf("   Sundae_&d\n", i);
+        break;
+      case 9:
+        printf("   Nasi Telur Dadar_%d\n", i);
+        break;
+      case 11:
+        printf("   Nasi Ayam Goreng_%d\n", i);
+        break;
+      case 15:
+        printf("   Burger_%d\n", i);
+        break;
+      case 17:
+        printf("   Hot Dog_%d\n", i);
+        break;
+      case 21:
+        printf("   Spaghetti Bolognese_%d\n", i);
+        break;
+      case 23:
+        printf("   Spaghetti Carbonara_%d\n", i);
+        break;
+      case ValUndef:
+        break;
+      }
     }
+  }
+}
+
+int IDMakanan(TabInt T,int idMeja){
+  /* Mengirimkan idMakanan yang dipesan oleh meja dengan nomor meja idMeja */
+  int idMakanan;
+  idMakanan=Makanan(T,idMeja);
+  if(idMakanan==ValUndef){
+    return -1;
+  }
+  else{
+    return idMakanan;
   }
 }
 
@@ -212,3 +239,5 @@ void Order(Room R, TabInt *T, POINT P)
     printf("ANDA TIDAK BERADA DI SEKITAR MEJA");
   }
 }
+
+#endif

@@ -2,6 +2,7 @@
 #define modstack_H
 
 #include "boolean.h"
+#include "array.c"
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
@@ -45,7 +46,7 @@ void Pop (Stack * S, int *ID);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
-void Put (Stack *SH, Stack *ST); 
+void Put (Stack *SH, Stack *ST);
 /*SH adalah stack hand, ST adalah Stack tray*/
 	/*I.S. : Ada tumpukan makanan di tangan, terbentuk karena urutan*/
 	/*F.S. : Makanan yang terbentuk dipindah ke tray*/
@@ -54,7 +55,7 @@ void Take (int ID, Stack *SH);
   /*I.S. : Ada bahan di sebelah pemain, kondisi tangan tidak penuh*/
 	/*F.S. : Bahan berpindah ke tangan*/
 
-void Give (Stack *ST, int *ID);
+void Give (Stack *ST, TabInt *T, Room *R, int *IDH);
 /*I.S : Ada tumpukkan di tray*/
   /*F.S : Makanan pada top of tray akan diberikan kepada pelanggan*/
 

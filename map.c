@@ -321,6 +321,8 @@ void MakeBuilding(List *L, Graph *G, Room *R, int *Id){
     EditSquare(R,Sq,3,4);
     MakeSquare(&Sq,'M',23,false,4);
     EditSquare(R,Sq,3,5);
+    MakeSquare(&Sq,'T',0,false,4);
+    EditSquare(R,Sq,1,7);
   /*Door1*/
   tElmtList P;
   P=SearchList(*L,1);

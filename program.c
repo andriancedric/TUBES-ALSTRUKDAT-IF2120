@@ -15,7 +15,7 @@
 char* filename;
 PLAYER play;
 JAM detik;
-int IDR;
+int IDR,cd;
 Room R;
 Stack ST, SH;
 Queue WaitQueue;
@@ -24,21 +24,26 @@ Graph G;
 int idxx = 1;
 BinTree P;
 TabInt Pesan;
-
+int orang[3] = {0,2,4};
 void utama(){
     Kata inp;
+    srand((unsigned)time(NULL));
+    cd = (rand() % (8 - 4)) + 4;
+    int i = (rand() % (3 - 1)) + 1;
 
+    CreateEmptyQ(&WaitQueue,30);
+    CreateEmptyArr(&Pesan);
     inp.TabKata[0] = '%';
     Length(&inp);
     while (!compareKata(inp,"EXIT")){
         printf("\n  ------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
         Draw(R);
-        /*printf("  Waiting Cust       \n");
-        PrintQ(WaitQueue);*/
+        printf("  Waiting Cust       \n");
+        PrintQ(WaitQueue);
         printf("  Food Stack         \n  ");NamaMakanan(ST);
-        /*printf("  Order              %s\n");
-        PrintArr(Pesan);*/
+        printf("  Order              \n");
+        PrintArr(Pesan);
         printf("  Hand               \n  ");NamaMakanan(SH);
         printf("  --------------------------------------------------------\n");
         NOMAP:
@@ -86,7 +91,10 @@ void utama(){
         else if (compareKata(inp,"PLACE")){
             Place(R,&WaitQueue,PosisiP);
         }
-        else if (compareKata(inp,"GIVE")){}
+        else if (compareKata(inp,"GIVE")){
+          int IDH;
+          Give(&ST,&Pesan,&R,&IDH);
+        }
         else if (compareKata(inp,"RECIPE")){
             PrintTree(P,4);
             Time(detik)--;
@@ -109,6 +117,19 @@ void utama(){
             Time(detik)--;
         }
         Time(detik)++;
+        cd--;
+        if (cd == 0){
+          AddQ(&WaitQueue,orang[i],30);
+          srand((unsigned)time(NULL));
+           cd = (rand() % (8 - 4)) + 1;
+           i = (rand() % (3 - 1)) + 1;
+        }
+        if(!IsEmptyQ(WaitQueue)){
+          KesabaranMinusQ(&WaitQueue,1,&play);
+        }
+        if(!IsEmptyArr(Pesan)){
+          KesabaranMinusArr(&Pesan,1,&play);
+        }
     }
 }
 

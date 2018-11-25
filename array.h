@@ -27,6 +27,9 @@ typedef struct {
 #define Kesabaran(T,i) (T).TI[(i)].kesabaran
 #define Makanan(T,i) (T).TI[(i)].ID_Makanan  /*coba deh bisa di string atau engga */
 #define Neff(T) (T).Neff
+
+/* KONSTRUKTOR */
+void CreateEmptyArr(TabInt * T);
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
 int NbElmtArr (TabInt T);
@@ -71,7 +74,7 @@ void DelEli (TabInt * T, IdxType i);
 /* Proses : Geser elemen ke-i+1 s.d. elemen terakhir */
 /*          Kurangi elemen efektif tabel */
 
-void KesabaranMinusArr(TabInt *T, int c, PLAYER *play); 
+void KesabaranMinusArr(TabInt *T, int c, PLAYER *play);
 void PrintArr(TabInt T);
 
 void Order(Room R, TabInt *T, POINT P);
