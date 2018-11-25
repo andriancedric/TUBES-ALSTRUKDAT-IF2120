@@ -6,7 +6,7 @@
 int uangmakanan = 0;
 
 //KAMUS UNTUK LIST MAKANAN
-char makanan[24][50] = {"piring", "sendok", "es krim", "pisang", "banana split", "stroberi", "sundae", "nasi", "telur", "nasi telur dadar",
+char makanan[25][50] = { "empty", "piring", "sendok", "es krim", "pisang", "banana split", "stroberi", "sundae", "nasi", "telur", "nasi telur dadar",
                           "ayam goreng", "nasi ayam goreng", "garpu", "roti", "patty", "burger", "sosis", "hot dog", "spaghetti", "bolognese",
                           "keju","spaghetti bolognese", "carbonara", "spaghetti carbonara"};
 
@@ -17,7 +17,7 @@ void CreateEmptySt (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT u
   //KAMUS
   //ALGORITMA
   TopSt(*S) = 0;
-  InfoTopSt(*S) = -1;
+  InfoTopSt(*S) = 0;
 }
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
@@ -66,7 +66,7 @@ void CopyStack (Stack Sin, Stack *Sout)
   //KAMUS
   Stack Stacktemp;
   int Eltemp;
-
+  
 
   //ALGORITMA
   CreateEmptySt(&Stacktemp);
@@ -83,7 +83,7 @@ void CopyStack (Stack Sin, Stack *Sout)
 }
 
 void InverseStack(Stack *S){
-  //KAMUS
+  //KAMUS 
   Stack STemp;
   int Eltemp;
 
@@ -104,15 +104,15 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
 	int IDTemp, indeks;
   int idxmakanan[5];
   Stack STemp;
-
+  
 
 	//ALGORITMA
   /*VALIDASI STACK DENGAN BINTREE*/
-
+  
   indeks = 0;
 	if (IsFullSt(*ST)){ /*tray penuh*/
 		printf("Tray sudah penuh");
-	}
+	} 
 	else {
     CreateEmptySt(&STemp);
     CopyStack(*SH,&STemp);
@@ -132,43 +132,43 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
             }
             else if(Right(P) != 0){
               Akar(P) = Akar(Right(P));
-            }
+            }   
         }
     }*/
         indeks++;
     }
 
-    if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 3) {
+    if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 3  && idxmakanan[4] == 4) {
 		  CreateEmptySt(SH);
-		  Push(ST, 4); /*BANANA SPLIT*/
+		  Push(ST, 5); /*BANANA SPLIT*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 5) {
-		  CreateEmptySt(SH);
-		  Push(ST, 6); /*SUNDAE*/
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 3 && idxmakanan[4] == 6) {
+		  CreateEmptySt(SH); 
+		  Push(ST, 7); /*SUNDAE*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 7 && idxmakanan[3] == 8){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 8 && idxmakanan[4] == 9){
 		  CreateEmptySt(SH);
-		  Push(ST, 9); /*NASI TELUR DADAR*/
+		  Push(ST, 10); /*NASI TELUR DADAR*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 7 && idxmakanan[3] == 10){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 8 && idxmakanan[4] == 11){
 		  CreateEmptySt(SH);
-		  Push(ST, 11); /*NASI AYAM GORENG*/
+		  Push(ST, 12); /*NASI AYAM GORENG*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 12 && idxmakanan[2] == 13 && idxmakanan[3] == 14){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 13 && idxmakanan[3] == 14 && idxmakanan[4] == 15){
 		  CreateEmptySt(SH);
-		  Push(ST, 15); /*BURGER*/
+		  Push(ST, 16); /*BURGER*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 12 && idxmakanan[2] == 13 && idxmakanan[3] == 16){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 13 && idxmakanan[3] == 14 && idxmakanan[4] == 17){
 		  CreateEmptySt(SH);
-		  Push(ST, 17); /*HOTDOG*/
+		  Push(ST, 18); /*HOTDOG*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 12 && idxmakanan[2] == 18 && idxmakanan[3] == 19 && idxmakanan[4] == 20){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 13 && idxmakanan[3] == 19 && idxmakanan[4] == 20 && idxmakanan[5] == 21){
 		  CreateEmptySt(SH);
-		  Push(ST, 21); /*SPAGHETTI BOLOGNESE*/
+		  Push(ST, 22); /*SPAGHETTI BOLOGNESE*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 12 && idxmakanan[2] == 13 && idxmakanan[3] == 22){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 12 && idxmakanan[2] == 13 && idxmakanan[3] == 19 && idxmakanan[4] == 23){
 		  CreateEmptySt(SH);
-		  Push(ST, 23); /*SPAGHETTI */
+		  Push(ST, 24); /*SPAGHETTI */
 	  }
     else {
     printf("Bahan makanan tidak sesuai urutan, tidak bisa dipindahkan ke tray");
@@ -176,7 +176,7 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
   }
 }
 
-void Take (int ID, Stack *SH) {
+void Take (int ID, Stack *SH) { 
   /*I.S. : Ada bahan di sebelah pemain, kondisi tangan tidak penuh*/
 	/*F.S. : Bahan berpindah ke tangan*/
 
@@ -202,25 +202,25 @@ void Give (Stack *ST, int *ID) {
   *ID = IDTemp;
 
   /*Validasi ID Makanan dengan Harga makanan */
-  if (*ID == 4 && *ID == 9) /*BANANA SPLIT dan NASI TELUR DADAR*/
+  if (*ID == 5 && *ID == 10) /*BANANA SPLIT dan NASI TELUR DADAR*/
   {
     uangmakanan = uangmakanan + 10000;
   }
-  else if (*ID == 6) /* SUNDAE */
+  else if (*ID == 7) /* SUNDAE */
   {
     uangmakanan = uangmakanan + 8000;
   }
-  else if (*ID == 11 && *ID == 21 && *ID == 23) /* NASI AYAM GORENG, SPAGHETTI BOLOGNESE, dan SPAGHETTI CARBONARA */
+  else if (*ID == 12 && *ID == 22 && *ID == 24) /* NASI AYAM GORENG, SPAGHETTI BOLOGNESE, dan SPAGHETTI CARBONARA */
   {
     uangmakanan = uangmakanan + 15000;
   }
-  else if (*ID == 15 && *ID == 17) /*BURGER dan HOTDOG*/
+  else if (*ID == 16 && *ID == 18) /*BURGER dan HOTDOG*/
   {
     uangmakanan = uangmakanan + 12000;
   }
 }
 
-/*Simpan variabel money*/
+/*Simpan variabel money*/   
 int MoneyTemp(){
   return uangmakanan;
 }
@@ -232,10 +232,5 @@ void NamaMakanan(Stack S) {
 
   //ALGORITMA
   indeks = InfoTopSt(S);
-  if (indeks==-1){
-    printf("Empty...\n");
-  }
-  else{
-    printf("%s\n", makanan[indeks]);
-  }
+  printf("%s\n", makanan[indeks]);
 }
