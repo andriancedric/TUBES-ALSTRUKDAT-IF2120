@@ -39,12 +39,21 @@ void utama(){
         printf("\n  ------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
         Draw(R);
+<<<<<<< HEAD
         printf("  Waiting Cust       \n");
         PrintQ(WaitQueue);
         printf("  Food Stack         \n  ");NamaMakanan(ST);
         printf("  Order              \n");
         PrintArr(Pesan);
         printf("  Hand               \n  ");NamaMakanan(SH);
+=======
+        /*printf("  Waiting Cust       \n");
+        PrintQ(WaitQueue);*/
+        printf("  > Food Stack         \n  ");NamaMakanan(ST);
+        /*printf("  Order              %s\n");
+        PrintArr(Pesan);*/
+        printf("  > Hand               \n  ");NamaMakanan(SH);
+>>>>>>> 38d5bc5ee6e97b1ac5df94f11ecd5d27660e1cd0
         printf("  --------------------------------------------------------\n");
         NOMAP:
         printf("  Command: ");
@@ -97,7 +106,6 @@ void utama(){
         }
         else if (compareKata(inp,"RECIPE")){
             PrintTree(P,4);
-            Time(detik)--;
             goto NOMAP;
         }
         else if (compareKata(inp,"SAVE")){
@@ -114,7 +122,7 @@ void utama(){
 		}
         else{
             printf("Input salah bos.\n");
-            Time(detik)--;
+            goto NOMAP;
         }
         Time(detik)++;
         cd--;

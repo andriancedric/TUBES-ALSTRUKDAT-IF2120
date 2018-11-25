@@ -183,7 +183,7 @@ void Take (int ID, Stack *SH) {
 
     //KAMUS
     //ALGORITMA
-    if(IsEmptySt(*SH)){
+    if(!IsFullSt(*SH)){
         Push(SH, ID);
     }
     else{
@@ -281,8 +281,21 @@ void NamaMakanan(Stack S) {
   //KAMUS
   char yeah;
   int indeks;
+  Stack temp;
+  int hehe;
 
   //ALGORITMA
+<<<<<<< HEAD
   indeks = InfoTopSt(S);
   printf("   %s\n", makanan[indeks]);
+=======
+  CopyStack(S,&temp);
+  InverseStack(&temp);
+  while (!IsEmptySt(temp)){
+    indeks = InfoTopSt(temp);
+    printf("%s  ", makanan[indeks]);
+    Pop(&temp,&hehe);
+  }
+  printf("\n");
+>>>>>>> 38d5bc5ee6e97b1ac5df94f11ecd5d27660e1cd0
 }
