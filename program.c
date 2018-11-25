@@ -12,7 +12,6 @@
 #include "point.h"
 #include "bintree.c"
 
-
 char* filename;
 PLAYER play;
 JAM detik;
@@ -32,14 +31,13 @@ void utama(){
     inp.TabKata[0] = '%';
     Length(&inp);
     while (!compareKata(inp,"EXIT")){
-        printf("\n  --------------------------------------------------------\n");
+        printf("\n  ------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
         Draw(R);
-        printf("    Waiting Cust            Food Stack\n");
-        printf("       %-16s        %d\n",InfoTopSt(ST));
-        printf("       Order      ");
-        printf("            Hand\n");
-        printf("       %-16s        %d\n",InfoTopSt(SH));
+        printf("  Waiting Cust       %s\n");
+        printf("  Food Stack         %d\n",InfoTopSt(ST));
+        printf("  Order              %s\n");
+        printf("  Hand               %d\n",InfoTopSt(SH));
         printf("  --------------------------------------------------------\n");
         printf("  Command: ");
         scanf("%s",inp.TabKata);
