@@ -242,124 +242,129 @@ void Place(Room R, Queue *Q, POINT P)
   //KAMUS
   int X, Y;
   //ALGORITMA
-  if ((TipeR(R, Absis(P) - 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
-      (TipeR(R, Absis(P) - 1, Ordinat(P)) == '7') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '8'))
-  {
-    if (!IsOcc(SquareXY(R, Absis(P) - 1, Ordinat(P))))
+  if(!IsEmptyQ(*Q)){
+    if ((TipeR(R, Absis(P) - 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
+        (TipeR(R, Absis(P) - 1, Ordinat(P)) == '7') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '8'))
     {
-      if (CapMeja(SquareXY(R, Absis(P) - 1, Ordinat(P))) >= JumlahOrangHead(*Q))
+      if (!IsOcc(SquareXY(R, Absis(P) - 1, Ordinat(P))))
       {
-        Sit(&R, Tipe(SquareXY(R, Absis(P) - 1, Ordinat(P))), Isi(SquareXY(R, Absis(P) - 1, Ordinat(P))), JumlahOrangHead(*Q));
-        DelQ(Q, &X, &Y);
-      }
-      else
-      { //Per berada di samping meja yg kapasistasnya 2 sedangkan HeadQ jmlh = 4
-        if (SearchQ(*Q, 2))
+        if (CapMeja(SquareXY(R, Absis(P) - 1, Ordinat(P))) >= JumlahOrangHead(*Q))
         {
-          SortQ(Q);
           Sit(&R, Tipe(SquareXY(R, Absis(P) - 1, Ordinat(P))), Isi(SquareXY(R, Absis(P) - 1, Ordinat(P))), JumlahOrangHead(*Q));
           DelQ(Q, &X, &Y);
         }
         else
-        { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
-          printf("Kapasitas Meja Tidak Mencukupi !");
+        { //Per berada di samping meja yg kapasistasnya 2 sedangkan HeadQ jmlh = 4
+          if (SearchQ(*Q, 2))
+          {
+            SortQ(Q);
+            Sit(&R, Tipe(SquareXY(R, Absis(P) - 1, Ordinat(P))), Isi(SquareXY(R, Absis(P) - 1, Ordinat(P))), JumlahOrangHead(*Q));
+            DelQ(Q, &X, &Y);
+          }
+          else
+          { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
+            printf("Kapasitas Meja Tidak Mencukupi !");
+          }
         }
       }
-    }
-    else
-    {
-      printf("Meja sudah ditempati customer lain");
-    }
-  }
-  else if ((TipeR(R, Absis(P) + 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '5') ||
-           (TipeR(R, Absis(P) + 1, Ordinat(P)) == '7') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '8'))
-  {
-    if (!IsOcc(SquareXY(R, Absis(P) + 1, Ordinat(P))))
-    {
-      if (CapMeja(SquareXY(R, Absis(P) + 1, Ordinat(P))) >= JumlahOrangHead(*Q))
-      {
-        Sit(&R, Tipe(SquareXY(R, Absis(P) + 1, Ordinat(P))), Isi(SquareXY(R, Absis(P) + 1, Ordinat(P))), JumlahOrangHead(*Q));
-        DelQ(Q, &X, &Y);
-      }
       else
-      { //Per berada di samping meja yg kapasistasnya 2 sedangkan HeadQ jmlh = 4
-        if (SearchQ(*Q, 2))
+      {
+        printf("Meja sudah ditempati customer lain");
+      }
+    }
+    else if ((TipeR(R, Absis(P) + 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '5') ||
+             (TipeR(R, Absis(P) + 1, Ordinat(P)) == '7') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '8'))
+    {
+      if (!IsOcc(SquareXY(R, Absis(P) + 1, Ordinat(P))))
+      {
+        if (CapMeja(SquareXY(R, Absis(P) + 1, Ordinat(P))) >= JumlahOrangHead(*Q))
         {
-          SortQ(Q);
           Sit(&R, Tipe(SquareXY(R, Absis(P) + 1, Ordinat(P))), Isi(SquareXY(R, Absis(P) + 1, Ordinat(P))), JumlahOrangHead(*Q));
           DelQ(Q, &X, &Y);
         }
         else
-        { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
-          printf("Kapasitas Meja Tidak Mencukupi !");
+        { //Per berada di samping meja yg kapasistasnya 2 sedangkan HeadQ jmlh = 4
+          if (SearchQ(*Q, 2))
+          {
+            SortQ(Q);
+            Sit(&R, Tipe(SquareXY(R, Absis(P) + 1, Ordinat(P))), Isi(SquareXY(R, Absis(P) + 1, Ordinat(P))), JumlahOrangHead(*Q));
+            DelQ(Q, &X, &Y);
+          }
+          else
+          { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
+            printf("Kapasitas Meja Tidak Mencukupi !");
+          }
         }
       }
-    }
-    else
-    {
-      printf("Meja sudah ditempati customer lain");
-    }
-  }
-  else if ((TipeR(R, Absis(P), Ordinat(P) - 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) - 1) == 'C') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '1') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '4') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '5') ||
-           (TipeR(R, Absis(P), Ordinat(P) - 1) == '7') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '8'))
-  {
-    if (!IsOcc(SquareXY(R, Absis(P), Ordinat(P) - 1)))
-    {
-      if (CapMeja(SquareXY(R, Absis(P), Ordinat(P) - 1)) >= JumlahOrangHead(*Q))
-      {
-        Sit(&R, Tipe(SquareXY(R, Absis(P), Ordinat(P) - 1)), Isi(SquareXY(R, Absis(P), Ordinat(P) - 1)), JumlahOrangHead(*Q));
-        DelQ(Q, &X, &Y);
-      }
       else
-      { //Per berada di samping meja yg kapasistasnya 2 sedangkan HeadQ jmlh = 4
-        if (SearchQ(*Q, 2))
+      {
+        printf("Meja sudah ditempati customer lain");
+      }
+    }
+    else if ((TipeR(R, Absis(P), Ordinat(P) - 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) - 1) == 'C') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '1') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '4') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '5') ||
+             (TipeR(R, Absis(P), Ordinat(P) - 1) == '7') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '8'))
+    {
+      if (!IsOcc(SquareXY(R, Absis(P), Ordinat(P) - 1)))
+      {
+        if (CapMeja(SquareXY(R, Absis(P), Ordinat(P) - 1)) >= JumlahOrangHead(*Q))
         {
-          SortQ(Q);
           Sit(&R, Tipe(SquareXY(R, Absis(P), Ordinat(P) - 1)), Isi(SquareXY(R, Absis(P), Ordinat(P) - 1)), JumlahOrangHead(*Q));
           DelQ(Q, &X, &Y);
         }
         else
-        { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
-          printf("Kapasitas Meja Tidak Mencukupi !");
+        { //Per berada di samping meja yg kapasistasnya 2 sedangkan HeadQ jmlh = 4
+          if (SearchQ(*Q, 2))
+          {
+            SortQ(Q);
+            Sit(&R, Tipe(SquareXY(R, Absis(P), Ordinat(P) - 1)), Isi(SquareXY(R, Absis(P), Ordinat(P) - 1)), JumlahOrangHead(*Q));
+            DelQ(Q, &X, &Y);
+          }
+          else
+          { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
+            printf("Kapasitas Meja Tidak Mencukupi !");
+          }
         }
       }
-    }
-    else
-    {
-      printf("Meja sudah ditempati customer lain");
-    }
-  }
-  else if ((TipeR(R, Absis(P), Ordinat(P) + 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) + 1) == 'C') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '1') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '4') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '5') ||
-           (TipeR(R, Absis(P), Ordinat(P) + 1) == '7') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '8'))
-  {
-    if (!IsOcc(SquareXY(R, Absis(P), Ordinat(P) + 1)))
-    {
-      if (CapMeja(SquareXY(R, Absis(P), Ordinat(P) + 1)) >= JumlahOrangHead(*Q))
-      {
-        Sit(&R, Tipe(SquareXY(R, Absis(P), Ordinat(P) + 1)), Isi(SquareXY(R, Absis(P), Ordinat(P) + 1)), JumlahOrangHead(*Q));
-        DelQ(Q, &X, &Y);
-      }
       else
-      { //Per berada di samping meja yg kapasistasnya 2 sedangkan HeadQ jmlh = 4
-        if (SearchQ(*Q, 2))
+      {
+        printf("Meja sudah ditempati customer lain");
+      }
+    }
+    else if ((TipeR(R, Absis(P), Ordinat(P) + 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) + 1) == 'C') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '1') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '4') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '5') ||
+             (TipeR(R, Absis(P), Ordinat(P) + 1) == '7') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '8'))
+    {
+      if (!IsOcc(SquareXY(R, Absis(P), Ordinat(P) + 1)))
+      {
+        if (CapMeja(SquareXY(R, Absis(P), Ordinat(P) + 1)) >= JumlahOrangHead(*Q))
         {
-          SortQ(Q);
           Sit(&R, Tipe(SquareXY(R, Absis(P), Ordinat(P) + 1)), Isi(SquareXY(R, Absis(P), Ordinat(P) + 1)), JumlahOrangHead(*Q));
           DelQ(Q, &X, &Y);
         }
         else
-        { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
-          printf("Kapasitas Meja Tidak Mencukupi !");
+        { //Per berada di samping meja yg kapasistasnya 2 sedangkan HeadQ jmlh = 4
+          if (SearchQ(*Q, 2))
+          {
+            SortQ(Q);
+            Sit(&R, Tipe(SquareXY(R, Absis(P), Ordinat(P) + 1)), Isi(SquareXY(R, Absis(P), Ordinat(P) + 1)), JumlahOrangHead(*Q));
+            DelQ(Q, &X, &Y);
+          }
+          else
+          { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
+            printf("Kapasitas Meja Tidak Mencukupi !");
+          }
         }
+      }
+      else
+      {
+        printf("Meja sudah ditempati customer lain");
       }
     }
     else
     {
-      printf("Meja sudah ditempati customer lain");
+      printf("ANDA TIDAK BERADA DI SEKITAR MEJA");
     }
   }
-  else
-  {
-    printf("ANDA TIDAK BERADA DI SEKITAR MEJA");
+  else {
+      printf("QUEUE KOSONG !");
   }
 }

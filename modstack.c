@@ -103,21 +103,21 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
 
 	//KAMUS
 	int IDTemp, indeks;
-  int idxmakanan[5];
+  int idxmakanan[6];
   Stack STemp;
 
 
 	//ALGORITMA
   /*VALIDASI STACK DENGAN BINTREE*/
 
-  indeks = 0;
+  indeks = 1;
 	if (IsFullSt(*ST)){ /*tray penuh*/
 		printf("Tray sudah penuh");
 	}
 	else {
     CreateEmptySt(&STemp);
     CopyStack(*SH,&STemp);
-    InverseStack(&STemp); /*Menginvers stack agar dapat divalidasi dengan tree recipe*/
+    /*Menginvers stack agar dapat divalidasi dengan tree recipe*/
 
     /*Validasi bahan makanan pada tangan*/
     while(!IsEmptySt(STemp)) {
@@ -138,36 +138,36 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
     }*/
         indeks++;
     }
-
-    if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 3  && idxmakanan[4] == 4) {
+    printf("%d",idxmakanan[1]);
+    if (idxmakanan[1] == 4 && idxmakanan[2] == 3 && idxmakanan[3] == 2  && idxmakanan[4] == 1) {
 		  CreateEmptySt(SH);
 		  Push(ST, 5); /*BANANA SPLIT*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 3 && idxmakanan[4] == 6) {
+    else if (idxmakanan[1] == 6 && idxmakanan[2] == 3 && idxmakanan[3] == 2 && idxmakanan[4] == 1) {
 		  CreateEmptySt(SH);
 		  Push(ST, 7); /*SUNDAE*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 8 && idxmakanan[4] == 9){
+    else if (idxmakanan[1] == 9 && idxmakanan[2] == 8 && idxmakanan[3] == 2 && idxmakanan[4] == 1){
 		  CreateEmptySt(SH);
 		  Push(ST, 10); /*NASI TELUR DADAR*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 8 && idxmakanan[4] == 11){
+    else if (idxmakanan[1] == 11 && idxmakanan[2] == 8 && idxmakanan[3] == 2 && idxmakanan[4] == 1){
 		  CreateEmptySt(SH);
 		  Push(ST, 12); /*NASI AYAM GORENG*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 13 && idxmakanan[3] == 14 && idxmakanan[4] == 15){
+    else if (idxmakanan[1] == 15 && idxmakanan[2] == 14 && idxmakanan[3] == 13 && idxmakanan[4] == 1){
 		  CreateEmptySt(SH);
 		  Push(ST, 16); /*BURGER*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 13 && idxmakanan[3] == 14 && idxmakanan[4] == 17){
+    else if (idxmakanan[1] == 17 && idxmakanan[2] == 14 && idxmakanan[3] == 13 && idxmakanan[4] == 1){
 		  CreateEmptySt(SH);
 		  Push(ST, 18); /*HOTDOG*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 13 && idxmakanan[3] == 19 && idxmakanan[4] == 20 && idxmakanan[5] == 21){
+    else if (idxmakanan[1] == 21 && idxmakanan[2] == 20 && idxmakanan[3] == 19 && idxmakanan[4] == 13 && idxmakanan[5] == 11){
 		  CreateEmptySt(SH);
 		  Push(ST, 22); /*SPAGHETTI BOLOGNESE*/
 	  }
-    else if (idxmakanan[0] == 0 && idxmakanan[1] == 12 && idxmakanan[2] == 13 && idxmakanan[3] == 19 && idxmakanan[4] == 23){
+    else if (idxmakanan[1] == 23 && idxmakanan[2] == 19 && idxmakanan[3] == 13 && idxmakanan[4] == 1){
 		  CreateEmptySt(SH);
 		  Push(ST, 24); /*SPAGHETTI */
 	  }
@@ -208,19 +208,19 @@ void Give (Stack *ST, TabInt *T, Room *R, int *IDH) {
   printf("  Direction (L,R,U,D): ");
   scanf("%s",inp.TabKata);
   Length(&inp);
-  if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)-1)=='X')/*&&IsOcc(SquareXY(R,Absis(PosisiP),Ordinat(PosisiP)-1))*/&&compareKata(inp,"L")){
+  if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)-1)=='C')/*&&IsOcc(SquareXY(R,Absis(PosisiP),Ordinat(PosisiP)-1))*/&&compareKata(inp,"L")){
     IDT=IsiR(*R,Absis(PosisiP),Ordinat(PosisiP)-1);
     ID=IDMakanan(*T,IDT);
   }
-  else if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)+1)=='X')/*&&IsOcc(SquareXY(R,Absis(PosisiP),Ordinat(PosisiP)+1))*/&&compareKata(inp,"R")){
+  else if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)+1)=='C')/*&&IsOcc(SquareXY(R,Absis(PosisiP),Ordinat(PosisiP)+1))*/&&compareKata(inp,"R")){
     IDT=IsiR(*R,Absis(PosisiP),Ordinat(PosisiP)+1);
     ID=IDMakanan(*T,IDT);
   }
-  else if((TipeR(*R,Absis(PosisiP)-1,Ordinat(PosisiP))=='X')/*&&IsOcc(SquareXY(R,Absis(PosisiP)-1,Ordinat(PosisiP)))*/&&compareKata(inp,"U")){
+  else if((TipeR(*R,Absis(PosisiP)-1,Ordinat(PosisiP))=='C')/*&&IsOcc(SquareXY(R,Absis(PosisiP)-1,Ordinat(PosisiP)))*/&&compareKata(inp,"U")){
     IDT=IsiR(*R,Absis(PosisiP)-1,Ordinat(PosisiP));
     ID=IDMakanan(*T,IDT);
   }
-  else if((TipeR(*R,Absis(PosisiP)+1,Ordinat(PosisiP))=='X')/*&&IsOcc(SquareXY(R,Absis(PosisiP)+1,Ordinat(PosisiP)))*/&&compareKata(inp,"D")){
+  else if((TipeR(*R,Absis(PosisiP)+1,Ordinat(PosisiP))=='C')/*&&IsOcc(SquareXY(R,Absis(PosisiP)+1,Ordinat(PosisiP)))*/&&compareKata(inp,"D")){
     IDT=IsiR(*R,Absis(PosisiP)+1,Ordinat(PosisiP));
     ID=IDMakanan(*T,IDT);
   }
@@ -285,7 +285,10 @@ void NamaMakanan(Stack S) {
   int hehe;
 
   //ALGORITMA
+<<<<<<< HEAD
+=======
   if (IsEmptySt(S)) printf(" -Empty-");
+>>>>>>> 070bedea2cfa5093144754cd0d53f60d5501afeb
   CopyStack(S,&temp);
   InverseStack(&temp);
   while (!IsEmptySt(temp)){

@@ -37,7 +37,7 @@ void utama(){
     CreateEmptyArr(&Pesan);
     inp.TabKata[0] = '%';
     Length(&inp);
-    while (!compareKata(inp,"EXIT")){
+    while (!compareKata(inp,"EXIT")&&Life(play)>0){
         printf("\n  ------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
         Draw(R);
@@ -57,7 +57,7 @@ void utama(){
             Order(R, &Pesan, PosisiP);
         }
         else if (compareKata(inp,"PUT")){
-            Put(&ST,&SH);
+            Put(&SH,&ST);
             }
         else if (compareKata(inp,"TAKE")){
           printf("  Direction (L,R,U,D): ");
