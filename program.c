@@ -36,10 +36,10 @@ void utama(){
         Draw(R);
         /*printf("  Waiting Cust       \n");
         PrintQ(WaitQueue);*/
-        printf("  Food Stack         \n  ");NamaMakanan(ST);
+        printf("  > Food Stack         \n  ");NamaMakanan(ST);
         /*printf("  Order              %s\n");
         PrintArr(Pesan);*/
-        printf("  Hand               \n  ");NamaMakanan(SH);
+        printf("  > Hand               \n  ");NamaMakanan(SH);
         printf("  --------------------------------------------------------\n");
         NOMAP:
         printf("  Command: ");

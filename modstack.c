@@ -229,8 +229,16 @@ void NamaMakanan(Stack S) {
   //KAMUS
   char yeah;
   int indeks;
+  Stack temp;
+  int hehe;
 
   //ALGORITMA
-  indeks = InfoTopSt(S);
-  printf("%s\n", makanan[indeks]);
+  CopyStack(S,&temp);
+  InverseStack(&temp);
+  while (!IsEmptySt(temp)){
+    indeks = InfoTopSt(temp);
+    printf("%s  ", makanan[indeks]);
+    Pop(&temp,&hehe);
+  }
+  printf("\n");
 }
