@@ -34,9 +34,11 @@ void utama(){
         printf("\n  ------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
         Draw(R);
-        printf("  Waiting Cust       %s\n");
+        /*printf("  Waiting Cust       \n");
+        PrintQ(WaitQueue);*/
         printf("  Food Stack         %d\n",InfoTopSt(ST));
-        printf("  Order              %s\n");
+        /*printf("  Order              %s\n");
+        PrintArr(Pesan);*/
         printf("  Hand               %d\n",InfoTopSt(SH));
         printf("  --------------------------------------------------------\n");
         printf("  Command: ");
@@ -46,11 +48,11 @@ void utama(){
         else if (compareKata(inp,"ORDER")){
             Order(R, &Pesan, PosisiP);
         }
-        else if (compareKata(inp,"PUT")){ 
+        else if (compareKata(inp,"PUT")){
             Put(&ST,&SH);
             }
         else if (compareKata(inp,"TAKE")){
-            
+
         }
         else if (compareKata(inp,"CH")){
             CreateEmptySt(&SH);
@@ -115,7 +117,7 @@ int main(){
 	BuildTree(&P,&idxx);
     CreateEmptySt(&SH);
     CreateEmptySt(&ST);
-    
+
     while (input!=4){
         if (input==1){
             printf(">>> Nama: ");
