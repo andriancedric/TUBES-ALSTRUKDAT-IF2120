@@ -66,7 +66,7 @@ void CopyStack (Stack Sin, Stack *Sout)
   //KAMUS
   Stack Stacktemp;
   int Eltemp;
-  
+
 
   //ALGORITMA
   CreateEmptySt(&Stacktemp);
@@ -83,7 +83,7 @@ void CopyStack (Stack Sin, Stack *Sout)
 }
 
 void InverseStack(Stack *S){
-  //KAMUS 
+  //KAMUS
   Stack STemp;
   int Eltemp;
 
@@ -104,15 +104,15 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
 	int IDTemp, indeks;
   int idxmakanan[5];
   Stack STemp;
-  
+
 
 	//ALGORITMA
   /*VALIDASI STACK DENGAN BINTREE*/
-  
+
   indeks = 0;
 	if (IsFullSt(*ST)){ /*tray penuh*/
 		printf("Tray sudah penuh");
-	} 
+	}
 	else {
     CreateEmptySt(&STemp);
     CopyStack(*SH,&STemp);
@@ -132,7 +132,7 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
             }
             else if(Right(P) != 0){
               Akar(P) = Akar(Right(P));
-            }   
+            }
         }
     }*/
         indeks++;
@@ -143,7 +143,7 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
 		  Push(ST, 5); /*BANANA SPLIT*/
 	  }
     else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 3 && idxmakanan[4] == 6) {
-		  CreateEmptySt(SH); 
+		  CreateEmptySt(SH);
 		  Push(ST, 7); /*SUNDAE*/
 	  }
     else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 8 && idxmakanan[4] == 9){
@@ -176,13 +176,13 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
   }
 }
 
-void Take (int ID, Stack *SH) { 
+void Take (int ID, Stack *SH) {
   /*I.S. : Ada bahan di sebelah pemain, kondisi tangan tidak penuh*/
 	/*F.S. : Bahan berpindah ke tangan*/
 
     //KAMUS
     //ALGORITMA
-    if(!IsEmptySt(*SH)){
+    if(IsEmptySt(*SH)){
         Push(SH, ID);
     }
     else{
@@ -220,7 +220,7 @@ void Give (Stack *ST, int *ID) {
   }
 }
 
-/*Simpan variabel money*/   
+/*Simpan variabel money*/
 int MoneyTemp(){
   return uangmakanan;
 }

@@ -53,7 +53,29 @@ void utama(){
             Put(&ST,&SH);
             }
         else if (compareKata(inp,"TAKE")){
-
+          printf("  Direction (L,R,U,D): ");
+          scanf("%s",inp.TabKata);
+          Length(&inp);
+          int ID=-1;
+          if((TipeR(R,Absis(PosisiP),Ordinat(PosisiP)-1)=='M')&&compareKata(inp,"L")){
+            ID=IsiR(R,Absis(PosisiP),Ordinat(PosisiP)-1);
+          }
+          else if((TipeR(R,Absis(PosisiP),Ordinat(PosisiP)+1)=='M')&&compareKata(inp,"R")){
+            ID=IsiR(R,Absis(PosisiP),Ordinat(PosisiP)+1);
+          }
+          else if((TipeR(R,Absis(PosisiP)-1,Ordinat(PosisiP))=='M')&&compareKata(inp,"U")){
+            ID=IsiR(R,Absis(PosisiP)-1,Ordinat(PosisiP));
+          }
+          else if((TipeR(R,Absis(PosisiP)+1,Ordinat(PosisiP))=='M')&&compareKata(inp,"D")){
+            ID=IsiR(R,Absis(PosisiP)+1,Ordinat(PosisiP));
+          }
+          if(ID!=-1){
+            Take(ID, &SH);
+          }
+          else{
+            printf("Tidak ada meja di arah itu...\n");
+            goto NOMAP;
+          }
         }
         else if (compareKata(inp,"CH")){
             CreateEmptySt(&SH);
