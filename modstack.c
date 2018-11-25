@@ -12,7 +12,6 @@ void CreateEmptySt (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT u
   //KAMUS
   //ALGORITMA
   TopSt(*S) = 0;
-  InfoTopSt(*S) = 1;
 }
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
