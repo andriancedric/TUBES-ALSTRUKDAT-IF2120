@@ -182,7 +182,7 @@ void Take (int ID, Stack *SH) {
 
     //KAMUS
     //ALGORITMA
-    if(IsEmptySt(*SH)){
+    if(!IsFullSt(*SH)){
         Push(SH, ID);
     }
     else{
