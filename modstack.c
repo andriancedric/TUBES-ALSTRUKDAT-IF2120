@@ -5,6 +5,11 @@
 //KAMUS UNTUK UANG MAKANAN
 int uangmakanan = 0;
 
+//KAMUS UNTUK LIST MAKANAN
+char makanan[24][50] = {"piring", "sendok", "es krim", "pisang", "banana split", "stroberi", "sundae", "nasi", "telur", "nasi telur dadar",
+                          "ayam goreng", "nasi ayam goreng", "garpu", "roti", "patty", "burger", "sosis", "hot dog", "spaghetti", "bolognese",
+                          "keju","spaghetti bolognese", "carbonara", "spaghetti carbonara"};
+
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
 void CreateEmptySt (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT untuk tray*/
@@ -12,6 +17,7 @@ void CreateEmptySt (Stack *S) /*Bisa dipanggil saat CH untuk membuang Hand, CT u
   //KAMUS
   //ALGORITMA
   TopSt(*S) = 0;
+  InfoTopSt(*S) = -1;
 }
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
@@ -96,18 +102,14 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
 
 	//KAMUS
 	int IDTemp, indeks;
+  int idxmakanan[5];
   Stack STemp;
-  boolean validasi;
-  BinTree P;
+  
 
 	//ALGORITMA
-  /*PEMBUATAN BINTREE*/
-  indeks = 1;
-  START("readtree.txt");
-  BuildTree(&P, &indeks);
-
   /*VALIDASI STACK DENGAN BINTREE*/
-  validasi = true;
+  
+  indeks = 0;
 	if (IsFullSt(*ST)){ /*tray penuh*/
 		printf("Tray sudah penuh");
 	} 
@@ -117,9 +119,10 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
     InverseStack(&STemp); /*Menginvers stack agar dapat divalidasi dengan tree recipe*/
 
     /*Validasi bahan makanan pada tangan*/
-    while(!IsEmptySt(STemp) && (validasi == true)) {
+    while(!IsEmptySt(STemp)) {
         Pop(&STemp, &IDTemp);
-        if (Akar(P).ID != IDTemp){
+        idxmakanan[indeks] = IDTemp;
+        /*if (Akar(P).ID != IDTemp){
           validasi = false;
           printf("Bahan makanan tidak sesuai urutan, tidak bisa dipindahkan ke tray");
         }
@@ -131,41 +134,45 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
               Akar(P) = Akar(Right(P));
             }   
         }
+    }*/
+        indeks++;
     }
 
-
-    if ((validasi == true) && IDTemp == 3){
+    if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 3) {
 		  CreateEmptySt(SH);
 		  Push(ST, 4); /*BANANA SPLIT*/
 	  }
-    else if ((validasi == true) && IDTemp == 5){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 2 && idxmakanan[3] == 5) {
 		  CreateEmptySt(SH);
 		  Push(ST, 6); /*SUNDAE*/
 	  }
-    else if ((validasi == true) && IDTemp == 8){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 7 && idxmakanan[3] == 8){
 		  CreateEmptySt(SH);
 		  Push(ST, 9); /*NASI TELUR DADAR*/
 	  }
-    else if ((validasi == true) && IDTemp == 10){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 1 && idxmakanan[2] == 7 && idxmakanan[3] == 10){
 		  CreateEmptySt(SH);
 		  Push(ST, 11); /*NASI AYAM GORENG*/
 	  }
-    else if ((validasi == true) && IDTemp == 14){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 12 && idxmakanan[2] == 13 && idxmakanan[3] == 14){
 		  CreateEmptySt(SH);
 		  Push(ST, 15); /*BURGER*/
 	  }
-    else if ((validasi == true) && IDTemp == 16){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 12 && idxmakanan[2] == 13 && idxmakanan[3] == 16){
 		  CreateEmptySt(SH);
 		  Push(ST, 17); /*HOTDOG*/
 	  }
-    else if ((validasi == true) && IDTemp == 20){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 12 && idxmakanan[2] == 18 && idxmakanan[3] == 19 && idxmakanan[4] == 20){
 		  CreateEmptySt(SH);
 		  Push(ST, 21); /*SPAGHETTI BOLOGNESE*/
 	  }
-    else if ((validasi == true) && IDTemp == 22){
+    else if (idxmakanan[0] == 0 && idxmakanan[1] == 12 && idxmakanan[2] == 13 && idxmakanan[3] == 22){
 		  CreateEmptySt(SH);
 		  Push(ST, 23); /*SPAGHETTI */
 	  }
+    else {
+    printf("Bahan makanan tidak sesuai urutan, tidak bisa dipindahkan ke tray");
+    }
   }
 }
 
@@ -218,29 +225,12 @@ int MoneyTemp(){
   return uangmakanan;
 }
 
-Kata NamaMakanan(Stack S) {
+void NamaMakanan(Stack S) {
   //KAMUS
-  BinTree P;
-  int indeks, ID;
-  boolean namavalid;
+  char yeah;
+  int indeks;
 
   //ALGORITMA
-  namavalid = false;
-  indeks = 1;
-  START("readtree.txt");
-  BuildTree(&P, &indeks);
-
-  while (Akar(P).ID != InfoTopSt(S) && namavalid == false){
-    if (Akar(P).ID == InfoTopSt(S)){
-       namavalid = true;
-       
-        return Akar(P);
-    }
-     else if(Right(P) != 0){
-              Akar(P) = Akar(Right(P));
-            }
-            else if (Left(P) != 0){
-              Akar(P) = Akar(Left(P));
-            }   
-        } 
+  indeks = InfoTopSt(S);
+  printf("%s\n", makanan[indeks]);
 }
