@@ -3,6 +3,7 @@
 
 #include "boolean.h"
 #include "point.h"
+#include "map.c"
 /*Untuk ADT ARRAY -> <makanan,nomormeja,kesabaran>*/
 /*  Kamus Umum */
 #define IdxMaxArr 12
@@ -72,4 +73,6 @@ void DelEli (TabInt * T, IdxType i);
 
 void KesabaranMinusArr(TabInt *T, int c, PLAYER *play); 
 void PrintArr(TabInt T);
+
+void Order(Room R, TabInt *T, POINT P);
 #endif

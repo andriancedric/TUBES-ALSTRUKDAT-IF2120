@@ -1,18 +1,21 @@
 #include <stdio.h>
+#include <time.h>
 #include "boolean.h"
-#include "map.c"
+#include "map.h"
 #include "credit.c"
 #include "modstack.c"
 #include "mesinkata.c"
 #include "mesinkar.c"
 #include "jam.h"
-#include "queue.h"
+#include "queue.c"
+#include "array.c"
 #include "point.h"
 #include "bintree.c"
 
+
 char* filename;
 PLAYER play;
-JAM time;
+JAM detik;
 int IDR;
 Room R;
 Stack ST, SH;
@@ -21,7 +24,7 @@ List L;
 Graph G;
 int idxx = 1;
 BinTree P;
-
+TabInt Pesan;
 
 void utama(){
     Kata inp;
@@ -30,7 +33,7 @@ void utama(){
     Length(&inp);
     while (!compareKata(inp,"EXIT")){
         printf("\n  --------------------------------------------------------\n");
-        printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(time));
+        printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
         Draw(R);
         printf("    Waiting Cust            Food Stack\n");
         printf("       %-16s        %d\n",InfoTopSt(ST));
@@ -42,7 +45,9 @@ void utama(){
         scanf("%s",inp.TabKata);
         Length(&inp);
         if (compareKata(inp,"GD") || compareKata(inp,"GU") || compareKata(inp,"GL") || compareKata(inp,"GR")) UpdatePosition(inp,&R,L,&G);
-        else if (compareKata(inp,"ORDER")){}
+        else if (compareKata(inp,"ORDER")){
+            Order(R, &Pesan, PosisiP);
+        }
         else if (compareKata(inp,"PUT")){ 
             Put(&ST,&SH);
             }
@@ -55,11 +60,13 @@ void utama(){
         else if (compareKata(inp,"CT")){
             CreateEmptySt(&ST);
         }
-        else if (compareKata(inp,"PLACE")){}
+        else if (compareKata(inp,"PLACE")){
+            Place(R,&WaitQueue,PosisiP);
+        }
         else if (compareKata(inp,"GIVE")){}
         else if (compareKata(inp,"RECIPE")){
             PrintTree(P,4);
-            Time(time)--;
+            Time(detik)--;
         }
         else if (compareKata(inp,"SAVE")){
 			printf("Input the desired savedata filename : ");
@@ -75,9 +82,9 @@ void utama(){
 		}
         else{
             printf("Input salah bos.\n");
-            Time(time)--;
+            Time(detik)--;
         }
-        Time(time)++;
+        Time(detik)++;
     }
 }
 

@@ -169,3 +169,46 @@ void PrintArr(TabInt T)
     }
   }
 }
+
+void Order(Room R, TabInt *T, POINT P)
+{
+  //KAMUS
+  //ALGORITMA
+
+  if ((TipeR(R, Absis(P) - 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
+      (TipeR(R, Absis(P) - 1, Ordinat(P)) == '7') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '8'))
+  {
+    if (IsOcc(SquareXY(R, Absis(P) - 1, Ordinat(P))))
+    {
+      AddEli(T, Isi(SquareXY(R, Absis(P) - 1, Ordinat(P))));
+    }
+  }
+  else if ((TipeR(R, Absis(P) + 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
+           (TipeR(R, Absis(P) + 1, Ordinat(P)) == '7') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '8'))
+  {
+    if (IsOcc(SquareXY(R, Absis(P) + 1, Ordinat(P))))
+    {
+      AddEli(T, Isi(SquareXY(R, Absis(P) + 1, Ordinat(P))));
+    }
+  }
+  else if ((TipeR(R, Absis(P), Ordinat(P) - 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) - 1) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
+           (TipeR(R, Absis(P), Ordinat(P) - 1) == '7') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '8'))
+  {
+    if (IsOcc(SquareXY(R, Absis(P), Ordinat(P) - 1)))
+    {
+      AddEli(T, Isi(SquareXY(R, Absis(P), Ordinat(P) - 1)));
+    }
+  }
+  else if ((TipeR(R, Absis(P), Ordinat(P) + 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) + 1) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
+           (TipeR(R, Absis(P), Ordinat(P) + 1) == '7') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '8'))
+  {
+    if (IsOcc(SquareXY(R, Absis(P), Ordinat(P) + 1)))
+    {
+      AddEli(T, Isi(SquareXY(R, Absis(P), Ordinat(P) + 1)));
+    }
+  }
+  else
+  {
+    printf("ANDA TIDAK BERADA DI SEKITAR MEJA");
+  }
+}

@@ -3,6 +3,7 @@
 
 #include "boolean.h"
 #include "point.h"
+#include "map.c"
 /*Untuk ADT Queue*/
 
 typedef struct
@@ -86,5 +87,7 @@ void KesabaranMinusQ(Queue *Q, int c, PLAYER * play);
 /*          di delete dari antrian dan nyawa player berkurang 1 */
 
 void PrintQ(Queue Q);
+
+void Place(Room R, Queue *Q, POINT P);
 
 #endif
