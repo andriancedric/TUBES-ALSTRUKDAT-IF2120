@@ -3,6 +3,8 @@
 
 #include "graph.h"
 #include "list.h"
+#ifndef map_c
+#define map_c
 
 char TipeR(Room R, int X, int Y){//Getter Tipe u/ Room
     return R.S[X][Y].tipe;
@@ -366,3 +368,5 @@ void MakeBuilding(List *L, Graph *G, Room *R, int *Id){
     }
     return 0;
 }*/
+
+#endif
