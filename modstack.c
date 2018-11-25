@@ -34,7 +34,7 @@ boolean IsFullSt (Stack S)
 {
   //KAMUS
   //ALGORITMA
-  return (TopSt(S) == 6);
+  return (TopSt(S) >= 5);
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
