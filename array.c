@@ -104,7 +104,7 @@ void AddEli (TabInt * T, IdxType i){
   srand((unsigned)time(NULL));
   r = (rand() % (9 - 1)) + 1;
   Makanan(*T,i) = Makanan(Data, r);
-  Kesabaran(*T,i) = (rand()%(41-30)) + 1;;
+  Kesabaran(*T,i) = (rand()%(41-30)) + 30;;
 }
 
 void DelEli (TabInt * T, IdxType i){
@@ -158,7 +158,7 @@ void PrintArr(TabInt T)
         printf("   Banana Split_%d\n", i);
         break;
       case 6:
-        printf("   Sundae_&d\n", i);
+        printf("   Sundae_%d\n", i);
         break;
       case 9:
         printf("   Nasi Telur Dadar_%d\n", i);
@@ -209,6 +209,9 @@ void Order(Room R, TabInt *T, POINT P)
     {
       AddEli(T, Isi(SquareXY(R, Absis(P) - 1, Ordinat(P))));
     }
+    else{
+      printf("Tidak ada Customer di Meja ini !");
+    }
   }
   else if ((TipeR(R, Absis(P) + 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
            (TipeR(R, Absis(P) + 1, Ordinat(P)) == '7') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '8'))
@@ -216,6 +219,9 @@ void Order(Room R, TabInt *T, POINT P)
     if (IsOcc(SquareXY(R, Absis(P) + 1, Ordinat(P))))
     {
       AddEli(T, Isi(SquareXY(R, Absis(P) + 1, Ordinat(P))));
+    }
+    else{
+      printf("Tidak ada Customer di Meja ini !");
     }
   }
   else if ((TipeR(R, Absis(P), Ordinat(P) - 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) - 1) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
@@ -225,6 +231,9 @@ void Order(Room R, TabInt *T, POINT P)
     {
       AddEli(T, Isi(SquareXY(R, Absis(P), Ordinat(P) - 1)));
     }
+    else{
+      printf("Tidak ada Customer di Meja ini !");
+    }
   }
   else if ((TipeR(R, Absis(P), Ordinat(P) + 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) + 1) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
            (TipeR(R, Absis(P), Ordinat(P) + 1) == '7') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '8'))
@@ -232,6 +241,9 @@ void Order(Room R, TabInt *T, POINT P)
     if (IsOcc(SquareXY(R, Absis(P), Ordinat(P) + 1)))
     {
       AddEli(T, Isi(SquareXY(R, Absis(P), Ordinat(P) + 1)));
+    }
+    else{
+      printf("Tidak ada Customer di Meja ini !");
     }
   }
   else

@@ -35,25 +35,16 @@ void utama(){
     CreateEmptyArr(&Pesan);
     inp.TabKata[0] = '%';
     Length(&inp);
-    while (!compareKata(inp,"EXIT")){
+    while (!compareKata(inp,"EXIT")&&Life(play)>0){
         printf("\n  ------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
         Draw(R);
-<<<<<<< HEAD
         printf("  Waiting Cust       \n");
         PrintQ(WaitQueue);
         printf("  Food Stack         \n  ");NamaMakanan(ST);
         printf("  Order              \n");
         PrintArr(Pesan);
         printf("  Hand               \n  ");NamaMakanan(SH);
-=======
-        /*printf("  Waiting Cust       \n");
-        PrintQ(WaitQueue);*/
-        printf("  > Food Stack         \n  ");NamaMakanan(ST);
-        /*printf("  Order              %s\n");
-        PrintArr(Pesan);*/
-        printf("  > Hand               \n  ");NamaMakanan(SH);
->>>>>>> 38d5bc5ee6e97b1ac5df94f11ecd5d27660e1cd0
         printf("  --------------------------------------------------------\n");
         NOMAP:
         printf("  Command: ");
@@ -64,7 +55,7 @@ void utama(){
             Order(R, &Pesan, PosisiP);
         }
         else if (compareKata(inp,"PUT")){
-            Put(&ST,&SH);
+            Put(&SH,&ST);
             }
         else if (compareKata(inp,"TAKE")){
           printf("  Direction (L,R,U,D): ");
