@@ -230,7 +230,6 @@ int Give (Stack *ST, TabInt *T, Room *R, int *IDH) {
       IDT=IsiR(*R,Absis(PosisiP)+1,Ordinat(PosisiP));
       ID=Makanan(*T,IDT);
     }
-    printf("%d %d %d\n",IDT, ID, *IDH);
     if(Makanan(*T,IDT)!=ValUndef){
       /*Validasi ID Makanan dengan Harga makanan */
       if (*IDH == 5 || *IDH == 10) /*BANANA SPLIT dan NASI TELUR DADAR*/
