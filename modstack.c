@@ -314,7 +314,7 @@ void NamaMakanan(Stack S) {
   InverseStack(&temp);
   while (!IsEmptySt(temp)){
     indeks = InfoTopSt(temp);
-    printf(" %s ", makanan[indeks]);
+    printf("%s  ", makanan[indeks]);
     Pop(&temp,&hehe);
   }
   printf("\n");
