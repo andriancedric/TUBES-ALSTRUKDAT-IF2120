@@ -223,14 +223,15 @@ void PrintQ(Queue Q)
   int i;
   //ALGORITMA
   if(IsEmptyQ(Q)){
-    printf("   -Queue Empty-\n");
+    printf(" -Queue Empty-");
   }
   else{
     for (i = Head(Q); i <= Tail(Q); i++)
     {
-      printf("   %d\n", JumlahOrang(Q, i));
+      printf("%d  ", JumlahOrang(Q, i));
     }
   }
+  printf("\n");
 }
 
 void Place(Room R, Queue *Q, POINT P)

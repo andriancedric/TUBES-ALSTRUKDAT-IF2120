@@ -154,7 +154,11 @@ void PrintArr(TabInt T)
         printf("   Banana Split %d\n", i);
         break;
       case 6:
+<<<<<<< HEAD
         printf("   Sundae_%d\n", i);
+=======
+        printf("   Sundae &d\n", i);
+>>>>>>> f5c0c338bd452971b50b1022ce68d4fef92b4843
         break;
       case 9:
         printf("   Nasi Telur Dadar %d\n", i);

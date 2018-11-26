@@ -38,7 +38,6 @@ void utama(){
     inp.TabKata[0] = '%';
     Length(&inp);
     while (!compareKata(inp,"EXIT")&&Life(play)>0){
-        system("clear");
         printf("\n  ------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
         Draw(R);
@@ -81,7 +80,7 @@ void utama(){
             Take(ID, &SH);
           }
           else{
-            printf("  Tidak ada meja di arah itu...\n");
+            printf("Tidak ada meja di arah itu...\n");
             goto NOMAP;
           }
         }
@@ -95,8 +94,8 @@ void utama(){
             Place(R,&WaitQueue,PosisiP);
         }
         else if (compareKata(inp,"GIVE")){
-            int m;
-          Money(play)=Give(&ST,&Pesan,&R,&m)+Money(play);
+          int IDH;
+          Give(&ST,&Pesan,&R,&IDH);
         }
         else if (compareKata(inp,"RECIPE")){
             PrintTree(P,4);
@@ -105,17 +104,18 @@ void utama(){
         else if (compareKata(inp,"SAVE")){
 			printf("Input the desired savedata filename : ");
 			scanf("%d",&filename);
-			WriteSaveFile(filename);
+			WriteSaveFile(filename, play, detik, location, L, WaitQueue, Pesan, ST, SH);
 			printf("Data successfully written. Come again, baby.\n");
 		}
         else if (compareKata(inp,"LOAD")){
 			printf("Input a file name from which the program will collect initial data. (Including '.txt') : ");
 			scanf("%d",&filename);
-			ReadSaveFile(filename);
+			ReadSaveFile(filename, &play, &detik, &location, &L, &WaitQueue, &Pesan, &ST, &SH);
+
 			printf("Data successfully loaded! Enjoy your time, baby.\n");
 		}
         else{
-            printf("  Input salah bos.\n");
+            printf("Input salah bos.\n");
             goto NOMAP;
         }
         Time(detik)++;
@@ -123,11 +123,7 @@ void utama(){
         if (cd == 0){
           AddQ(&WaitQueue,orang[i],30);
           srand((unsigned)time(NULL));
-<<<<<<< HEAD
-           cd = (rand() % (8 - 4)) + 4;
-=======
            cd = (rand() % (20 - 10)) + 10;
->>>>>>> f5c0c338bd452971b50b1022ce68d4fef92b4843
            i = (rand() % (3 - 1)) + 1;
         }
         if(!IsEmptyQ(WaitQueue)){
@@ -194,7 +190,7 @@ int main(){
         else if (input==3){
             printf("Input a file name from which the program will collect initial data. (Including '.txt') : ");
 			scanf("%d",&filename);
-			ReadSaveFile(filename);
+            ReadSaveFile(filename, &play, &detik, &location, &L, &WaitQueue, &Pesan, &ST, &SH);
 			printf("Data successfully loaded! Enjoy your time, baby.\n");
         }
         else{
