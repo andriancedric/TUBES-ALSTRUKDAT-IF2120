@@ -116,12 +116,8 @@ void DelEli (TabInt * T, IdxType i){
   /* Proses : Geser elemen ke-i+1 s.d. elemen terakhir */
   /*          Kurangi elemen efektif tabel */
   //KAMUS
-  IdxType j;
-  //ALGORITMA
-  for (j = i; j <= GetLastIdx(*T)-1; j++){
-    Makanan(*T,j) = ValUndef;
-    Kesabaran(*T,j) = ValUndef;
-    }
+    Makanan(*T,i) = ValUndef;
+    Kesabaran(*T,i) = ValUndef;
 }
 
 void KesabaranMinusArr(TabInt *T, int c, PLAYER *play){
@@ -147,7 +143,7 @@ void PrintArr(TabInt T)
   int i;
   //ALGORITMA
   if(IsEmptyArr(T)){
-    printf("   -Tidak ada Pesanan-\n");
+    printf("   -Order Empty-\n");
   }
   else{
     for (i = 1; i <= 12; i++)
@@ -158,11 +154,7 @@ void PrintArr(TabInt T)
         printf("   Banana Split %d\n", i);
         break;
       case 6:
-<<<<<<< HEAD
         printf("   Sundae_%d\n", i);
-=======
-        printf("   Sundae &d\n", i);
->>>>>>> 070bedea2cfa5093144754cd0d53f60d5501afeb
         break;
       case 9:
         printf("   Nasi Telur Dadar %d\n", i);
@@ -214,7 +206,7 @@ void Order(Room R, TabInt *T, POINT P)
       AddEli(T, Isi(SquareXY(R, Absis(P) - 1, Ordinat(P))));
     }
     else{
-      printf("Tidak ada Customer di Meja ini !");
+      printf("  Tidak ada Customer di Meja ini !");
     }
   }
   else if ((TipeR(R, Absis(P) + 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
@@ -225,7 +217,7 @@ void Order(Room R, TabInt *T, POINT P)
       AddEli(T, Isi(SquareXY(R, Absis(P) + 1, Ordinat(P))));
     }
     else{
-      printf("Tidak ada Customer di Meja ini !");
+      printf("  Tidak ada Customer di Meja ini !");
     }
   }
   else if ((TipeR(R, Absis(P), Ordinat(P) - 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) - 1) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
@@ -236,7 +228,7 @@ void Order(Room R, TabInt *T, POINT P)
       AddEli(T, Isi(SquareXY(R, Absis(P), Ordinat(P) - 1)));
     }
     else{
-      printf("Tidak ada Customer di Meja ini !");
+      printf("  Tidak ada Customer di Meja ini !");
     }
   }
   else if ((TipeR(R, Absis(P), Ordinat(P) + 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) + 1) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
@@ -247,12 +239,12 @@ void Order(Room R, TabInt *T, POINT P)
       AddEli(T, Isi(SquareXY(R, Absis(P), Ordinat(P) + 1)));
     }
     else{
-      printf("Tidak ada Customer di Meja ini !");
+      printf("  Tidak ada Customer di Meja ini !");
     }
   }
   else
   {
-    printf("ANDA TIDAK BERADA DI SEKITAR MEJA");
+    printf("  ANDA TIDAK BERADA DI SEKITAR MEJA");
   }
 }
 

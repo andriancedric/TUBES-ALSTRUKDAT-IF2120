@@ -75,7 +75,7 @@ void AddQ (Queue * Q, int jumlahorang, int wktantri)
     JumlahOrangTail(*Q) = jumlahorang;
   }
   else if(IsFullQ(*Q)){
-    printf("Queue Penuh!");
+    printf("  Queue Penuh!");
   }
   else {
     Tail(*Q)++;
@@ -262,13 +262,13 @@ void Place(Room R, Queue *Q, POINT P)
           }
           else
           { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
-            printf("Kapasitas Meja Tidak Mencukupi !");
+            printf("  Kapasitas Meja Tidak Mencukupi !");
           }
         }
       }
       else
       {
-        printf("Meja sudah ditempati customer lain");
+        printf("  Meja sudah ditempati customer lain");
       }
     }
     else if ((TipeR(R, Absis(P) + 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '5') ||
@@ -291,13 +291,13 @@ void Place(Room R, Queue *Q, POINT P)
           }
           else
           { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
-            printf("Kapasitas Meja Tidak Mencukupi !");
+            printf("  Kapasitas Meja Tidak Mencukupi !");
           }
         }
       }
       else
       {
-        printf("Meja sudah ditempati customer lain");
+        printf("  Meja sudah ditempati customer lain");
       }
     }
     else if ((TipeR(R, Absis(P), Ordinat(P) - 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) - 1) == 'C') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '1') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '4') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '5') ||
@@ -320,13 +320,13 @@ void Place(Room R, Queue *Q, POINT P)
           }
           else
           { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
-            printf("Kapasitas Meja Tidak Mencukupi !");
+            printf("  Kapasitas Meja Tidak Mencukupi !");
           }
         }
       }
       else
       {
-        printf("Meja sudah ditempati customer lain");
+        printf("  Meja sudah ditempati customer lain");
       }
     }
     else if ((TipeR(R, Absis(P), Ordinat(P) + 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) + 1) == 'C') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '1') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '4') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '5') ||
@@ -349,21 +349,21 @@ void Place(Room R, Queue *Q, POINT P)
           }
           else
           { // Tidak ada Pelanggan yang berjumlah 2 orang di *Q
-            printf("Kapasitas Meja Tidak Mencukupi !");
+            printf("  Kapasitas Meja Tidak Mencukupi !");
           }
         }
       }
       else
       {
-        printf("Meja sudah ditempati customer lain");
+        printf("  Meja sudah ditempati customer lain");
       }
     }
     else
     {
-      printf("ANDA TIDAK BERADA DI SEKITAR MEJA");
+      printf("  ANDA TIDAK BERADA DI SEKITAR MEJA");
     }
   }
   else {
-      printf("QUEUE KOSONG !");
+      printf("  QUEUE KOSONG !");
   }
 }
