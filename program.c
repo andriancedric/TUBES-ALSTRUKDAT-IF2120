@@ -394,15 +394,16 @@ void utama(){
     inp.TabKata[0] = '%';
     Length(&inp);
     while (!compareKata(inp,"EXIT")&&Life(play)>0){
+        system("clear");
         printf("\n  ------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
         Draw(R);
-        printf("  > Waiting Cust       \n  ");
+        printf("  Waiting Cust       \n");
         PrintQ(WaitQueue);
-        printf("  > Food Stack         \n  ");NamaMakanan(ST);
-        printf("  > Order              \n");
+        printf("  Food Stack         \n  ");NamaMakanan(ST);
+        printf("  Order              \n");
         PrintArr(Pesan);
-        printf("  > Hand               \n  ");NamaMakanan(SH);
+        printf("  Hand               \n  ");NamaMakanan(SH);
         printf("  --------------------------------------------------------\n");
         NOMAP:
         printf("  Command: ");
@@ -436,7 +437,7 @@ void utama(){
             Take(ID, &SH);
           }
           else{
-            printf("Tidak ada meja di arah itu...\n");
+            printf("  Tidak ada meja di arah itu...\n");
             goto NOMAP;
           }
         }
@@ -450,8 +451,8 @@ void utama(){
             Place(R,&WaitQueue,PosisiP);
         }
         else if (compareKata(inp,"GIVE")){
-          int IDH;
-          Give(&ST,&Pesan,&R,&IDH);
+            int m;
+          Money(play)=Give(&ST,&Pesan,&R,&m)+Money(play);
         }
         else if (compareKata(inp,"RECIPE")){
             PrintTree(P,4);
@@ -471,7 +472,7 @@ void utama(){
 			printf("Data successfully loaded! Enjoy your time, baby.\n");
 		}
         else{
-            printf("Input salah bos.\n");
+            printf("  Input salah bos.\n");
             goto NOMAP;
         }
         Time(detik)++;
@@ -479,7 +480,7 @@ void utama(){
         if (cd == 0){
           AddQ(&WaitQueue,orang[i],30);
           srand((unsigned)time(NULL));
-           cd = (rand() % (20 - 10)) + 10;
+           cd = (rand() % (8 - 4)) + 4;
            i = (rand() % (3 - 1)) + 1;
         }
         if(!IsEmptyQ(WaitQueue)){
@@ -487,10 +488,6 @@ void utama(){
         }
         if(!IsEmptyArr(Pesan)){
           KesabaranMinusArr(&Pesan,1,&play);
-        }
-        if (Life(play)==0){
-            Credit();
-            exit(1);
         }
     }
 }

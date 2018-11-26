@@ -1,0 +1,30 @@
+//Identity
+
+PlayerName      :       ade;
+Money           :       0;
+Life            :       3;
+Time            :       7;
+CurrentRoom     :       1;
+X               :       7;
+Y               :       5;
+
+//Map
+
+//ROOM 1
+7,5;
+//ROOM 2
+//ROOM 3
+
+//Details
+
+Waiting Cust
+    
+Order
+    15;
+Food Stack
+    
+
+Hand
+
+
+    ENDOFFILE#

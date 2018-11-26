@@ -138,7 +138,7 @@ void Put (Stack *SH, Stack *ST){ /*SH adalah stack hand, ST adalah Stack tray*/
     }*/
         indeks++;
     }
-    printf("%d",idxmakanan[1]);
+
     if (idxmakanan[1] == 4 && idxmakanan[2] == 3 && idxmakanan[3] == 2  && idxmakanan[4] == 1) {
 		  CreateEmptySt(SH);
 		  Push(ST, 5); /*BANANA SPLIT*/
@@ -191,7 +191,7 @@ void Take (int ID, Stack *SH) {
     }
 }
 
-void Give (Stack *ST, TabInt *T, Room *R, int *IDH) {
+int Give (Stack *ST, TabInt *T, Room *R, int *IDH) {
   /*I.S : Ada tumpukkan di tray*/
   /*F.S : Makanan pada top of tray akan diberikan kepada pelanggan*/
 
@@ -199,77 +199,101 @@ void Give (Stack *ST, TabInt *T, Room *R, int *IDH) {
   int IDTemp;
 
   //ALGORITMA
-  Pop(ST, &IDTemp);
-  *IDH = IDTemp;
-
-  int IDT=-1;
-  int ID=0;
-  Kata inp;
-  printf("  Direction (L,R,U,D): ");
-  scanf("%s",inp.TabKata);
-  Length(&inp);
-  if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)-1)=='C')/*&&IsOcc(SquareXY(R,Absis(PosisiP),Ordinat(PosisiP)-1))*/&&compareKata(inp,"L")){
-    IDT=IsiR(*R,Absis(PosisiP),Ordinat(PosisiP)-1);
-    ID=IDMakanan(*T,IDT);
+  uangmakanan=0;
+  if (!IsEmptySt(*ST)){
+    Pop(ST, &IDTemp);
+    *IDH = IDTemp;
   }
-  else if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)+1)=='C')/*&&IsOcc(SquareXY(R,Absis(PosisiP),Ordinat(PosisiP)+1))*/&&compareKata(inp,"R")){
-    IDT=IsiR(*R,Absis(PosisiP),Ordinat(PosisiP)+1);
-    ID=IDMakanan(*T,IDT);
+  else{
+    *IDH = ValUndef;
   }
-  else if((TipeR(*R,Absis(PosisiP)-1,Ordinat(PosisiP))=='C')/*&&IsOcc(SquareXY(R,Absis(PosisiP)-1,Ordinat(PosisiP)))*/&&compareKata(inp,"U")){
-    IDT=IsiR(*R,Absis(PosisiP)-1,Ordinat(PosisiP));
-    ID=IDMakanan(*T,IDT);
-  }
-  else if((TipeR(*R,Absis(PosisiP)+1,Ordinat(PosisiP))=='C')/*&&IsOcc(SquareXY(R,Absis(PosisiP)+1,Ordinat(PosisiP)))*/&&compareKata(inp,"D")){
-    IDT=IsiR(*R,Absis(PosisiP)+1,Ordinat(PosisiP));
-    ID=IDMakanan(*T,IDT);
-  }
-  if(IDT!=-1 && ID==*IDH){
-    /*Validasi ID Makanan dengan Harga makanan */
-    if (ID == 5 && ID == 10) /*BANANA SPLIT dan NASI TELUR DADAR*/
-    {
-      DelEli(T,IDT);
-      for(int X=0;X<M(*R);X){
-        for(int Y=0; Y<N(*R); Y++){
-          IsOcc(SquareXY(*R,X,Y))=false;
-        }
-      }
-      uangmakanan = uangmakanan + 10000;
+  if (*IDH != ValUndef){
+    int IDT=-1;
+    int ID=0;
+    Kata inp;
+    printf("  Direction (L,R,U,D): ");
+    scanf("%s",inp.TabKata);
+    Length(&inp);
+    if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)-1)=='C')&&compareKata(inp,"L")){
+      IDT=IsiR(*R,Absis(PosisiP),Ordinat(PosisiP)-1);
+      ID=Makanan(*T,IDT);
     }
-    else if (ID == 7) /* SUNDAE */
-    {
-      DelEli(T,IDT);
-      for(int X=0;X<M(*R);X){
-        for(int Y=0; Y<N(*R); Y++){
-          IsOcc(SquareXY(*R,X,Y))=false;
-        }
-      }
-      uangmakanan = uangmakanan + 8000;
+    else if((TipeR(*R,Absis(PosisiP),Ordinat(PosisiP)+1)=='C')&&compareKata(inp,"R")){
+      IDT=IsiR(*R,Absis(PosisiP),Ordinat(PosisiP)+1);
+      ID=Makanan(*T,IDT);
     }
-    else if (ID == 12 && ID == 22 && ID == 24) /* NASI AYAM GORENG, SPAGHETTI BOLOGNESE, dan SPAGHETTI CARBONARA */
-    {
-      DelEli(T,IDT);
-      for(int X=0;X<M(*R);X){
-        for(int Y=0; Y<N(*R); Y++){
-          IsOcc(SquareXY(*R,X,Y))=false;
-        }
-      }
-      uangmakanan = uangmakanan + 15000;
+    else if((TipeR(*R,Absis(PosisiP)-1,Ordinat(PosisiP))=='C')&&compareKata(inp,"U")){
+      IDT=IsiR(*R,Absis(PosisiP)-1,Ordinat(PosisiP));
+      ID=Makanan(*T,IDT);
     }
-    else if (ID == 16 && ID == 18) /*BURGER dan HOTDOG*/
-    {
-      DelEli(T,IDT);
-      for(int X=0;X<M(*R);X){
-        for(int Y=0; Y<N(*R); Y++){
-          IsOcc(SquareXY(*R,X,Y))=false;
+    else if((TipeR(*R,Absis(PosisiP)+1,Ordinat(PosisiP))=='C')&&compareKata(inp,"D")){
+      IDT=IsiR(*R,Absis(PosisiP)+1,Ordinat(PosisiP));
+      ID=Makanan(*T,IDT);
+    }
+    if(Makanan(*T,IDT)!=ValUndef){
+      /*Validasi ID Makanan dengan Harga makanan */
+      if (*IDH == 5 || *IDH == 10) /*BANANA SPLIT dan NASI TELUR DADAR*/
+      {
+        DelEli(T,IDT);
+        for(int X=0;X<M(*R);X++){
+          for(int Y=0; Y<N(*R); Y++){
+            IsOcc(SquareXY(*R,X,Y))=false;
+            if (IsiR(*R,X,Y)==IDT&&TipeR(*R,X,Y)=='C'){
+              Tipe(SquareXY(*R,X,Y))='X';
+            }
+          }
         }
+        uangmakanan = uangmakanan + 10000;
       }
-      uangmakanan = uangmakanan + 12000;
+      else if (*IDH == 7) /* SUNDAE */
+      {
+        DelEli(T,IDT);
+        for(int X=0;X<M(*R);X++){
+          for(int Y=0; Y<N(*R); Y++){
+            IsOcc(SquareXY(*R,X,Y))=false;
+            if (IsiR(*R,X,Y)==IDT&&TipeR(*R,X,Y)=='C'){
+              Tipe(SquareXY(*R,X,Y))='X';
+            }
+          }
+        }
+        uangmakanan = uangmakanan + 8000;
+      }
+      else if (*IDH == 12 || *IDH == 22 || *IDH == 24) /* NASI AYAM GORENG, SPAGHETTI BOLOGNESE, dan SPAGHETTI CARBONARA */
+      {
+        DelEli(T,IDT);
+        for(int X=0;X<M(*R);X++){
+          for(int Y=0; Y<N(*R); Y++){
+            IsOcc(SquareXY(*R,X,Y))=false;
+            if (IsiR(*R,X,Y)==IDT&&TipeR(*R,X,Y)=='C'){
+              Tipe(SquareXY(*R,X,Y))='X';
+            }
+          }
+        }
+        uangmakanan = uangmakanan + 15000;
+      }
+      else if (*IDH == 16 || *IDH == 18) /*BURGER dan HOTDOG*/
+      {
+        DelEli(T,IDT);
+        for(int X=0;X<M(*R);X++){
+          for(int Y=0; Y<N(*R); Y++){
+            IsOcc(SquareXY(*R,X,Y))=false;
+            if (IsiR(*R,X,Y)==IDT&&TipeR(*R,X,Y)=='C'){
+              Tipe(SquareXY(*R,X,Y))='X';
+            }
+          }
+        }
+        uangmakanan = uangmakanan + 12000;
+      }
+    }
+    else{
+      Push(ST, IDTemp);
+      printf("  Tidak ada meja di arah itu...\n");
     }
   }
   else{
-    printf("Tidak ada meja di arah itu...\n");
+    printf("  Stack tray kosong...\n");
   }
+  return uangmakanan;
 }
 
 /*Simpan variabel money*/
@@ -290,7 +314,7 @@ void NamaMakanan(Stack S) {
   InverseStack(&temp);
   while (!IsEmptySt(temp)){
     indeks = InfoTopSt(temp);
-    printf(" %s ", makanan[indeks]);
+    printf("%s  ", makanan[indeks]);
     Pop(&temp,&hehe);
   }
   printf("\n");

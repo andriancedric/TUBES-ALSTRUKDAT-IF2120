@@ -1,0 +1,25 @@
+//Identity
+
+PlayerName      :       Ibu C.I.A.;
+Money           :       Ibu C.I.A.;
+Life            :       Ibu C.I.A.;
+Time            :       Ibu C.I.A.;
+CurrentRoom     :       Ibu C.I.A.;
+X               :       Ibu C.I.A.;
+Y               :       Ibu C.I.A.;
+
+//Map
+
+M..P....;
+M.......;
+M.....T.;
+M.......;
+M.......;
+M.......;
+M.......;
+M.......;
+
+//Details
+
+Waiting Cust
+    Pizza of Obesity,Mayonaise of promiscuity,billy jelly;

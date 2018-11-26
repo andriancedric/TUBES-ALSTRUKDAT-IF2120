@@ -55,7 +55,7 @@ void Take (int ID, Stack *SH);
   /*I.S. : Ada bahan di sebelah pemain, kondisi tangan tidak penuh*/
 	/*F.S. : Bahan berpindah ke tangan*/
 
-void Give (Stack *ST, TabInt *T, Room *R, int *IDH);
+int Give (Stack *ST, TabInt *T, Room *R, int *IDH);
 /*I.S : Ada tumpukkan di tray*/
   /*F.S : Makanan pada top of tray akan diberikan kepada pelanggan*/
 
