@@ -1,23 +1,11 @@
 /* File: mesinkata.h */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
-#include <stdio.h>
-
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
 
 #include <stdio.h>
-#include <time.h>
 #include "boolean.h"
-#include "map.h"
-#include "credit.c"
-#include "modstack.c"
-#include "mesinkata.c"
-#include "mesinkar.c"
-#include "jam.h"
-#include "queue.c"
-#include "array.c"
-#include "point.h"
-#include "bintree.c"
+#include "mesinkar.h"
 
 #define NMax 50
 #define BLANK ' '
@@ -61,10 +49,5 @@ boolean compareKata(Kata kata1, char* teks);
 void Length(Kata *kata);
 void printKata(Kata kata1);
 void printID(Kata kata1);
-void writefromMatriks(FILE* f, char strmatriks[8][8]);
-void writefromArray(FILE* f, char strArr[20][100], int neff);
-
-void ReadSaveFile(char* filename ,PLAYER* player, JAM* time, POINT* location, List L, Queue* Q, TabInt* Pesan, Stack *ST, Stack *SH ){
-void WriteSaveFile(char* filename ,PLAYER player, JAM time, POINT location, List L, Queue WaitQ, TabInt Pesan, StackTray ST, StackHand SH );
 
 #endif

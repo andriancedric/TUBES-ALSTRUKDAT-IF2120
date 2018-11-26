@@ -2,7 +2,7 @@
 #define POINT_H
 
 #include "boolean.h"
-
+#include "mesinkata.h"
 typedef struct {
 	int X; /* absis */
 	int Y; /* ordinat*/
@@ -12,7 +12,7 @@ typedef struct {
 typedef struct{
 	int life;
 	int money;
-    char name[20];
+    Kata name;
 } PLAYER;
 
 #define Life(P) (P).life
