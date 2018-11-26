@@ -25,8 +25,6 @@ int idxx = 1;
 BinTree P;
 TabInt Pesan;
 int orang[3] = {0,2,4};
-POINT PNT;
-
 void utama(){
     Kata inp;
     srand((unsigned)time(NULL));
@@ -42,12 +40,12 @@ void utama(){
         printf("\n  ------------------------------------------------------\n");
         printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
         Draw(R);
-        printf("  > Waiting Cust       \n  ");
+        printf("  Waiting Cust       \n");
         PrintQ(WaitQueue);
-        printf("  > Food Stack         \n  ");NamaMakanan(ST);
-        printf("  > Order              \n");
+        printf("  Food Stack         \n  ");NamaMakanan(ST);
+        printf("  Order              \n");
         PrintArr(Pesan);
-        printf("  > Hand               \n  ");NamaMakanan(SH);
+        printf("  Hand               \n  ");NamaMakanan(SH);
         printf("  --------------------------------------------------------\n");
         NOMAP:
         printf("  Command: ");
@@ -123,11 +121,7 @@ void utama(){
         if (cd == 0){
           AddQ(&WaitQueue,orang[i],30);
           srand((unsigned)time(NULL));
-<<<<<<< HEAD
            cd = (rand() % (8 - 4)) + 4;
-=======
-           cd = (rand() % (20 - 10)) + 10;
->>>>>>> f5c0c338bd452971b50b1022ce68d4fef92b4843
            i = (rand() % (3 - 1)) + 1;
         }
         if(!IsEmptyQ(WaitQueue)){
@@ -135,10 +129,6 @@ void utama(){
         }
         if(!IsEmptyArr(Pesan)){
           KesabaranMinusArr(&Pesan,1,&play);
-        }
-        if (Life(play)==0){
-            Credit();
-            exit(1);
         }
     }
 }

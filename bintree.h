@@ -1,6 +1,6 @@
 /* ADT Pohon Biner */
 /* Implementasi dengan menggunakan pointer */
-/* Penamaan type Kata*, type addrNode, dan beberapa fungsi disesuikan 
+/* Penamaan type Kata*, type addrNode, dan beberapa fungsi disesuikan
    karena melibatkan modul list rekursif. */
 
 #ifndef _BINTREE_H_
@@ -39,7 +39,7 @@ BinTree Tree(Kata Akar, BinTree L, BinTree R);
 /* Menghasilkan pohon kosong (Nil) jika alokasi gagal */
 void MakeTree(Kata Akar, BinTree L, BinTree R, BinTree *P);
 /* I.S. Akar, L, R terdefinisi. P Sembarang */
-/* F.S. Membentuk pohon P dengan Akar(P)=Akar, Left(P)=L, dan Right(P)=R 
+/* F.S. Membentuk pohon P dengan Akar(P)=Akar, Left(P)=L, dan Right(P)=R
 		jika alokasi berhasil. P = Nil jika alokasi gagal. */
 BinTree BuildBalanceTree(int n);
 /* Menghasilkan sebuah balanced tree dengan n node, nilai setiap node dibaca */
@@ -48,7 +48,7 @@ void BuildTree(BinTree *P, int* idx);
 /* Manajemen Memory */
 addrNode AlokNode(Kata X);
 /* Mengirimkan addrNode hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka addrNode tidak Nil, dan misalnya menghasilkan P, 
+/* Jika alokasi berhasil, maka addrNode tidak Nil, dan misalnya menghasilkan P,
   maka Akar(P) = X, Left(P) = Nil, Right(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
 void DealokNode(addrNode P);
@@ -71,36 +71,36 @@ boolean IsBiner(BinTree P);
 /* *** Traversal *** */
 void PrintPreorder(BinTree P);
 /* I.S. P terdefinisi */
-/* F.S. Semua simpul P sudah dicetak secara preorder: akar, pohon kiri, dan pohon kanan. 
-   Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup (). 
+/* F.S. Semua simpul P sudah dicetak secara preorder: akar, pohon kiri, dan pohon kanan.
+   Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup ().
    Pohon kosong ditandai dengan ().
    Tidak ada tambahan karakter apa pun di depan, tengah, atau akhir. */
-/* Contoh: 
+/* Contoh:
    (A()()) adalah pohon dengan 1 elemen dengan akar A
    (A(B()())(C()())) adalah pohon dengan akar A dan subpohon kiri (B()()) dan subpohon kanan (C()()) */
 void PrintInorder(BinTree P);
 /* I.S. P terdefinisi */
-/* F.S. Semua simpul P sudah dicetak secara inorder: pohon kiri, akar, dan pohon kanan. 
-   Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup (). 
+/* F.S. Semua simpul P sudah dicetak secara inorder: pohon kiri, akar, dan pohon kanan.
+   Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup ().
    Pohon kosong ditandai dengan ().
    Tidak ada tambahan karakter apa pun di depan, tengah, atau akhir. */
-/* Contoh: 
+/* Contoh:
    (()A()) adalah pohon dengan 1 elemen dengan akar A
    ((()B())A(()C())) adalah pohon dengan akar A dan subpohon kiri (()B()) dan subpohon kanan (()C()) */
 void PrintPostorder(BinTree P);
 /* I.S. P terdefinisi */
-/* F.S. Semua simpul P sudah dicetak secara postorder: pohon kiri, pohon kanan, dan akar. 
-   Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup (). 
+/* F.S. Semua simpul P sudah dicetak secara postorder: pohon kiri, pohon kanan, dan akar.
+   Setiap pohon ditandai dengan tanda kurung buka dan kurung tutup ().
    Pohon kosong ditandai dengan ().
    Tidak ada tambahan karakter apa pun di depan, tengah, atau akhir. */
-/* Contoh: 
+/* Contoh:
    (()()A) adalah pohon dengan 1 elemen dengan akar A
    ((()()B)(()()C)A) adalah pohon dengan akar A dan subpohon kiri (()()B) dan subpohon kanan (()()C) */
 void PrintTree(BinTree P, int h);
 /* I.S. P terdefinisi, h adalah jarak indentasi (spasi) */
 /* F.S. Semua simpul P sudah ditulis dengan indentasi (spasi) */
 /* Penulisan akar selalu pada baris baru (diakhiri newline) */
-/* Contoh, jika h = 2: 
+/* Contoh, jika h = 2:
 1) Pohon preorder: (A()()) akan ditulis sbb:
 A
 2) Pohon preorder: (A(B()())(C()())) akan ditulis sbb:
@@ -132,7 +132,7 @@ boolean IsSkewRight(BinTree P);
 /* Mengirimkan true jika P adalah pohon condong kanan */
 /* Pohon kosong adalah pohon condong kanan */
 int Level(BinTree P, Kata* X);
-/* Mengirimkan level dari node X yang merupakan salah satu simpul dari pohon biner P. 
+/* Mengirimkan level dari node X yang merupakan salah satu simpul dari pohon biner P.
    Akar(P) level-nya adalah 1. Pohon P tidak kosong. */
 int Tinggi(BinTree P);
 /* Pohon Biner mungkin kosong. Tinggi pohon kosong = 0.
@@ -144,12 +144,12 @@ void AddDaunTerkiri(BinTree *P, Kata* X);
 /* F.S. P bertambah simpulnya, dengan X sebagai simpul daun terkiri */
 void AddDaun(BinTree *P, Kata* X, Kata* Y, boolean Kiri);
 /* I.S. P tidak kosong, X adalah salah satu daun Pohon Biner P */
-/* F.S. P bertambah simpulnya, dengan Y sebagai anak kiri X (jika Kiri = true), atau 
+/* F.S. P bertambah simpulnya, dengan Y sebagai anak kiri X (jika Kiri = true), atau
         sebagai anak Kanan X (jika Kiri = false) */
 /*		Jika ada > 1 daun bernilai X, diambil daun yang paling kiri */
 void DelDaunTerkiri(BinTree *P, Kata* *X);
 /* I.S. P tidak kosong */
-/* F.S. P dihapus daun terkirinya, dan didealokasi, dengan X adalah info yang semula 
+/* F.S. P dihapus daun terkirinya, dan didealokasi, dengan X adalah info yang semula
         disimpan pada daun terkiri yang dihapus */
 void DelDaun(BinTree *P, Kata* X);
 /* I.S. P tidak kosong, minimum ada 1 daun bernilai X. */
