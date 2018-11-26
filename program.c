@@ -44,29 +44,28 @@ void writefromMatriks(FILE* f, List L ){
 
 void writefromArray(FILE* f, char strArr[20][100], int neff){
 	for(int i = 0; i<neff ; i++){
-		fprintf(f,"%s", strArr[i]);
-		if(i < neff-1)
-			fprintf(f,",");
+		fprintf(f,"%s,%d;\n", strArr[i],i);
+		fprintf(f, "    ");
 	}
-	fprintf(f,";");
 }
 
 void writefromTabint(FILE* f, TabInt T){
 	int neff = NbElmtArr(T);
 	for(int i = 1; i<=12 ; i++){
 		if(Makanan(T,i) != ValUndef){
-			fprintf(f,"%d", Makanan(T,i));
-			//fprintf(f,",");
-			//fprintf(f,"%d;\n", i);
+			fprintf(f, "    ");
+			fprintf(f,"%d,%d,%d;\n", Makanan(T,i),i,Kesabaran(T,i));
+			//DEBUGGER : fprintf(f,",");
+			//DEBUGGER : fprintf(f,"%d;\n", i);
 		}
 	}
-	fprintf(f,";");
 }
 
 void writefromQueue(FILE* f, Queue Q){
 	int neff = NBElmtQ(Q);
 	for(int i = 1; i<=neff ; i++){
-		fprintf(f,"%d;\n", JumlahOrang(Q,i));
+		fprintf(f, "    ");
+		fprintf(f,"%d,%d;\n", JumlahOrang(Q,i), WktAntri(Q,i))	;
 	}
 }
 
@@ -75,11 +74,12 @@ void writefromStack(FILE* f, Stack Sin){
 	int ID;
 	CreateEmptySt(&Sout);
 	CopyStack(Sin,&Sout);
+	InverseStack(&Sout);
 	while (TopSt(Sout) != 0){
 		Pop(&Sout, &ID);
+		fprintf(f, "    ");
 		fprintf(f,"%d;\n", ID);
 	}
-	fprintf(f,"\n");
 }
 
 /*void writeGraph(FILE* f, Graph G, List L){
@@ -106,15 +106,15 @@ void writeOccupiedSeats(FILE*f, List L){
 	
 	tElmtList P;
 	int idx=1;
-    printf("AAA\n");
+    //printf("AAA\n");
         P = SearchList(L,1);
 		R = Room(P);
-    printf("AAA\n");
+    //printf("AAA\n");
 
-		fprintf(f,"//ROOM ", idx);fprintf(f,"1"); fprintf(f,"\n");
+		fprintf(f,"//ROOM");fprintf(f,"1"); fprintf(f,"\n");
 		for(int i=0; i<=7; i++) {
 			for(int j=0; j<=7; j++){
-				if(TipeR(R,i,j) == 'P')
+				if(TipeR(R,i,j) == 'C')
 					 fprintf(f,"%d,%d;\n",i,j );
 				}
 		}
@@ -122,22 +122,22 @@ void writeOccupiedSeats(FILE*f, List L){
 
         P = SearchList(L,2);
 		R = Room(P);
-    printf("AAA\n");
-		fprintf(f,"//ROOM ", idx);fprintf(f,"2"); fprintf(f,"\n");
+    //printf("AAA\n");
+		fprintf(f,"//ROOM");fprintf(f,"2"); fprintf(f,"\n");
 		for(int i=0; i<=7; i++) {
 			for(int j=0; j<=7; j++){
-				if(Tipe(SquareXY(R,i,j)) == 'P')
+				if(Tipe(SquareXY(R,i,j)) == 'C')
 					 fprintf(f,"%d,%d;\n",i,j );
 				}
 		}
-    printf("AAA\n");
+    //printf("AAA\n");
         P = SearchList(L,3);
 		R = Room(P);
         idx++;
-		fprintf(f,"//ROOM "); fprintf(f,"3"); fprintf(f,"\n");
+		fprintf(f,"//ROOM"); fprintf(f,"3"); fprintf(f,"\n");
 		for(int i=0; i<=7; i++) {
 			for(int j=0; j<=7; j++){
-				if(Tipe(SquareXY(R,i,j)) == 'P')
+				if(Tipe(SquareXY(R,i,j)) == 'C')
 					 fprintf(f,"%d,%d;\n",i,j );
 				}
 		}
@@ -145,7 +145,7 @@ void writeOccupiedSeats(FILE*f, List L){
 
 
 void WriteSaveFile(char* filename){
-    printf("%s", filename);
+    //printf("%s", filename);
 	FILE *f = fopen(filename, "w");
 	if (f != NULL)
 	{
@@ -167,32 +167,32 @@ void WriteSaveFile(char* filename){
 	
 	fprintf(f,"//Identity\n");
 	fprintf(f,"\n");
-    printf("\na\n");
 	fprintf(f,"PlayerName      :       %s;\n",Nama(play).TabKata);
-    printf("\na\n");
-
 	fprintf(f,"Money           :       %d;\n",play.money);
 	fprintf(f,"Life            :       %d;\n",play.life);
 	fprintf(f,"Time            :       %d;\n",detik.SS);
 	fprintf(f,"CurrentRoom     :       %d;\n",ID(&R));
+	int tempID = ID(&R);
+	//printf("tempID : %d\n", tempID);
 	fprintf(f,"X               :       %d;\n",Absis(PosisiP));
 	fprintf(f,"Y               :       %d;\n",Ordinat(PosisiP));
-    printf("\nc\n");
 	fprintf(f,"\n");
 	fprintf(f,"//Map\n");
 	fprintf(f,"\n");
 	writeOccupiedSeats(f,L);
+	tElmtList P;
+	P = SearchList(L,tempID);
+	R = Room(P);
 	fprintf(f,"\n");
 	fprintf(f,"//Details\n");
 	fprintf(f,"\n");
 	fprintf(f,"Waiting Cust\n");
-	fprintf(f,"    ");printf("\nb\n");writefromQueue(f,WaitQueue);fprintf(f,"\n");
+	writefromQueue(f,WaitQueue);fprintf(f,"\n");
 	fprintf(f,"Order\n");
-	fprintf(f,"    ");printf("\nb\n");writefromTabint(f,Pesan);fprintf(f,"\n");
+	writefromTabint(f,Pesan);fprintf(f,"\n");
 	fprintf(f,"Food Stack\n");
-	fprintf(f,"    ");printf("\nb\n");writefromStack(f,ST);fprintf(f,"\n");
+	writefromStack(f,ST);fprintf(f,"\n");
 	fprintf(f,"Hand\n");writefromStack(f,SH);fprintf(f,"\n");
-	fprintf(f,"    ");
 
 	fprintf(f,"ENDOFFILE#");
 	fclose(f);
@@ -200,76 +200,89 @@ void WriteSaveFile(char* filename){
 
 void ReadSaveFile(char* filename){
 	STARTKATA(filename);
+	//printf("-0\n");
+	//printKata(CKata); // IDENTITY
 	IgnoreBlank();
-	// Now position at the first Identity entry.
-    printf("\nb\n");
-	//IDENTITY PARSER
-	
-	//printf("0. %s\n", CKata);
-	while (!(compareKata(CKata, "//Map")) ){
-        printf("\nb\n");
-		//printf("Identity parser entered! \n");
-		//printKata(CKata);
-		SalinKata();
+	//printf("-1\n");
+		ADVKATA();
+		//printKata(CKata); // PlayerName
 		IgnoreBlank();
-        
-		//printf("Next Comparison ");
-		//printKata(CKata);
 		
 		//printf("0. %s! compared with PlayerName      :! \n", CKata);
-		if (compareKata(CKata, "PlayerName      " )){
+		//if (compareKata(CKata, "PlayerName      " )){
 			//printf("PlayerName entered! \n");
+
+
+			//printf("-2\n");
 			ADV();
-			IgnoreBlank();
+			makeKataBlank(&CKata);
 			ADVKATA();
+			//printKata(CKata); // ass
 			//printKata(CKata);
-			play.name = CKata;
-			}
-		else if (compareKata(CKata, "Money           " )){
+			Nama(play) = CKata;
+			Nama(play).Length = CKata.Length;
+			//}
+		//else if (compareKata(CKata, "Money           " )){
+
+			ADVKATA();
 			ADV();
-			IgnoreBlank();
+			
 			ADVKATA();
+			//printf("-3\n");
+			//printKata(CKata); // 
 			//printKata(CKata);
-			play.money = atoi(CKata.TabKata);
-			}
-		else if (compareKata(CKata, "Life            " )){
+			play.money = KataInt(CKata);
+			//}
+		//else if (compareKata(CKata, "Life            " )){
+
+			ADVKATA();
 			ADV();
-			IgnoreBlank();
 			ADVKATA();
+			//printf("-4\n");
+			//printKata(CKata); 
 			//printKata(CKata);
-			play.life = atoi(CKata.TabKata);
-			}
-		else if (compareKata(CKata, "Time            " )){
+			play.life = KataInt(CKata);
+			//}
+		//else if (compareKata(CKata, "Time            " )){
+			ADVKATA();
 			ADV();
-			IgnoreBlank();
 			ADVKATA();
+			//printf("-5\n");
+			//printKata(CKata); 
 			//printKata(CKata);
-			detik.SS = atoi(CKata.TabKata);
-			}
-		else if (compareKata(CKata, "CurrentRoom     ")){
+			detik.SS = KataInt(CKata);
+			//}
+		//else if (compareKata(CKata, "CurrentRoom     ")){
+			ADVKATA();
 			ADV();
-			IgnoreBlank();
 			ADVKATA();
+			//printf("-6\n");
+			//printKata(CKata); 
 			//printKata(CKata);
-			ID(&R) = atoi(CKata.TabKata);
-			}
-		else if (compareKata(CKata, "X               " )){
+			ID(&R) = KataInt(CKata);
+			int tempID = KataInt(CKata);
+			//}
+		//else if (compareKata(CKata, "X               " )){
+			ADVKATA();
 			ADV();
-			IgnoreBlank();
 			ADVKATA();
+			//printf("-7\n");
+			//printKata(CKata); 
 			//printKata(CKata);
-			Absis(PosisiP) = atoi(CKata.TabKata);
-			}
-		else if (compareKata(CKata, "Y               " )){
+			Absis(PosisiP) = KataInt(CKata);
+			//}
+		//else if (compareKata(CKata, "Y               " )){
+			ADVKATA();
 			ADV();
-			IgnoreBlank();
 			ADVKATA();
+			//printf("-8\n");
+			//printKata(CKata); 
 			//printKata(CKata);
-			Ordinat(PosisiP) = atoi(CKata.TabKata);
-			}
+			Ordinat(PosisiP) = KataInt(CKata);
+			//}
 		//printf("End Comparison ");
 		//printKata(CKata);
-	}
+	//}
 	//IDENTITY PARSER -END-
 
 	IgnoreBlank();
@@ -279,33 +292,39 @@ void ReadSaveFile(char* filename){
 	int i;
 	int j;
 	//printKata(CKata);
-	ADVKATA();
+	ADVKATA();// MAP
+	//printKata(CKata);
 	//while (!compareKata(CKata, "//Details" )){
-		//printKata(CKata);
-		ADVKATA();
+		 
+		ADVKATA();// ROOM1
 		IgnoreBlank();
-		
-		//MAP1
-		ADVKATA();
+		//printKata(CKata);
 
         tElmtList P;
         P=SearchList(L,1);
         R=Room(P);
-		while(!compareKata(CKata, "//ROOM 2")){
-            printf("\nc\n");
+        //printf("2\n");
+        ADVKATA();
+		//printKata(CKata);
+		while(!compareKata(CKata, "//ROOM2")){
 			i = CKata.TabKata[0]-'0';
 			IgnoreBlank();
 			ADVKATA();
+			printKata(CKata);
 			j = CKata.TabKata[0]-'0';
 			IgnoreBlank();
 			SquareXY(R,i,j).occupied = true;
-			Tipe(SquareXY(R,i,j)) = 'P';
+			Tipe(SquareXY(R,i,j)) = 'C';
 			ADVKATA();
+			printKata(CKata);
 			}
 
         P=SearchList(L,2);
         R=Room(P);
-		while(!compareKata(CKata, "//ROOM 3")){
+        //printf("3\n");
+        ADVKATA();
+		//printKata(CKata);
+		while(!compareKata(CKata, "//ROOM3")){
             printf("\nd\n");
 			i = CKata.TabKata[0]-'0';
 			IgnoreBlank();
@@ -313,34 +332,50 @@ void ReadSaveFile(char* filename){
 			j = CKata.TabKata[0]-'0';
 			IgnoreBlank();
 			SquareXY(R,i,j).occupied = true;
-			Tipe(SquareXY(R,i,j)) = 'P';
+			Tipe(SquareXY(R,i,j)) = 'C';
 			ADVKATA();
 			}
 
+
+		//printf("X\n");
+        ADVKATA();
+		//printKata(CKata);
         P=SearchList(L,3);
         R=Room(P);
-		while(!compareKata(CKata, "//ROOM 4")){
+		while(!compareKata(CKata, "//Details")){
 			i = CKata.TabKata[0]-'0';
-			IgnoreBlank();
+			printf("i\n");
+			//ADV();
 			ADVKATA();
 			j = CKata.TabKata[0]-'0';
+			//printKata(CKata);
+			printf("j\n");
 			IgnoreBlank();
 			SquareXY(R,i,j).occupied = true;
-			Tipe(SquareXY(R,i,j)) = 'P';
+			Tipe(SquareXY(R,i,j)) = 'C';
 			ADVKATA();
+			//printKata(CKata);
 			}
-		//ROOM4
-		ADVKATA();
-		//Details
-		IgnoreBlank();
-		ADVKATA();
-		//WAITING CUST.
+		
+		//RESET ROOM :
+			P=SearchList(L,tempID);
+			R=Room(P);
 
-		ADVKATA(); // First Value
-		i = 1;
+		ADVKATA(); //WAITING CUST.
+		//printKata(CKata);
+		ADVKATA(); //VAL
+		//printKata(CKata);
+		CreateEmptyQ(&WaitQueue,30);
+		//printf("WAITQUEUE\n");
+		int temporang;
+		int tempwktantri;
 		while(!compareKata(CKata, "Order")){
-			JumlahOrang(WaitQueue,i) = (CKata.TabKata[0]-'0');
-			i++;
+			//printKata(CKata);// JUMLAH ORANG
+			temporang = KataInt(CKata);
+			ADVKATA();
+			//printKata(CKata);// wktantri
+			tempwktantri = KataInt(CKata);
+			AddQ(&WaitQueue,temporang,tempwktantri);
 			IgnoreBlank();
 			ADVKATA();
 		}
@@ -349,23 +384,42 @@ void ReadSaveFile(char* filename){
 		IgnoreBlank();
 		ADVKATA();
 
-		i=1;
+		CreateEmptyArr(&Pesan);
+		//printf("ORDER\n");
+		int idxtemp;
+		int IDtemp;
+		int tempksbrn;
 		while (!compareKata(CKata, "Food Stack" )){
-		//printKata(CKata);
-		//ADVKATA();
-		Makanan(Pesan,i) = CKata.TabKata[0]-'0';
-		IgnoreBlank();
-		ADVKATA();
-		//printf("ONE CYCLE\n");
-		}
+			//printKata(CKata);
+			//ADVKATA();
+			//printKata(CKata);//FOOD NAME
+			IDtemp = KataInt(CKata);
+			//printf("IDtemp : %d\n",KataInt(CKata));
+			ADVKATA();
+			//printKata(CKata);//INDEX MEJA
+			idxtemp = KataInt(CKata);
+			//printf("Idxtemp : %d\n",KataInt(CKata));
+			ADVKATA();
+			//printKata(CKata);//KESABARAN
+			tempksbrn = KataInt(CKata);
+			//printf("tempksbrn: %d\n",KataInt(CKata));  
+			Makanan(Pesan,idxtemp) = IDtemp;
+			Kesabaran(Pesan,idxtemp) = tempksbrn ;
+			
+			IgnoreBlank();
+			ADVKATA();
+			}
 
 		IgnoreBlank();
 		//Foodstack
 		ADVKATA();
 		//first val
 		CreateEmptySt(&ST);
+		//printf("FOOD\n");
 		while (!compareKata(CKata, "Hand" )){
-			Push(&ST, (CKata.TabKata[0]-'0'));
+			printKata(CKata);
+			//printf("PUSHED VAL : %d\n",KataInt(CKata));
+			Push(&ST, KataInt(CKata));
 			IgnoreBlank();
 			ADVKATA();
 		}
@@ -374,9 +428,12 @@ void ReadSaveFile(char* filename){
 		//Hand
 		ADVKATA();
 		//First val
+		//printf("HAND\n");
 		CreateEmptySt(&SH);
 		while (!compareKata(CKata, "ENDOFFILE#" )){
-			Push(&SH, (CKata.TabKata[0]-'0'));
+			printKata(CKata);
+			//printf("PUSHED VAL : %d\n",KataInt(CKata));
+			Push(&SH, KataInt(CKata));
 			IgnoreBlank();
 			ADVKATA();
 		}
@@ -389,14 +446,15 @@ void utama(){
     cd = (rand() % (8 - 4)) + 4;
     int i = (rand() % (3 - 1)) + 1;
 
-    CreateEmptyQ(&WaitQueue,30);
-    CreateEmptyArr(&Pesan);
+    
     inp.TabKata[0] = '%';
     Length(&inp);
     while (!compareKata(inp,"EXIT")&&Life(play)>0){
         system("clear");
         printf("\n  ------------------------------------------------------\n");
-        printf("  %-15s Money: %-6d Life: %-6d Time: %-6d\n",Nama(play),Money(play),Life(play),Time(detik));
+        printf(" ");
+        printKataMM(Nama(play));
+        printf("  Money: %-6d Life: %-6d Time: %-6d\n",Money(play),Life(play),Time(detik));
         Draw(R);
         printf("  Waiting Cust       \n");
         PrintQ(WaitQueue);
@@ -462,14 +520,24 @@ void utama(){
 			printf("Input the desired savedata filename : ");
 			scanf("%s",filename);
 			WriteSaveFile(filename);
+			Time(detik)--;
 			printf("Data successfully written. Come again, baby.\n");
 		}
         else if (compareKata(inp,"LOAD")){
 			printf("Input a file name from which the program will collect initial data. (Including '.txt') : ");
 			scanf("%s",filename);
+			Square Sq;
+			MakeSquare(&Sq,'-',0,false,0);
+			EditSquare(&R,Sq,Absis(PosisiP),Ordinat(PosisiP));
 			ReadSaveFile(filename);
-
+			Time(detik)--;
+			MakeSquare(&Sq,'P',0,false,0);
+			EditSquare(&R,Sq,Absis(PosisiP),Ordinat(PosisiP));
 			printf("Data successfully loaded! Enjoy your time, baby.\n");
+		}
+		else if (compareKata(inp,"EXIT")){
+			printf("You are now quitting the game... ");
+			
 		}
         else{
             printf("  Input salah bos.\n");
@@ -505,6 +573,9 @@ int main(){
     printf("\n");
 
     //PILIHAN MENU
+    CreateEmptyQ(&WaitQueue,30);
+    CreateEmptyArr(&Pesan);
+
     printf("--------- Silakan pilih menu permainan di bawah ini :  ----------\n");
     printf(">> 1. New Game\n");
     printf(">> 2. Start Game\n");
@@ -525,7 +596,8 @@ int main(){
     while (input!=4){
         if (input==1){
             printf(">>> Nama: ");
-            scanf("%s",&Nama(play));
+            scanf("%s",(Nama(play).TabKata));
+            Length(&Nama(play));
         }
         else if (input==2){
             if (Nama(play).TabKata[0]== ' ') printf("Pilih new game atau load game dahulu\n");
@@ -545,6 +617,13 @@ int main(){
 			scanf("%s",filename);
             ReadSaveFile(filename);
 			printf("Data successfully loaded! Enjoy your time, baby.\n");
+			Square Sq;
+              MakeSquare(&Sq,'P',0,false,0);
+              //printf("ABSIS : %d, ORDINAT : %d",Absis(PosisiP),Ordinat(PosisiP));
+              EditSquare(&R,Sq,Absis(PosisiP),Ordinat(PosisiP));
+                utama();
+                Credit();
+                exit(1);
         }
         else{
             printf("Input salah");

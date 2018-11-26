@@ -242,8 +242,8 @@ void Place(Room R, Queue *Q, POINT P)
   int X, Y;
   //ALGORITMA
   if(!IsEmptyQ(*Q)){
-    if ((TipeR(R, Absis(P) - 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '5') ||
-        (TipeR(R, Absis(P) - 1, Ordinat(P)) == '7') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '8'))
+    if ((TipeR(R, Absis(P) - 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '3') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '6') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == '7') ||
+        (TipeR(R, Absis(P) - 1, Ordinat(P)) == 'A') || (TipeR(R, Absis(P) - 1, Ordinat(P)) == 'B'))
     {
       if (!IsOcc(SquareXY(R, Absis(P) - 1, Ordinat(P))))
       {
@@ -271,8 +271,8 @@ void Place(Room R, Queue *Q, POINT P)
         printf("  Meja sudah ditempati customer lain");
       }
     }
-    else if ((TipeR(R, Absis(P) + 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '1') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '4') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '5') ||
-             (TipeR(R, Absis(P) + 1, Ordinat(P)) == '7') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '8'))
+    else if ((TipeR(R, Absis(P) + 1, Ordinat(P)) == 'X') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'C') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '3') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '6') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '7') ||
+             (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'A') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'B'))
     {
       if (!IsOcc(SquareXY(R, Absis(P) + 1, Ordinat(P))))
       {
@@ -300,8 +300,8 @@ void Place(Room R, Queue *Q, POINT P)
         printf("  Meja sudah ditempati customer lain");
       }
     }
-    else if ((TipeR(R, Absis(P), Ordinat(P) - 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) - 1) == 'C') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '1') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '4') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '5') ||
-             (TipeR(R, Absis(P), Ordinat(P) - 1) == '7') || (TipeR(R, Absis(P), Ordinat(P) - 1) == '8'))
+    else if ((TipeR(R, Absis(P), Ordinat(P) - 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) - 1) == 'C') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '3') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '6') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '7') ||
+             (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'A') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'B'))
     {
       if (!IsOcc(SquareXY(R, Absis(P), Ordinat(P) - 1)))
       {
@@ -329,8 +329,8 @@ void Place(Room R, Queue *Q, POINT P)
         printf("  Meja sudah ditempati customer lain");
       }
     }
-    else if ((TipeR(R, Absis(P), Ordinat(P) + 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) + 1) == 'C') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '1') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '2') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '4') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '5') ||
-             (TipeR(R, Absis(P), Ordinat(P) + 1) == '7') || (TipeR(R, Absis(P), Ordinat(P) + 1) == '8'))
+    else if ((TipeR(R, Absis(P), Ordinat(P) + 1) == 'X') || (TipeR(R, Absis(P), Ordinat(P) + 1) == 'C') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '2') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '3') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '6') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == '7') ||
+             (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'A') || (TipeR(R, Absis(P) + 1, Ordinat(P)) == 'B'))
     {
       if (!IsOcc(SquareXY(R, Absis(P), Ordinat(P) + 1)))
       {

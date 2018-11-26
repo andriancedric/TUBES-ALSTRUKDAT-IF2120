@@ -3,15 +3,14 @@
 PlayerName      :       asdasd;
 Money           :       0;
 Life            :       3;
-Time            :       20;
-CurrentRoom     :       1;
-X               :       6;
-Y               :       4;
+Time            :       17;
+CurrentRoom     :       3;
+X               :       2;
+Y               :       5;
 
 //Map
 
 //ROOM 1
-6,4;
 //ROOM 2
 //ROOM 3
 
@@ -22,15 +21,13 @@ Waiting Cust
 2;
 
 Order
-    ;
+    6;
 Food Stack
     
 
 Hand
-4;
-6;
-4;
-3;
+23;
+21;
 
 
     ENDOFFILE#

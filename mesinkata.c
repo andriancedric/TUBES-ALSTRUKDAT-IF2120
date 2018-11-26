@@ -9,7 +9,7 @@ boolean EndKata;
 Kata CKata;
 
 void IgnoreBlank(){
-    while ((CC== BLANK || CC == '\n' || CC == ';' || CC == ',' || CC !='(' || CC != ')') && CC != MARK){
+    while ((CC== BLANK || CC == '\n' || CC == ';' || CC == ',' ) && CC != MARK){
         ADV();
     }
 }
@@ -19,6 +19,7 @@ void IgnoreBlank(){
 
 void STARTKATA(char* filename){
     START(filename);
+    //printf("START%c", CC);
     IgnoreBlank();
     if (CC == MARK)
         EndKata = true;
@@ -33,11 +34,16 @@ void STARTKATA(char* filename){
           CC karakter pertama sesudah karakter terakhir kata */
 
 void ADVKATA(){
+    //makeKataBlank(&CKata);
     IgnoreBlank();
     if (CC == MARK){
+        //printf("CKataMARK : ");
+        //printf("%c\n",CC);
         EndKata = true;}
     else{
         SalinKata();
+        //printf("CKata : ");
+        //printKata(CKata);
         IgnoreBlank();
     }
 }
@@ -78,7 +84,21 @@ void SalinKata(){
 void Length(Kata *kata){
     int i;
     for(i = 0; kata->TabKata[i] != '\0'; ++i);
-    kata->Length = i;
+      kata->Length = i;
+}
+
+int KataInt(Kata kata){
+    int temp = 0;
+    for(int i=0; i<=kata.Length; i++){
+        temp = (temp*10) + (kata.TabKata[i]-'0');
+    }
+    return temp;
+}
+
+void makeKataBlank(Kata *kata){
+    int i;
+    for(i = 0; i<=100; ++i);
+      kata->TabKata[i] = ' ';
 }
 
 boolean compareKata(Kata kata1, char* teks){
@@ -90,12 +110,28 @@ boolean compareKata(Kata kata1, char* teks){
 }
 
 void printKata(Kata kata1){
-	for(int i = 0; i<kata1.Length ; i++){
+	for(int i = 0; i<=kata1.Length ; i++){
 		printf("%c", kata1.TabKata[i]);
 	}
 	printf("\n");
 }
 
+void printKataR(Kata kata1){
+  for(int i = 0; i<kata1.Length ; i++){
+    printf("%c", kata1.TabKata[i]);
+  }
+  printf("\n");
+}
+
+void printKataMM(Kata kata1){
+  for(int i = 0; i<=kata1.Length ; i++){
+    printf("%c", kata1.TabKata[i]);
+  }
+  int spacenum = (15-kata1.Length);
+  for(int i = 0; i<=spacenum ; i++){
+    printf(" ");
+  }
+}
 void printID(Kata kata1){
 	printf("%d", kata1.ID);
 

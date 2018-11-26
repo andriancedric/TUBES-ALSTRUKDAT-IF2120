@@ -230,7 +230,7 @@ void PrintTreeL (BinTree P, int h, int CLevel) {
     for (i = 1; i<=h*(CLevel-1); i++) {
       printf(" ");
     }
-    printKata(Akar(P));
+    printKataR(Akar(P));
     if (Left(P) != Nil) {
       PrintTreeL(Left(P),h,CLevel+1);
     }

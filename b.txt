@@ -1,11 +1,11 @@
 //Identity
 
-PlayerName      :       asdasdName      ;
+PlayerName      :       babe;
 Money           :       0;
 Life            :       3;
-Time            :       2;
+Time            :       0;
 CurrentRoom     :       4;
-X               :       3;
+X               :       1;
 Y               :       1;
 
 //Map

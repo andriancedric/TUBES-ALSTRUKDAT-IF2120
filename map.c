@@ -57,7 +57,7 @@ void Draw(Room R){//Prosedur Menggambar peta
     Square S;
     int M=M(R);
     if (ID(&R)==4){
-      printf("                 Kitchen\n",ID(&R));
+      printf("              Kitchen %d\n",ID(&R));
     }
     else{
       printf("                 Room %d\n",ID(&R));
@@ -81,7 +81,7 @@ void Sit (Room *R, char tipe, int isi, int Jmlorg ){
   count = Jmlorg;
   for (i=0; i<=7;i++){
     for (j=0; j<=7;j++){
-      if((TipeR(*R,i,j) == tipe) && (IsiR(*R,i,j) == isi)){
+      if((TipeR(*R,i,j) == 'X') && (IsiR(*R,i,j) == isi) ){
         IsOcc(SquareXY(*R,i,j)) = true;
         if(count > 0) {
           Tipe(SquareXY(*R,i,j)) = 'C';
@@ -214,9 +214,9 @@ void MakeBuilding(List *L, Graph *G, Room *R, int *Id){
     /*ID*/
     MakeSquare(&Sq,'1',1,false,4);
     EditSquare(R,Sq,1,1);
-    MakeSquare(&Sq,'2',2,false,4);
+    MakeSquare(&Sq,'2',2,false,2);
     EditSquare(R,Sq,1,6);
-    MakeSquare(&Sq,'3',3,false,4);
+    MakeSquare(&Sq,'3',3,false,2);
     EditSquare(R,Sq,6,1);
     MakeSquare(&Sq,'4',4,false,4);
     EditSquare(R,Sq,6,6);
@@ -248,9 +248,9 @@ void MakeBuilding(List *L, Graph *G, Room *R, int *Id){
     /*ID*/
     MakeSquare(&Sq,'5',5,false,4);
     EditSquare(R,Sq,1,1);
-    MakeSquare(&Sq,'6',6,false,4);
+    MakeSquare(&Sq,'6',6,false,2);
     EditSquare(R,Sq,1,6);
-    MakeSquare(&Sq,'7',7,false,4);
+    MakeSquare(&Sq,'7',7,false,2);
     EditSquare(R,Sq,6,1);
     MakeSquare(&Sq,'8',8,false,4);
     EditSquare(R,Sq,6,6);
@@ -282,13 +282,13 @@ void MakeBuilding(List *L, Graph *G, Room *R, int *Id){
     /*ID*/
     MakeSquare(&Sq,'9',9,false,4);
     EditSquare(R,Sq,1,1);
-    MakeSquare(&Sq,'A',10,false,4);
+    MakeSquare(&Sq,'A',10,false,2);
     EditSquare(R,Sq,1,6);
-    MakeSquare(&Sq,'B',11,false,4);
+    MakeSquare(&Sq,'B',11,false,2);
     EditSquare(R,Sq,6,1);
-    MakeSquare(&Sq,'C',12,false,4);
+    MakeSquare(&Sq,'Q',12,false,4);
     EditSquare(R,Sq,6,6);
-  MakeRoom(L,G,R,4);
+    MakeRoom(L,G,R,4);
     MakeSquare(&Sq,'M',1,false,4);
     EditSquare(R,Sq,0,0);
     MakeSquare(&Sq,'M',2,false,4);

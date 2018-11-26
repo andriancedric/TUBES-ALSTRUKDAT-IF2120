@@ -1,0 +1,35 @@
+//Identity
+
+PlayerName      :       asdas;
+Money           :       0;
+Life            :       3;
+Time            :       32;
+CurrentRoom     :       1;
+X               :       2;
+Y               :       6;
+
+//Map
+
+//ROOM1
+1,5;
+1,7;
+6,0;
+6,2;
+//ROOM2
+//ROOM3
+
+//Details
+
+Waiting Cust
+    4,1;
+    4,6;
+    4,10;
+    4,25;
+
+Order
+
+Food Stack
+
+Hand
+
+ENDOFFILE#
