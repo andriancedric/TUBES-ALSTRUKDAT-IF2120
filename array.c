@@ -103,7 +103,7 @@ void AddEli (TabInt * T, IdxType i){
 
   srand((unsigned)time(NULL));
   r = (rand() % (9 - 1)) + 1;
-  Makanan(*T,i) = Makanan(Data, 1);
+  Makanan(*T,i) = Makanan(Data, r);
   Kesabaran(*T,i) = (rand()%(41-30)) + 30;;
 }
 
