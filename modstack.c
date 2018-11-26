@@ -231,7 +231,7 @@ int Give (Stack *ST, TabInt *T, Room *R, int *IDH) {
       ID=Makanan(*T,IDT);
     }
     printf("%d %d %d\n",IDT, ID, *IDH);
-    if(IDT!=-1 && ID==IDT){
+    if(Makanan(*T,IDT)!=ValUndef){
       /*Validasi ID Makanan dengan Harga makanan */
       if (*IDH == 5 || *IDH == 10) /*BANANA SPLIT dan NASI TELUR DADAR*/
       {
@@ -287,6 +287,7 @@ int Give (Stack *ST, TabInt *T, Room *R, int *IDH) {
       }
     }
     else{
+      Push(ST, IDTemp);
       printf("  Tidak ada meja di arah itu...\n");
     }
   }
@@ -314,7 +315,7 @@ void NamaMakanan(Stack S) {
   InverseStack(&temp);
   while (!IsEmptySt(temp)){
     indeks = InfoTopSt(temp);
-    printf(" %s ", makanan[indeks]);
+    printf("%s  ", makanan[indeks]);
     Pop(&temp,&hehe);
   }
   printf("\n");
